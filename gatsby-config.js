@@ -1,34 +1,38 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Joshua S - Blog`,
+    author: `@joshuas`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
+    // Necessary plugins or else it breaks...
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    // Functional plugins which provide functions (eg app like feel, ability to edit head tags)
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-catch-links`,
+    // Source plugins create nodes which can then be transformed into a usable format by a transfomer plugin
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-source-filesystem`,
+      // options object is passed to plugin
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        path: `${__dirname}/src/pages`,
+        name: `pages`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // Transformer plugins convert data that is not inherently usable to a format Gatsby understands
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        // just in case these remark plugins sound cool :) -- Dustin Chau
+        plugins: [
+          // // add syntax highlighting with:
+          // `gatsby-remark-prismjs`,
+          // // copy relative files specified in markdown:
+          // `gatsby-remark-copy-linked-files`,
+          // // compress images and add responsive images with 'srcset':
+          // `gatsby-remark-images`,
+        ],
+      },
+    },
   ],
 }

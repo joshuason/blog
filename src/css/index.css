@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+body {
+  max-width: 600px;
+  margin: 40px auto;
+  /*padding: 0 10px;*/
+}
+
+.blog-post-preview {
+  padding-bottom: 20px;
+}
+
+a {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 45px;
+  padding: 0 10px;
+}
+
+a:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+span {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+  font-size: 50%;
+}
+
+p {
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "Roboto", sans-serif;
+}
+
+.tag {
+  color: rgba(0, 0, 0, 0.2);
+  margin: 0 5px;
+  padding: 0 5px;
+  font-family: "Roboto", sans-serif;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.tag.active {
+  color: red;
+}
