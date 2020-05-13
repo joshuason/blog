@@ -21,12 +21,10 @@ export default function Index({ data }) {
   const filterOptions = post => {
     if (!activeTags.length) {
       return post.node.frontmatter.title.length > 0
-    }
-    if (post.node.frontmatter.tags) {
-      // console.log(post.node.frontmatter.tags.includes(activeTags))
-      // console.log(post.node.frontmatter.tags, activeTags)
-      return post.node.frontmatter.tags.includes(...activeTags)
+    } else if (post.node.frontmatter.tags) {
+      return activeTags.every(val => post.node.frontmatter.tags.includes(val))
     } else {
+      return false
     }
   }
 
@@ -66,9 +64,9 @@ export default function Index({ data }) {
 
 function TagItem({ tag, active, onClick }) {
   return (
-    <span className={active ? "tag active" : "tag"} onClick={onClick}>
+    <button className={active ? "tag active" : "tag"} onClick={onClick}>
       #{tag}
-    </span>
+    </button>
   )
 }
 
@@ -79,6 +77,17 @@ function removeItemFromArr(arr, val) {
   }
   return arr
 }
+
+// // both args are arrays
+// function containsAll(arr, vals) {
+//   vals.forEach(val => {
+//     console.log(arr, val, !arr.includes(val))
+//     if (!arr.includes(val)) {
+//       return false
+//     }
+//   })
+//   return true
+// }
 
 export const pageQuery = graphql`
   query IndexQuery {

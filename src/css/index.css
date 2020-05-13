@@ -46,8 +46,15 @@ p {
   font-size: 16px;
   font-weight: 400;
   cursor: pointer;
+  border: none;
+}
+
+.tag:hover,
+.tag:focus {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .tag.active {
-  color: red;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
 }
