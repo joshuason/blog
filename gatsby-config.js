@@ -20,6 +20,13 @@ module.exports = {
         name: `pages`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/images`,
+        name: `images`,
+      },
+    },
     // Transformer plugins convert data that is not inherently usable to a format Gatsby understands
     {
       resolve: `gatsby-transformer-remark`,

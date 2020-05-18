@@ -1,15 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
-.blog-post h1 {
-  background-color: white;
-  color: rgba(0, 0, 0, 0.8);
+.blog-post h1,
+.blog-post h2,
+.blog-post h3 {
   font-family: "Crimson Text", serif;
   font-weight: 400;
+}
+
+.blog-post h1 {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.6);
   text-decoration: none;
   font-size: 60px;
   display: inline;
   padding: 0;
+}
+
+.blog-post h2 {
+  font-size: 32px;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.1rem;
+  padding: 0 5px;
+  margin-bottom: 0.5rem;
+}
+
+.blog-post h3 {
+  font-style: italic;
+  font-size: 24px;
 }
 
 span {
@@ -19,11 +38,32 @@ span {
   font-size: 50%;
 }
 
-p {
-  color: rgba(0, 0, 0, 0.6);
+p,
+li {
+  color: rgba(0, 0, 0, 0.8);
   font-family: "Roboto", sans-serif;
-  line-height: 1.7rem;
+  font-size: 0.8rem;
+  line-height: 1.8rem;
   font-size: 1.2rem;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.06rem;
   max-width: 65ch;
+}
+
+.summary {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 66%;
+}
+
+.summary h2 {
+  margin-top: 0;
+  font-size: 1em;
+}
+
+.summary li {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.summary ul {
+  margin: 0 0 20px 0;
 }

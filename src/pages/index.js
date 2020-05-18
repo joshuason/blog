@@ -30,6 +30,7 @@ export default function Index({ data }) {
 
   return (
     <div className="blog-posts">
+      <Link to="about">About Me</Link>
       {posts
         .filter(post => filterOptions(post))
         .map(({ node: post }) => (

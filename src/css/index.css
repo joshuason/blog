@@ -11,7 +11,7 @@ body {
   padding-bottom: 20px;
 }
 
-a {
+.blog-post-preview a {
   color: rgba(0, 0, 0, 0.6);
   background-color: rgba(0, 0, 0, 0.2);
   font-family: "Crimson Text", serif;
@@ -23,10 +23,6 @@ a {
 
 a:hover {
   color: rgba(0, 0, 0, 1);
-}
-
-a:active {
-  color: red;
 }
 
 span {

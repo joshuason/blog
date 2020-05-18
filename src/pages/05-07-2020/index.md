@@ -1,7 +1,7 @@
 ---
-path: "/second-post"
-date: 2020-05-07
-title: "My Second Gatsby Post"
+path: "/challenge-1"
+date: 2020-05-08
+title: "Challenge #1"
 tags: ["rand", "stuf", blog, info]
 ---
 
