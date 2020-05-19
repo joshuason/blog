@@ -16,7 +16,13 @@ export default function Template({ data }) {
       {/*<Helmet title={`Poopy - ${post.frontmatter.title}`} />*/}
       <div className="blog-post">
         <h1>{post.frontmatter.title}</h1>
-        {featuredImgFluid && <Img fluid={featuredImgFluid} />}
+        {featuredImgFluid && (
+          <Img
+            fluid={featuredImgFluid}
+            durationFadeIn={2000}
+            draggable={false}
+          />
+        )}
         <div
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -36,7 +42,7 @@ export const pageQuery = graphql`
         title
         featuredImg {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 800, grayscale: true) {
               ...GatsbyImageSharpFluid
             }
           }
