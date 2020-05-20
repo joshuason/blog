@@ -5,4 +5,4 @@ title: "Challenge #1"
 tags: ["rand", "stuf", blog, info]
 ---
 
-Hello world, again.
+Hello world.

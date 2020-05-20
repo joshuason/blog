@@ -31,7 +31,7 @@
   font-size: 24px;
 }
 
-span {
+.blog-post span {
   color: rgba(0, 0, 0, 0.6);
   font-family: "Crimson Text", serif;
   font-weight: 600;

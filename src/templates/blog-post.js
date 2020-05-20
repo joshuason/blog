@@ -1,7 +1,7 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-//import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 
 import "../css/blog-post.css"
 
@@ -13,7 +13,12 @@ export default function Template({ data }) {
 
   return (
     <div className="blog-post-container">
-      {/*<Helmet title={`Poopy - ${post.frontmatter.title}`} />*/}
+      <Helmet>
+        <title>{post.frontmatter.title}</title>
+      </Helmet>
+      <div className="nav">
+        <Link to="/">( back )</Link>
+      </div>
       <div className="blog-post">
         <h1>{post.frontmatter.title}</h1>
         {featuredImgFluid && (

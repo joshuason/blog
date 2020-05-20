@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
-//import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 
 import "../css/index.css"
 //import { array } from "prop-types"
@@ -30,7 +30,13 @@ export default function Index({ data }) {
 
   return (
     <div className="blog-posts">
-      <Link to="about">About Me</Link>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Blog Posts</title>
+      </Helmet>
+      <div className="nav">
+        <Link to="about">( about )</Link>
+      </div>
       {posts
         .filter(post => filterOptions(post))
         .map(({ node: post }) => (
