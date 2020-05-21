@@ -67,3 +67,8 @@ li {
 .summary ul {
   margin: 0 0 20px 0;
 }
+
+.blog-post .code {
+  font: inherit;
+  font-family: "Courier New", Courier, monospace;
+}

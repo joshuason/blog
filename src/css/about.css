@@ -32,3 +32,8 @@ h3 {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
 }
+
+.about div.gatsby-image-wrapper {
+  display: block !important;
+  margin: 100px auto 150px auto;
+}

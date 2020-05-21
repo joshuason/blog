@@ -4,7 +4,6 @@ date: 2020-05-15
 title: "Challenge #2"
 blurb: "My challenges and victories whilst attempting challenge #2"
 tags: ["gats", "blog", "blah"]
-featuredImgURL: https://images.ctfassets.net/cnu0m8re1exe/7drbU8hXNduWKXqGzS0FZi/d3aae3709e8cfc3b6334986d8146ae03/Planet_Virus.jpg?w=650&h=433&fit=fill
 ---
 
 <div class="summary">
@@ -27,8 +26,6 @@ featuredImgURL: https://images.ctfassets.net/cnu0m8re1exe/7drbU8hXNduWKXqGzS0FZi
     <li>Ran my first lighthouse audit.</li>
   </ul>
 </div>
-
-![Pink PSP](../../images/batu-gezer-1HcNgs3RrKE-unsplash.jpg)
 
 This week I had a few achievements but I will discuss three topics: filtering, CDNs and Lighthouse auditing.
 

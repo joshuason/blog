@@ -18,7 +18,7 @@ export default function About({ data }) {
       </div>
       <h1>Hello, I'm Josh!</h1>
       <h2>(a/per)spiring web developer</h2>
-      <Img fluid={data.allFile.edges[0].node.childImageSharp.fluid} />
+      <Img fixed={data.file.childImageSharp.fixed} />
       <h3>this.me</h3>
       <p>
         I'm just a regular guy who likes to tinker with things that tickle my
@@ -58,16 +58,10 @@ export default function About({ data }) {
 
 export const query = graphql`
   query {
-    allFile(
-      filter: { relativePath: { eq: "tumblr_pcq1bsaABB1v46tua_640.jpg" } }
-    ) {
-      edges {
-        node {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
+    file(relativePath: { eq: "tumblr_pcq1bsaABB1v46tua_640.jpg" }) {
+      childImageSharp {
+        fixed(height: 200, width: 200, grayscale: true) {
+          ...GatsbyImageSharpFixed
         }
       }
     }
