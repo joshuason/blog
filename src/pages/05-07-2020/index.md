@@ -6,3 +6,5 @@ tags: ["rand", "stuf", blog, info]
 ---
 
 Hello world.
+
+https://www.gatsbyjs.org/blog/tags/100-days-of-gatsby

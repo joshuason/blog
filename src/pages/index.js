@@ -8,6 +8,7 @@ import "../css/index.css"
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark
   const [activeTags, setActiveTags] = useState([])
+  // const [isLightMode, setLightMode] = useState(false)
 
   const handleClick = tagName => {
     //console.log(tagName)
@@ -36,7 +37,22 @@ export default function Index({ data }) {
       </Helmet>
       <div className="nav">
         <Link to="about">( about )</Link>
+        {/*
+          // Light/Dark mode
+          <button
+            style={{
+              fontSize: "24px",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              color: "grey",
+            }}
+          >
+            {isLightMode ? "☾" : "*"}
+          </button>
+        */}
       </div>
+
       {posts
         .filter(post => filterOptions(post))
         .map(({ node: post }) => (
