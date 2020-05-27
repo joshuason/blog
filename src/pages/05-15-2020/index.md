@@ -10,7 +10,7 @@ This week the challenge was to deploy my Gatsby blog to a CDN. I'm going to be h
 
 Now that I've grown up, my fears subside with becoming more informed, I can't wait to publish it. I chose to deploy my Gatsby blog to three of them: <i>Surge, Netlify and GitHub Pages</i>. Here is my take on the three.
 
-Note: prior to deployment one must <span class="code">Gatsby build</span>!
+Note: prior to deployment one must <span class="code">gatsby build</span>!
 
 ## Surge
 
@@ -20,21 +20,25 @@ To deploy: just <span class="code">build</span> your Gatsby site, <span class="c
 
 Sooo. Freaking. Simple.
 
-What about signing up? They've included that into the process too! They've kinda merged it with the sign in process which is pretty cool, I must say. Assumingly, under the hood, Surge checks to see whether the email address has been signed up. If not, sign them up with the password they provide. This is my speculation though.
+What about signing up? They've included that into the process too! They've kinda merged it with the sign in process which is pretty cool, I must say. Assumingly, under the hood, Surge checks to see whether the email address has been signed up. If not, sign them up with the password they provide. This is entirely my noobie speculation though.
 
-Other noteable bonuses: They've garnered a respectable following with 6.2m deployments, almost 60TB of published content and just shy of 1 million projects. Also, most importantly they have a cute mascot of a walrus.
+Other noteable bonuses: ability to integrate a custom domain, custom 404's, great docs and many other goodies. Their proud stats featured on their front page states the respectably garnered following with 6.2m deployments, almost 60TB of published content and just shy of 1 million projects. Also, most importantly they have a cute mascot of a walrus.
 
 ## Netlify
 
-This one is pretty popular within the web dev community and I can see why. It's pretty much just as simple to deploy as surge but has added bells and whistles. They have a GUI--for lack of better words--on their site with features such as drag and drop deployment, site overview, analytics, and other various settings and customisation utilities.
+This one is pretty popular within the web dev community and I can see why. It's pretty much just as simple to deploy as surge but has added bells and whistles. They have a nice graphical user interface--for lack of better words--with features such as drag and drop deployment, site overview, analytics, and other various settings and customisation utilities.
 
-To deploy to Netlify, one must create an account. Log in to said account. Use the build tool (<span class="code">Gatsby build</span>). Then drag and drop the <span class="code">public</span> folder into the browser. Piece of cake! 🍰
+To deploy to Netlify, one must create an account. Log into said account. Use the build tool (<span class="code">gatsby build</span>). Then drag and drop the <span class="code">public</span> folder into the browser. Piece of cake! 🍰
+
+The myriad of other features would definitely be great to explore and provides an intro into what tools are required when deploying a fully blown website. Feel free to explore and research these added functionalities to see which ones work for you.
 
 ## GitHub Pages
 
-Lastly, I deployed my site to GitHub Pages. My Gatsby blog's repo is stored there openly for all you code fiends (feel free to critique my code), so I thought it was fitting to try their's out. And fittingly, I had the most difficulty with it. It went as smoothly as curdled cat-octopus milk.
+Finally, I deployed my site to GitHub Pages. My Gatsby blog's repo is stored there, openly for all you code fiends (feel free to critique my code), so I thought it was fitting to try their's out. And fittingly, I had the most difficulty with it. It went as smoothly as curdled cat-octopus milk.
 
-First time around it kept publishing my ReadMe.md which was/is (god, I hope it's the former) currently the word "Blog". What a lovely, succinct website. I reread the instructions, analysing every detail to see what steps I missed out but couldn't find it. I switched the repo from private to public. Deployed a few thousand times.
+First time around it kept publishing my ReadMe.md which was/is (god, I hope it's the former) currently the word "Blog". What a lovely, succinct website. I reread the instructions, analysing every detail to see what steps I missed out but couldn't find it. I had followed the instructions on [gatsbyjs for deploying to GitHub Pages](https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages).
+
+Things I tried include: switching the repo from public to private to public. Deployed a few thousand times.
 
 Naturally, I came to the conclusion that GitHub was flawed and that I was faultless. Dunning-Kruger my bff. In all seriousness, I'm still unsure as to how I finally got it working. If anyone has any suspicion of where I could've went wrong, let me know. But until the next time I deploy to GH Pages I won't know. Hopefully, just a one-off occurence: 🤞
 
