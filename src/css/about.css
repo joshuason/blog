@@ -37,3 +37,7 @@ h3 {
   display: block !important;
   margin: 100px auto 150px auto;
 }
+
+.about-content {
+  margin-bottom: 3rem;
+}
