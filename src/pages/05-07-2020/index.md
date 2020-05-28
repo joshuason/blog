@@ -2,9 +2,17 @@
 path: "/challenge-1"
 date: 2020-05-08
 title: "Challenge #1"
-tags: ["rand", "stuf", blog, info]
+tags: ["intro", "welcome"]
 ---
 
-Hello world.
+## Hello world,
 
-https://www.gatsbyjs.org/blog/tags/100-days-of-gatsby
+Welcome to my Gatsby blog.
+
+Please see my about page.
+
+We do hope you enjoy your stay.
+
+![--](https://media.giphy.com/media/5zf2M4HgjjWszLd4a5/giphy.gif)
+
+[#100DaysOfGatsby](https://www.gatsbyjs.org/blog/tags/100-days-of-gatsby)

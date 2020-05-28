@@ -44,12 +44,38 @@ const About = ({ data }) => {
         <h3>this.blog</h3>
         <p>
           This blog documents the progress of my Gatsby learning
-          process––learning new things like Markdown, Gatsby's API, plugins, and
-          deployment. Just like the self-taught learning process, at times, this
-          blog is unrefined and unprocessed. I draw sustanance from various
-          other blogs, essays and online documentation. I hope you enjoy reading
-          my struggles unfiltered and that you gain something of value.
+          process––learning new things like Markdown, GraphQL, Gatsby's API,
+          plugins, and deployment. Just like the self-taught learning process,
+          at times, this blog is unrefined and unprocessed. I draw sustanance
+          from various other blogs, essays and online documentation. I hope you
+          enjoy reading my struggles unfiltered and that you gain something of
+          value.
         </p>
+        <h3>this.blog.meta</h3>
+        <div className="this-blog-meta-content">
+          <p>Fonts:</p>
+          <ul>
+            <li>Heading: Crimson Text (serif)</li>
+            <li>Body: Roboto (sans serif)</li>
+            <li>Code: Courier New (monospace)</li>
+          </ul>
+          <p>Plugins:</p>
+          <ul>
+            <li>Helmet</li>
+            <li>Formik</li>
+          </ul>
+          <p>Misc:</p>
+          <ul>
+            <li>
+              <a href="https://github.com/joshuason/blog">Source code</a>
+            </li>
+            <li>
+              <a href="https://github.https://github.com/gatsbyjs/gatsby-starter-default/joshuason/blog">
+                Gatsby starter
+              </a>
+            </li>
+          </ul>
+        </div>
         <br />
         <h3>GODSPEED</h3>
         <i>

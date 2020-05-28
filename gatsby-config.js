@@ -32,19 +32,19 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         // just in case these remark plugins sound cool :) -- Dustin Chau
-        // plugins: [
-        //   // // add syntax highlighting with:
-        //   // `gatsby-remark-prismjs`,
-        //   // // copy relative files specified in markdown:
-        //   // `gatsby-remark-copy-linked-files`,
-        //   {
-        //     // compress images and add responsive images with 'srcset':
-        //     resolve: `gatsby-remark-images`,
-        //     options: {
-        //       maxWidth: 800,
-        //     },
-        //   },
-        // ],
+        plugins: [
+          // // add syntax highlighting with:
+          // `gatsby-remark-prismjs`,
+          // // copy relative files specified in markdown:
+          // `gatsby-remark-copy-linked-files`,
+          {
+            // compress images and add responsive images with 'srcset':
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+            },
+          },
+        ],
       },
     },
   ],
