@@ -1,7 +1,7 @@
 ---
 path: "/challenge-4"
 date: 2020-05-29
-title: "Challenge #4"
+title: "Goodbye forms; Hello Formik"
 blurb: "My challenges and victories whilst attempting challenge #4"
 tags: ["formik", "react", "components"]
 ---

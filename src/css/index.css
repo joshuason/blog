@@ -1,11 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+* {
+  color: black;
+}
+
 body {
-  max-width: 75ch;
+  max-width: 900px;
   margin: 40px auto;
   /*padding: 0 10px;*/
 }
+
+.blog-posts-body {
+  margin-top: 100px;
+  margin-left: -100px;
+}
+
+a {
+  text-decoration: none;
+}
+/*
+a:hover {
+  text-decoration: line-through;
+  text-decoration-style: double;
+  text-decoration-color: rgba(255, 105, 180, 0.25);
+}
+*/
+.blog-post-preview a,
+.blog-post-preview p,
+.blog-post-preview .date {
+  font-family: "Crimson Text", serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: white;
+}
+
+.blog-post-preview a:hover {
+  color: grey;
+}
+.blog-post-preview .title {
+  color: black;
+}
+
 /*
 .blog-post-preview {
   padding-bottom: 20px;

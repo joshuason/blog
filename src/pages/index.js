@@ -61,15 +61,13 @@ export default function Index({ data }) {
           .filter(post => filterOptions(post))
           .map(({ node: post }) => (
             <div className="blog-post-preview" key={post.id}>
-              <h1>
+              <p>
                 <Link to={post.frontmatter.path}>
-                  <span className="date">
-                    {post.frontmatter.date.substring(4, 6)}
-                  </span>
+                  {post.frontmatter.date.substring(4, 6)}
                   {" / "}
                   <span className="title">{post.frontmatter.title}</span>
                 </Link>
-              </h1>
+              </p>
             </div>
           ))}
 

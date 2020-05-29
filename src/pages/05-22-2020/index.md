@@ -1,7 +1,7 @@
 ---
 path: "/challenge-3"
 date: 2020-05-22
-title: "Challenge #3"
+title: "Images, you b!tch"
 blurb: "My challenges and victories whilst attempting challenge #3"
 tags: ["image", "markdown", "jsx"]
 featuredImg: "../../images/batu-gezer-1HcNgs3RrKE-unsplash.jpg"
