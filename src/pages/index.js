@@ -29,13 +29,17 @@ export default function Index({ data }) {
     }
   }
 
+  // const orderedPosts = posts.reduce((acc, post, ind, arr) => {
+
+  // }, []);
+
   return (
     <div className="blog-posts">
       <Helmet>
         <meta charSet="utf-8" />
         <title>Blog Posts</title>
       </Helmet>
-      <div className="nav">
+      <div className="blog-posts-header">
         <Link to="about">( about )</Link>
         {/*
           // Light/Dark mode
@@ -52,35 +56,68 @@ export default function Index({ data }) {
           </button>
         */}
       </div>
+      <div className="blog-posts-body">
+        {posts
+          .filter(post => filterOptions(post))
+          .map(({ node: post }) => (
+            <div className="blog-post-preview" key={post.id}>
+              <h1>
+                <Link to={post.frontmatter.path}>
+                  <span className="date">
+                    {post.frontmatter.date.substring(4, 6)}
+                  </span>
+                  {" / "}
+                  <span className="title">{post.frontmatter.title}</span>
+                </Link>
+              </h1>
+            </div>
+          ))}
 
-      {posts
-        .filter(post => filterOptions(post))
-        .map(({ node: post }) => (
-          <div className="blog-post-preview" key={post.id}>
-            <h1>
-              <Link to={post.frontmatter.path}>
-                {post.frontmatter.title}{" "}
-                <span>
-                  {"/ "}
-                  {post.frontmatter.date}
-                </span>
-              </Link>
-            </h1>
-            {post.frontmatter.tags && (
-              <p className="tagline">
-                {post.frontmatter.tags.map((tag, ind) => (
-                  <TagItem
-                    key={ind}
-                    tag={tag}
-                    active={activeTags.includes(tag) ? true : false}
-                    onClick={() => handleClick(tag)}
-                  />
-                ))}
-              </p>
-            )}
-            <p>{post.excerpt}</p>
-          </div>
-        ))}
+        <div>{/* Heading */}</div>
+        <div>
+          {/* Scrollable body */
+          /*
+              <div style={{ sticky }}>Month</div>
+              <div>content</div>
+              <div>content</div>
+              <div>content</div>
+            */}
+        </div>
+      </div>
+
+      {/*
+      <div className="blog-posts-body">
+        {posts
+          .filter(post => filterOptions(post))
+          .map(({ node: post }) => (
+            <div className="blog-post-preview" key={post.id}>
+              <h1>
+                <Link to={post.frontmatter.path}>
+                  {post.frontmatter.title}{" "}
+                  <span>
+                    {"/ "}
+                    {post.frontmatter.date}
+                  </span>
+                </Link>
+              </h1>
+              {post.frontmatter.tags && (
+                <p className="tagline">
+                  {post.frontmatter.tags.map((tag, ind) => (
+                    <TagItem
+                      key={ind}
+                      tag={tag}
+                      active={activeTags.includes(tag) ? true : false}
+                      onClick={() => handleClick(tag)}
+                    />
+                  ))}
+                </p>
+              )}
+              <p>{post.excerpt}</p>
+            </div>
+          ))}
+      </div>
+      */}
+      <div className="blog-posts-footer"></div>
     </div>
   )
 }
@@ -121,7 +158,7 @@ export const pageQuery = graphql`
           id
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "MMM DD, YYYY")
             path
             blurb
             tags

@@ -6,7 +6,7 @@ body {
   margin: 40px auto;
   /*padding: 0 10px;*/
 }
-
+/*
 .blog-post-preview {
   padding-bottom: 20px;
 }
@@ -19,6 +19,9 @@ body {
   text-decoration: none;
   font-size: 45px;
   padding: 0 10px;
+}
+a {
+  font-family: "Crimson Text", serif;
 }
 
 a:hover {
@@ -68,3 +71,4 @@ p {
 .nav a:hover {
   color: #000;
 }
+*/
