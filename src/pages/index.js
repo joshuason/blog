@@ -23,12 +23,37 @@ export default function Index({ data }) {
     }
   }
 
-  const bodyGroupedByDate = posts
+  const body = posts
     .filter(post => filterOptions(post))
-    .reduce((acc, { node: post }, ind, arr) => {
-      const year = post.frontmatter.date.slice(-4)
-      const month = post.frontmatter.date.slice(0, 3)
-    }, [])
+    .map(({ node: post }, ind, arr) =>
+      ind === 0 ||
+      (ind > 0 &&
+        post.frontmatter.date.slice(0, 3) !==
+          arr[ind - 1].node.frontmatter.date.slice(0, 3)) ? (
+        <>
+          <div className="blog-post-month-divider">
+            <div>{post.frontmatter.date.slice(0, 3)}</div>
+            <div>/</div>
+            <div className="line"></div>
+          </div>
+          <div className="blog-post-preview" key={post.id}>
+            <Link to={post.frontmatter.path}>
+              <div>{post.frontmatter.date.substring(4, 6)}</div>
+              <div>/</div>
+              <div className="title">{post.frontmatter.title}</div>
+            </Link>
+          </div>
+        </>
+      ) : (
+        <div className="blog-post-preview" key={post.id}>
+          <Link to={post.frontmatter.path}>
+            <div>{post.frontmatter.date.substring(4, 6)}</div>
+            <div>/</div>
+            <div className="title">{post.frontmatter.title}</div>
+          </Link>
+        </div>
+      )
+    )
 
   return (
     <div className="blog-posts">
@@ -36,44 +61,9 @@ export default function Index({ data }) {
         <meta charSet="utf-8" />
         <title>Blog Posts</title>
       </Helmet>
-      <Header />
-      <div className="blog-posts-body">
-        {posts
-          .filter(post => filterOptions(post))
-          .map(({ node: post }, ind, arr) => {
-            if (
-              ind === 0 ||
-              (ind > 0 &&
-                post.frontmatter.date.slice(0, 3) !==
-                  arr[ind - 1].node.frontmatter.date.slice(0, 3))
-            ) {
-              return (
-                <>
-                  <div className="blog-post-month-divider">
-                    {post.frontmatter.date.slice(0, 3)} / -----------
-                  </div>
-                  <div className="blog-post-preview" key={post.id}>
-                    <Link to={post.frontmatter.path}>
-                      {post.frontmatter.date.substring(4, 6)}
-                      {" / "}
-                      <span className="title">{post.frontmatter.title}</span>
-                    </Link>
-                  </div>
-                </>
-              )
-            }
-            return (
-              <div className="blog-post-preview" key={post.id}>
-                <Link to={post.frontmatter.path}>
-                  {post.frontmatter.date.substring(4, 6)}
-                  {" / "}
-                  <span className="title">{post.frontmatter.title}</span>
-                </Link>
-              </div>
-            )
-          })}
-      </div>
-      {/*<Footer />*/}
+      <Header pages={["blog", "contact", "about"]} />
+      <div className="blog-posts-body">{body}</div>
+      <Footer />
     </div>
   )
 }

@@ -1,0 +1,7 @@
+.Footer * {
+  color: #808080;
+}
+
+.Footer:hover * {
+  color: #2e2e2e;
+}
