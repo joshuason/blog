@@ -1,7 +1,38 @@
+.Footer {
+  height: 150px;
+  margin-top: 200px;
+  padding-top: 50px;
+  border-top: 1px solid #808080;
+  display: grid;
+  grid-template-columns: 60px 140px 220px 380px 60px;
+  grid-gap: 20px;
+  grid-template-areas: "b-left" "left" "middle" "right" "b-right";
+}
+
 .Footer * {
   color: #808080;
 }
 
+.Footer:hover {
+  border-top: 1px solid #2e2e2e;
+}
+
 .Footer:hover * {
   color: #2e2e2e;
+}
+
+.Footer .left {
+  grid-area: "left";
+}
+
+.Footer .middle {
+  grid-area: "middle";
+}
+
+.Footer .right {
+  grid-area: "right";
+}
+
+.Footer a i {
+  font-size: 24px;
 }

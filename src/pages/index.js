@@ -60,6 +60,10 @@ export default function Index({ data }) {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Blog Posts</title>
+        <script
+          src="https://kit.fontawesome.com/dc5c29d233.js"
+          crossorigin="anonymous"
+        ></script>
       </Helmet>
       <Header pages={["blog", "contact", "about"]} />
       <div className="blog-posts-body">{body}</div>
