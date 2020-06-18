@@ -9,7 +9,6 @@ body {
   max-width: 940px;
   margin: 0 auto;
   padding: 0 10px;
-  height: 100vh;
   font-family: "Crimson Text", serif;
 }
 
@@ -20,7 +19,6 @@ body {
 }
 
 .blog-posts-body {
-  padding: 100px 0 200px 0;
   flex: 1 0 auto;
 }
 

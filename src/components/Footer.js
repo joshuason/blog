@@ -7,7 +7,6 @@ import "../css/footer.css"
 const Footer = () => {
   return (
     <div className="Footer">
-      <div className="b-left"></div>
       <div className="left">
         <a href="https://twitter.com/joshu_ua">
           <i class="fab fa-twitter-square"></i>
@@ -30,7 +29,6 @@ const Footer = () => {
         <SignupForm />
         (form powered by Formik)
       </div>
-      <div className="b-right"></div>
     </div>
   )
 }

@@ -5,8 +5,9 @@
   border-top: 1px solid #808080;
   display: grid;
   grid-template-columns: 60px 140px 220px 380px 60px;
+  grid-row: 1;
   grid-gap: 20px;
-  grid-template-areas: "b-left" "left" "middle" "right" "b-right";
+  grid-template-areas: "b-left left center right b-right";
 }
 
 .Footer * {
@@ -22,15 +23,15 @@
 }
 
 .Footer .left {
-  grid-area: "left";
+  grid-area: left;
 }
 
-.Footer .middle {
-  grid-area: "middle";
+.Footer .center {
+  grid-area: center;
 }
 
 .Footer .right {
-  grid-area: "right";
+  grid-area: right;
 }
 
 .Footer a i {

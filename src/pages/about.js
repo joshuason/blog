@@ -4,6 +4,7 @@ import Img from "gatsby-image"
 import { Link, graphql } from "gatsby"
 
 import Footer from "../components/Footer"
+import Header from "../components/Header"
 
 import "../css/about.css"
 
@@ -15,9 +16,10 @@ const About = ({ data }) => {
         <meta charSet="utf-8" />
         <title>About</title>
       </Helmet>
-      <div className="nav">
+      <Header pages={["blog", "contact", "about"]} />
+      {/*<div className="nav">
         <Link to="/">( back )</Link>
-      </div>
+      </div>*/}
       <div className="about-content">
         <h1>Hello, I'm Josh!</h1>
         <h2>(a/per)spiring web developer</h2>
