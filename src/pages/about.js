@@ -1,7 +1,7 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import Img from "gatsby-image"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Footer from "../components/Footer"
 import Header from "../components/Header"
@@ -16,10 +16,7 @@ const About = ({ data }) => {
         <meta charSet="utf-8" />
         <title>About</title>
       </Helmet>
-      <Header pages={["blog", "contact", "about"]} />
-      {/*<div className="nav">
-        <Link to="/">( back )</Link>
-      </div>*/}
+      <Header pages={["blog", "about", "contact"]} activePage="about" />
       <div className="about-content">
         <h1>Hello, I'm Josh!</h1>
         <h2>(a/per)spiring web developer</h2>

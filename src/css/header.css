@@ -7,14 +7,22 @@
   font-size: 32px;
 }
 
-.Header a {
+.Header * {
   color: #808080;
+}
+
+.Header:hover .Logo {
+  color: #2e2e2e;
 }
 
 .Header a:hover {
   color: #2e2e2e;
 }
 
-.Header a.active {
-  text-decoration: overline;
+.Header span {
+  color: #ffffff;
+}
+
+.Header span.active {
+  color: #808080;
 }

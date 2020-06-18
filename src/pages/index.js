@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React /*, { useState }*/ from "react"
 import { Link, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 
@@ -10,17 +10,18 @@ import "../css/index.css"
 
 export default function Index({ data }) {
   const { edges: posts } = data.allMarkdownRemark
-  const [activeTags, setActiveTags] = useState([])
+  // const [activeTags, setActiveTags] = useState([])
   // const [isLightMode, setLightMode] = useState(false)
 
   const filterOptions = post => {
-    if (!activeTags.length) {
-      return post.node.frontmatter.title.length > 0
-    } else if (post.node.frontmatter.tags) {
-      return activeTags.every(val => post.node.frontmatter.tags.includes(val))
-    } else {
-      return false
-    }
+    // if (!activeTags.length) {
+    //   return post.node.frontmatter.title.length > 0
+    // } else if (post.node.frontmatter.tags) {
+    //   return activeTags.every(val => post.node.frontmatter.tags.includes(val))
+    // } else {
+    //   return false
+    // }
+    return true
   }
 
   const body = posts
@@ -34,7 +35,9 @@ export default function Index({ data }) {
           <div className="blog-post-month-divider">
             <div>{post.frontmatter.date.slice(0, 3)}</div>
             <div>/</div>
-            <div className="line"></div>
+            <div className="line">
+              <div></div>
+            </div>
           </div>
           <div className="blog-post-preview" key={post.id}>
             <Link to={post.frontmatter.path}>
@@ -65,7 +68,7 @@ export default function Index({ data }) {
           crossorigin="anonymous"
         ></script>
       </Helmet>
-      <Header pages={["blog", "contact", "about"]} />
+      <Header pages={["blog", "about", "contact"]} activePage="blog" />
       <div className="blog-posts-body">{body}</div>
       <Footer />
     </div>

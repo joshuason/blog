@@ -37,7 +37,7 @@ const SignupForm = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
-        <button type="submit">Sign up!</button>
+        <button type="submit">Sign me up for cool stuff!</button>
       </form>
     </div>
   )

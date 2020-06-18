@@ -9,13 +9,16 @@ const Header = ({ pages, activePage }) => {
       <div className="Logo">{"{ j.sh }"}</div>
       <div className="Menu">
         {pages &&
-          pages.map(page =>
-            page === "blog" ? (
-              <Link to="/">( {page} )</Link>
-            ) : (
-              <Link to={page}>( {page} )</Link>
-            )
-          )}
+          pages.map((page, ind) => (
+            <>
+              {ind > 0 && " "}
+              <Link to={page === "blog" ? "" : page}>
+                <span className={page === activePage && "active"}>( </span>
+                {page}
+                <span className={page === activePage && "active"}> )</span>
+              </Link>
+            </>
+          ))}
       </div>
 
       {/*

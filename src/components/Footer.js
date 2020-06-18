@@ -15,6 +15,8 @@ const Footer = () => {
         <a href="https://github.com/joshuason">
           <i class="fab fa-github-square"></i>
         </a>
+        <br />
+        <i class="fas fa-heart"></i>
       </div>
       <div className="center">
         <Link to="/">Blog</Link>
@@ -25,9 +27,12 @@ const Footer = () => {
         <br />
       </div>
       <div className="right">
-        A form by any other name would fill out just as sweet...
-        <SignupForm />
-        (form powered by Formik)
+        <div className="form">
+          <div className="form-text">
+            A form by any other name would fill out just as sweet...
+          </div>
+          <SignupForm />
+        </div>
       </div>
     </div>
   )

@@ -2,23 +2,33 @@
   height: 150px;
   margin-top: 200px;
   padding-top: 50px;
-  border-top: 1px solid #808080;
+  border-top: 1px solid #c0c0c0;
   display: grid;
   grid-template-columns: 60px 140px 220px 380px 60px;
   grid-row: 1;
   grid-gap: 20px;
   grid-template-areas: "b-left left center right b-right";
+  font-size: 20px;
 }
 
 .Footer * {
-  color: #808080;
+  color: #c0c0c0;
+}
+
+.Footer input {
+  border-color: #c0c0c0;
 }
 
 .Footer:hover {
-  border-top: 1px solid #2e2e2e;
+  border-top: 1px solid #c0c0c0;
 }
 
 .Footer:hover * {
+  color: #808080;
+}
+
+.Footer:hover a:hover,
+.Footer:hover i:hover {
   color: #2e2e2e;
 }
 
@@ -36,4 +46,48 @@
 
 .Footer a i {
   font-size: 24px;
+}
+
+.Footer i {
+  font-size: 20px;
+}
+
+.Footer .form-text {
+  font-size: 16px;
+  font-style: italic;
+  padding-bottom: 8px;
+}
+
+.Footer .SignupForm form {
+  display: grid;
+  grid-template: 1fr / 1fr 2fr;
+}
+
+.Footer .SignupForm button {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.Footer .SignupForm form input {
+  color: #2e2e2e;
+  border: 1px solid #ffffff;
+  background-color: #f0f0f0;
+  padding-left: 0.25rem;
+}
+
+.Footer .SignupForm form button {
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.Footer .SignupForm form button:active {
+  color: #ffffff;
+  background-color: #c0c0c0;
+  border: 1px solid #c0c0c0;
+}
+
+.Footer .SignupForm form input:focus {
+  border: none;
+  background-color: #c0c0c0;
 }
