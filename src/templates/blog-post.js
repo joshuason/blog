@@ -17,7 +17,7 @@ export default function Template({ data }) {
         <title>{post.frontmatter.title}</title>
       </Helmet>
       <div className="nav">
-        <Link to="">( back )</Link>
+        <Link to={"/"}>( back )</Link>
       </div>
       <div className="blog-post">
         <h1>{post.frontmatter.title}</h1>

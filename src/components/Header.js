@@ -7,17 +7,23 @@ const Header = ({ pages, activePage }) => {
   return (
     <div className="Header">
       <div className="Logo">{"{ j.sh }"}</div>
+      {/* Change below to use nav > ul > li */}
       <div className="Menu">
         {pages &&
           pages.map((page, ind) => (
-            <>
+            <React.Fragment key={page}>
               {ind > 0 && " "}
-              <Link to={page === "blog" ? "" : page}>
-                <span className={page === activePage && "active"}>( </span>
+              <Link to={page === "blog" ? `/` : `/${page}`}>
+                <span className={page === activePage ? "active" : undefined}>
+                  ({" "}
+                </span>
                 {page}
-                <span className={page === activePage && "active"}> )</span>
+                <span className={page === activePage ? "active" : undefined}>
+                  {" "}
+                  )
+                </span>
               </Link>
-            </>
+            </React.Fragment>
           ))}
       </div>
 

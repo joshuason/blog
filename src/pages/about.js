@@ -9,7 +9,7 @@ import Header from "../components/Header"
 import "../css/about.css"
 
 const About = ({ data }) => {
-  console.log(data)
+  /*console.log(data)*/
   return (
     <div className="about">
       <Helmet>

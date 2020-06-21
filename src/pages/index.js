@@ -31,7 +31,7 @@ export default function Index({ data }) {
       (ind > 0 &&
         post.frontmatter.date.slice(0, 3) !==
           arr[ind - 1].node.frontmatter.date.slice(0, 3)) ? (
-        <>
+        <React.Fragment key={post.frontmatter.date}>
           <div className="blog-post-month-divider">
             <div>{post.frontmatter.date.slice(0, 3)}</div>
             <div>/</div>
@@ -46,7 +46,7 @@ export default function Index({ data }) {
               <div className="title">{post.frontmatter.title}</div>
             </Link>
           </div>
-        </>
+        </React.Fragment>
       ) : (
         <div className="blog-post-preview" key={post.id}>
           <Link to={post.frontmatter.path}>

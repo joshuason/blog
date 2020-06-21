@@ -9,21 +9,21 @@ const Footer = () => {
     <div className="Footer">
       <div className="left">
         <a href="https://twitter.com/joshu_ua">
-          <i class="fab fa-twitter-square"></i>
+          <i className="fab fa-twitter-square"></i>
         </a>
         <br />
         <a href="https://github.com/joshuason">
-          <i class="fab fa-github-square"></i>
+          <i className="fab fa-github-square"></i>
         </a>
         <br />
-        <i class="fas fa-heart"></i>
+        <i className="fas fa-heart"></i>
       </div>
       <div className="center">
-        <Link to="/">Blog</Link>
+        <Link to={"/"}>Blog</Link>
         <br />
-        <Link to="/about">About</Link>
+        <Link to={"/about"}>About</Link>
         <br />
-        <Link to="/">Contact</Link>
+        <Link to={"/"}>Contact</Link>
         <br />
       </div>
       <div className="right">
