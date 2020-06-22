@@ -7,6 +7,13 @@ import "../css/footer.css"
 const Footer = () => {
   return (
     <div className="Footer">
+      <div className="divider">
+        <div className="line"></div>
+        <a href="# ">
+          <span className="caret-symbol">^</span>
+          <span className="text-top">top</span>
+        </a>
+      </div>
       <div className="left">
         <a href="https://twitter.com/joshu_ua">
           <i className="fab fa-twitter-square"></i>
