@@ -39,5 +39,10 @@ h3 {
 }
 
 .about-content {
-  margin-bottom: 3rem;
+  margin: 0 auto 3rem 80px;
+  width: 620px;
+}
+
+.about-content * {
+  color: #2e2e2e;
 }

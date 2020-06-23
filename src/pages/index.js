@@ -62,7 +62,7 @@ export default function Index({ data }) {
     <div className="blog-posts">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Blog Posts</title>
+        <title>j.sh – bl.g</title>
         <script
           src="https://kit.fontawesome.com/dc5c29d233.js"
           crossorigin="anonymous"

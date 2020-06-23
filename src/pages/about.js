@@ -26,7 +26,7 @@ const About = ({ data }) => {
           I'm just a regular guy who likes to tinker with things that tickle my
           curiously creative curiosities. <br />
           When I'm not coding I doodle. On occasions, I have been known to
-          obsessively overindulge in a cheesburger or two.
+          obsessively overindulge in a cheeseburger or two.
         </p>
         <p className="burgers">
           <span role="img" aria-label="hamburger">
@@ -43,12 +43,12 @@ const About = ({ data }) => {
         <h3>this.blog</h3>
         <p>
           This blog documents the progress of my Gatsby learning
-          process––learning new things like Markdown, GraphQL, Gatsby's API,
-          plugins, and deployment. Just like the self-taught learning process,
-          at times, this blog is unrefined and unprocessed. I draw sustanance
-          from various other blogs, essays and online documentation. I hope you
-          enjoy reading my struggles unfiltered and that you gain something of
-          value.
+          process&mdash;learning new things like Markdown, GraphQL, Gatsby's
+          API, plugins, and deployment. Just like the self-taught learning
+          process, at times, this blog is unrefined and unprocessed. I draw
+          sustanance from various other blogs, essays and online documentation.
+          I hope you enjoy reading my struggles unfiltered and that you gain
+          something of value.
         </p>
         <h3>this.blog.meta</h3>
         <div className="this-blog-meta-content">
