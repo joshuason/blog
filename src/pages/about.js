@@ -19,9 +19,9 @@ const About = ({ data }) => {
       <Header pages={["blog", "about", "contact"]} activePage="about" />
       <div className="about-content">
         <h1>Hello, I'm Josh!</h1>
-        <h2>(a/per)spiring web developer</h2>
+        <i className="subtitle">(a/per)spiring web developer</i>
         <Img fixed={data.file.childImageSharp.fixed} />
-        <h3>this.me</h3>
+        <h2>this.me</h2>
         <p>
           I'm just a regular guy who likes to tinker with things that tickle my
           curiously creative curiosities. <br />
@@ -40,7 +40,7 @@ const About = ({ data }) => {
           ╰(＾Ｏ＾)╯
         </p>
         {/*[Time], [first person pronoun] [] */}
-        <h3>this.blog</h3>
+        <h2>this.blog</h2>
         <p>
           This blog documents the progress of my Gatsby learning
           process&mdash;learning new things like Markdown, GraphQL, Gatsby's
@@ -50,7 +50,7 @@ const About = ({ data }) => {
           I hope you enjoy reading my struggles unfiltered and that you gain
           something of value.
         </p>
-        <h3>this.blog.meta</h3>
+        <h2>this.blog.meta</h2>
         <div className="this-blog-meta-content">
           <p>Fonts:</p>
           <ul>

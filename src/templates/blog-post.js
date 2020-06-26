@@ -3,6 +3,9 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Helmet } from "react-helmet"
 
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+
 import "../css/blog-post.css"
 
 export default function Template({ data }) {
@@ -16,9 +19,7 @@ export default function Template({ data }) {
       <Helmet>
         <title>{post.frontmatter.title}</title>
       </Helmet>
-      <div className="nav">
-        <Link to={"/"}>( back )</Link>
-      </div>
+      <Header pages={["blog", "about", "contact"]} activePage="blog" />
       <div className="blog-post">
         <h1>{post.frontmatter.title}</h1>
         {featuredImgFluid && (
@@ -33,6 +34,7 @@ export default function Template({ data }) {
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
       </div>
+      <Footer />
     </div>
   )
 }
