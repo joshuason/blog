@@ -7,14 +7,11 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+      allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
         edges {
           node {
             excerpt(pruneLength: 250)
-            html
+            body
             id
             frontmatter {
               date
@@ -29,7 +26,7 @@ exports.createPages = ({ actions, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    result.data.allMdx.edges.forEach(({ node }) => {
       createPage({
         path: node.frontmatter.path,
         component: blogPostTemplate,
@@ -45,7 +42,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
 
   createTypes(`
-    type MarkdownRemark implements Node {
+    type Mdx implements Node {
       frontmatter: Frontmatter
       featuredImg: File @link(from: "featuredImg___NODE")
     }
@@ -66,10 +63,7 @@ exports.onCreateNode = async ({
   createNodeId,
 }) => {
   // For all MarkdownRemark nodes that have a featured image url, call createRemoteFileNode
-  if (
-    node.internal.type === "MarkdownRemark" &&
-    node.frontmatter.featuredImgURL
-  ) {
+  if (node.internal.type === "Mdx" && node.frontmatter.featuredImgURL) {
     let fileNode = await createRemoteFileNode({
       url: node.frontmatter.featuredImgURL, // string that points to the URL of the image
       parentNodeId: node.id, // id of the parent node of the fileNode you are going to create

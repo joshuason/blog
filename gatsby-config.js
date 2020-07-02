@@ -29,10 +29,11 @@ module.exports = {
     },
     // Transformer plugins convert data that is not inherently usable to a format Gatsby understands
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
+        extensions: [`.md`, `.mdx`],
         // just in case these remark plugins sound cool :) -- Dustin Chau
-        plugins: [
+        gatsbyRemarkPlugins: [
           // // add syntax highlighting with:
           // `gatsby-remark-prismjs`,
           // // copy relative files specified in markdown:

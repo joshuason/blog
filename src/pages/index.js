@@ -9,7 +9,7 @@ import "../css/index.css"
 //import { array } from "prop-types"
 
 export default function Index({ data }) {
-  const { edges: posts } = data.allMarkdownRemark
+  const { edges: posts } = data.allMdx
   // const [activeTags, setActiveTags] = useState([])
   // const [isLightMode, setLightMode] = useState(false)
 
@@ -75,20 +75,39 @@ export default function Index({ data }) {
   )
 }
 
+// export const pageQuery = graphql`
+//   query IndexQuery {
+//     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+//       edges {
+//         node {
+//           excerpt(pruneLength: 250)
+//           id
+//           frontmatter {
+//             title
+//             date(formatString: "MMM DD, YYYY")
+//             path
+//             blurb
+//             tags
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
+
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
-          excerpt(pruneLength: 250)
           id
           frontmatter {
             title
+            blurb
             date(formatString: "MMM DD, YYYY")
             path
-            blurb
-            tags
           }
+          excerpt(pruneLength: 250)
         }
       }
     }

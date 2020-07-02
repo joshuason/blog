@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Helmet } from "react-helmet"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -9,7 +10,7 @@ import Footer from "../components/Footer"
 import "../css/blog-post.css"
 
 export default function Template({ data }) {
-  const { markdownRemark: post } = data
+  const { mdx: post } = data
   const featuredImgFluid =
     post.frontmatter.featuredImg &&
     post.frontmatter.featuredImg.childImageSharp.fluid
@@ -29,31 +30,41 @@ export default function Template({ data }) {
             draggable={false}
           />
         )}
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: post.html }}
-        />
+        <MDXRenderer>{post.body}</MDXRenderer>
       </div>
       <Footer />
     </div>
   )
 }
 
+// export const pageQuery = graphql`
+//   query BlogPostByPath($path: String!) {
+//     markdownRemark(frontmatter: { path: { eq: $path } }) {
+//       html
+//       frontmatter {
+//         date(formatString: "MMMM DD, YYYY")
+//         path
+//         title
+//         featuredImg {
+//           childImageSharp {
+//             fluid(maxWidth: 800) {
+//               ...GatsbyImageSharpFluid
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
+
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
+    mdx(frontmatter: { path: { eq: $path } }) {
+      body
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path
         title
-        featuredImg {
-          childImageSharp {
-            fluid(maxWidth: 800) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
       }
     }
   }

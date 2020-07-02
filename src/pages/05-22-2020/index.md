@@ -50,7 +50,7 @@ Reading about [the API](https://www.gatsbyjs.org/docs/gatsby-image/) proved hard
 So, to add an image to my JSX about page I read up on [another Gatsby doc](https://www.gatsbyjs.org/docs/working-with-images/). To summarise, the steps I made to achieve this were:
 
 1. Script up the GraphQL query
-2. Add <span class="code">({ data })</span> to the function to utilise the data returned from query
+2. Add <span class="code">(&#123; data &#125;)</span> to the function to utilise the data returned from query
 3. Add <span class="code">import Img from 'gatsby-image'</span>
 4. Add <span class="code">&lt;Img&gt;</span> to JSX
 
@@ -90,26 +90,26 @@ The GraphQL query was a bit funky to me. I don't know what it was doing however 
 
 My query:
 
-<p class="code block">
-  query {  <br />
-  &ensp;file(relativePath: { eq: "tumblr_pcq1bsaABB1v46tua_640.jpg" }) {  <br />
-  &ensp;&ensp;childImageSharp {  <br />
-  &ensp;&ensp;&ensp;fluid {  <br />
+<p class="code-block">
+  query &#123;  <br />
+  &ensp;file(relativePath: &#123; eq: "tumblr_pcq1bsaABB1v46tua_640.jpg" &#125;) &#123;  <br />
+  &ensp;&ensp;childImageSharp &#123;  <br />
+  &ensp;&ensp;&ensp;fluid &#123;  <br />
   &ensp;&ensp;&ensp;&ensp;...GatsbyImageSharpFluid  <br />
-  &ensp;&ensp;&ensp;}  <br />
-  &ensp;&ensp;}  <br />
-  &ensp;}  <br />
-  }  <br />
+  &ensp;&ensp;&ensp;&#125;  <br />
+  &ensp;&ensp;&#125;  <br />
+  &ensp;&#125;  <br />
+  &#125;  <br />
 </p>
 
 To debug, I tested the query with GraphiQL:
 
-<p class="code block">
-  query {<br />
-  &ensp;file {<br />
+<p class="code-block">
+  query &#123;<br />
+  &ensp;file &#123;<br />
   &ensp;&ensp;relativePath<br />
-  &ensp;}<br />
-  }<br />
+  &ensp;&#125;<br />
+  &#125;<br />
 </p>
 
 which gave me, the incorrect file:
