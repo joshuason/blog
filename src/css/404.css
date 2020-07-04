@@ -1,7 +1,28 @@
 .FourOhFour {
   color: #2e2e2e;
+  font-size: 2rem;
 }
 
-.FourOhFour span {
+.FourOhFour .content {
+  width: 780px;
+  margin-left: 80px;
+  font-size: 3rem;
+}
+
+.FourOhFour .content span,
+.FourOhFour .content i {
+  color: #c0c0c0;
+}
+
+.FourOhFour .content a {
   color: #808080;
+}
+
+.FourOhFour .content a:hover {
+  color: #2e2e2e;
+}
+
+.FourOhFour .content a:hover::after {
+  content: " but do it anyway 😘";
+  color: #c0c0c0;
 }

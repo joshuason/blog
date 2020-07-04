@@ -48,3 +48,7 @@ h2 {
 .about-content * {
   color: #2e2e2e;
 }
+
+.about h3 {
+  font-size: 1.5rem;
+}

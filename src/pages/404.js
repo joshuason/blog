@@ -9,9 +9,20 @@ const FourOhFour = () => {
   return (
     <div className="FourOhFour">
       <Header pages={["blog", "about", "contact"]} />
-      <h1>
-        Oh, this is awkward... <span>#awksquad</span>
-      </h1>
+      <div className="content">
+        Oh, this is awkward...
+        <br />
+        <span>
+          maybe <br />
+          just maybe
+          <br />
+          it's a sign
+          <br />
+          to <i>not</i>
+          <br />
+          <a href="mailto:joshuawritescode@gmail.com">contact me...</a>
+        </span>
+      </div>
       <Footer />
     </div>
   )
