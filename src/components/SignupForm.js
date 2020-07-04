@@ -8,7 +8,10 @@ const SignupForm = () => {
       firstName: "",
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2))
+      alert(
+        "This feature is currently very much redundant.\nSorry about wasting your time."
+      )
+      // alert(JSON.stringify(values, null, 2))
     },
   })
 

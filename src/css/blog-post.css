@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
+.blog-post p,
+.blog-post li {
+  margin-left: 80px;
+  width: 620px;
+}
+
 .blog-post h1,
 .blog-post h2,
 .blog-post h3 {
@@ -13,8 +19,8 @@
   color: #2e2e2e;
   text-decoration: none;
   font-size: 4rem;
-  display: inline;
   margin-left: 80px;
+  margin-top: 0;
 }
 
 .blog-post h2 {
@@ -23,11 +29,13 @@
   margin-bottom: 0.5rem;
   text-transform: lowercase;
   color: #2e2e2e;
+  margin-left: 60px;
 }
 
 .blog-post h3 {
   font-style: italic;
   font-size: 24px;
+  margin-left: 80px;
 }
 
 .blog-post span {
@@ -39,11 +47,10 @@
 
 p,
 li {
-  color: #808080;
+  color: #2e2e2e;
   font-family: "Roboto", sans-serif;
-  font-size: 0.8rem;
-  line-height: 1.8rem;
   font-size: 1.2rem;
+  line-height: 1.5em;
   letter-spacing: 0.03rem;
   /*max-width: 65ch;*/
 }
@@ -72,7 +79,19 @@ li {
   font-family: "Courier New", Courier, monospace;
 }
 
+.blog-post .code.error {
+  font-size: 1.2rem;
+}
+
 .blog-post-content {
   width: 620px;
   margin: 2rem auto 0 80px;
+}
+
+.blog-post a {
+  color: #808080;
+}
+
+.blog-post a:hover {
+  color: #2e2e2e;
 }

@@ -26,12 +26,12 @@ export default function Index({ data }) {
 
   const body = posts
     .filter(post => filterOptions(post))
-    .map(({ node: post }, ind, arr) =>
-      ind === 0 ||
-      (ind > 0 &&
-        post.frontmatter.date.slice(0, 3) !==
-          arr[ind - 1].node.frontmatter.date.slice(0, 3)) ? (
-        <React.Fragment key={post.frontmatter.date}>
+    .map(({ node: post }, ind, arr) => (
+      <React.Fragment key={post.frontmatter.date}>
+        {ind === 0 ||
+        (ind > 0 &&
+          post.frontmatter.date.slice(0, 3) !==
+            arr[ind - 1].node.frontmatter.date.slice(0, 3)) ? (
           <div className="blog-post-month-divider">
             <div>{post.frontmatter.date.slice(0, 3)}</div>
             <div>/</div>
@@ -39,24 +39,20 @@ export default function Index({ data }) {
               <div></div>
             </div>
           </div>
-          <div className="blog-post-preview" key={post.id}>
-            <Link to={post.frontmatter.path}>
-              <div>{post.frontmatter.date.substring(4, 6)}</div>
-              <div>/</div>
-              <div className="title">{post.frontmatter.title}</div>
-            </Link>
-          </div>
-        </React.Fragment>
-      ) : (
+        ) : null}
         <div className="blog-post-preview" key={post.id}>
           <Link to={post.frontmatter.path}>
-            <div>{post.frontmatter.date.substring(4, 6)}</div>
+            <div className="date">{post.frontmatter.date.substring(4, 6)}</div>
             <div>/</div>
-            <div className="title">{post.frontmatter.title}</div>
+            <div className="title-blurb">
+              <div className="title">{post.frontmatter.title}</div>
+              <div>/</div>
+              <div className="blurb">{post.excerpt}</div>
+            </div>
           </Link>
         </div>
-      )
-    )
+      </React.Fragment>
+    ))
 
   return (
     <div className="blog-posts">
@@ -74,26 +70,6 @@ export default function Index({ data }) {
     </div>
   )
 }
-
-// export const pageQuery = graphql`
-//   query IndexQuery {
-//     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-//       edges {
-//         node {
-//           excerpt(pruneLength: 250)
-//           id
-//           frontmatter {
-//             title
-//             date(formatString: "MMM DD, YYYY")
-//             path
-//             blurb
-//             tags
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
 
 export const pageQuery = graphql`
   query IndexQuery {

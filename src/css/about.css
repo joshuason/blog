@@ -14,11 +14,12 @@ h3 {
   font-weight: 400;
 }
 
-h1 {
+.about h1 {
   font-size: 4rem;
+  margin-bottom: 0;
 }
 
-.subtitle {
+i.subtitle {
   letter-spacing: 0.2rem;
   font-style: italic;
   margin: -2rem 0 2rem 0;

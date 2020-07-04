@@ -1,6 +1,6 @@
 .Header {
   padding-top: 40px;
-  margin-bottom: 100px;
+  padding-bottom: 100px;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -11,7 +11,8 @@
   color: #808080;
 }
 
-.Header:hover .Logo {
+.Header:hover .Logo a,
+.Header:hover .active span {
   color: #2e2e2e;
 }
 
@@ -23,6 +24,6 @@
   color: #ffffff;
 }
 
-.Header span.active {
+.Header .active span {
   color: #808080;
 }
