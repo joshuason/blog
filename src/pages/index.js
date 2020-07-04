@@ -33,8 +33,8 @@ export default function Index({ data }) {
           post.frontmatter.date.slice(0, 3) !==
             arr[ind - 1].node.frontmatter.date.slice(0, 3)) ? (
           <div className="blog-post-month-divider">
-            <div>{post.frontmatter.date.slice(0, 3)}</div>
-            <div>/</div>
+            <div className="month">{post.frontmatter.date.slice(0, 3)}</div>
+            <div className="slash">/</div>
             <div className="line">
               <div></div>
             </div>
@@ -43,10 +43,10 @@ export default function Index({ data }) {
         <div className="blog-post-preview" key={post.id}>
           <Link to={post.frontmatter.path}>
             <div className="date">{post.frontmatter.date.substring(4, 6)}</div>
-            <div>/</div>
+            <div className="slash">/</div>
             <div className="title-blurb">
               <div className="title">{post.frontmatter.title}</div>
-              <div>/</div>
+              <div className="slash">/</div>
               <div className="blurb">{post.excerpt}</div>
             </div>
           </Link>
