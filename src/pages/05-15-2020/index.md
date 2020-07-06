@@ -20,7 +20,7 @@ To deploy: just install surge, <span class="code">build</span> your Gatsby site,
 
 Sooo. Freaking. SIMPLE!
 
-What about signing up? They've included that into the process too! They've kinda merged it with the sign in process which is pretty cool, I must say. Assumingly, under the hood, Surge checks to see whether the email address has been signed up. If not, sign them up with the password they provide. This is entirely my noobie speculation though.
+What about signing up? They've included that into the process too! They've kinda merged it with the sign in process which is pretty cool, I must say. Assumingly, under the hood, Surge checks to see whether the email address has been signed up. If not, sign them up with the password they provide. This is entirely my noob speculation though.
 
 Other noteable bonuses: ability to integrate a custom domain, custom 404's, great docs and many other goodies. Their proud stats featured on their front page states the respectably garnered following with 6.2m deployments, almost 60TB of published content and just shy of 1 million projects. Also, most importantly they have a cute mascot of a walrus.
 
