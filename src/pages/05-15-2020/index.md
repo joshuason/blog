@@ -53,26 +53,3 @@ When you become a bit more advanced and require extra tools you may find the int
 Definitely have a play around with other providers to see what works for you. I've only discussed three however there are a good number of others out there, swimming in the sea of the internet.
 
 See the list on [Gatsby](https://www.gatsbyjs.org/docs/deploying-and-hosting/) for a start!
-
-<!--
-<div class="summary">
-  <h2>
-    Challenges:
-  </h2>
-  <ul>
-    <li>Initial filter function didn't do what I wanted.</li>
-    <li>New ESLint warnings.</li>
-    <li>Github pages threw shade.</li>
-  </ul>
-  <h2>
-    Victories:
-  </h2>
-  <ul>
-    <li>Added a filter function to filter tags.</li>
-    <li>Pushed to github.</li>
-    <li>Used Gatsby build.</li>
-    <li>Published site to various CDNs.</li>
-    <li>Ran my first lighthouse audit.</li>
-  </ul>
-</div>
--->

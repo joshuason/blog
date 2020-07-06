@@ -1,7 +1,7 @@
 ---
 path: "/challenge-3"
 date: 2020-05-22
-title: "Images, you b!tch"
+title: "Images, you b*tch"
 blurb: "My challenges and victories whilst attempting challenge #3"
 tags: ["image", "markdown", "jsx"]
 featuredImg: "../../images/batu-gezer-1HcNgs3RrKE-unsplash.jpg"
@@ -72,7 +72,7 @@ Pretty darn good I must say. Image optimisation at its finest! There was only a 
 
 ## Conclusion
 
-All in all, I'd say this has been the most eventful week of my Gatsby challenge. I still need to clean up my code and have still yet to implement a reuseable component for the top nav bar (added to my todos). However, the week has been successful in terms of meeting the objectives and my productivity.
+I'd say this has been the most eventful week of my Gatsby challenge. I still need to clean up my code and have still yet to implement a reuseable component for the top nav bar (added to my todos). However, the week has been successful in terms of meeting the objectives and my productivity.
 
 Featuring images on your blog can initially be a pain in the ass, but just like riding a bike once you know you know–_until something changes in the code base_. Also, it does add a bit of flare to your site and makes it less boring, I suppose.
 

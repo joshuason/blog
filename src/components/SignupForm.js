@@ -9,7 +9,7 @@ const SignupForm = () => {
     },
     onSubmit: values => {
       alert(
-        "This feature is currently very much redundant.\nSorry about wasting your time."
+        `Humblest apologies, ${values.firstName}.\nThis feature is currently very much redundant.\nSorry about wasting your time.`
       )
       // alert(JSON.stringify(values, null, 2))
     },

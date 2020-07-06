@@ -52,7 +52,7 @@ const About = ({ data }) => {
         </p>
         <h2>this.blog.meta</h2>
         <div className="this-blog-meta-content">
-          <p>Fonts:</p>
+          <p>Typefaces:</p>
           <ul>
             <li>Heading: Crimson Text (serif)</li>
             <li>Body: Roboto (sans serif)</li>
