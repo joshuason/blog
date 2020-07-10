@@ -14,7 +14,7 @@ const About = ({ data }) => {
     <div className="about">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>About</title>
+        <title>j.sh – ab.ut</title>
       </Helmet>
       <Header pages={["blog", "about", "contact"]} activePage="about" />
       <div className="about-content">

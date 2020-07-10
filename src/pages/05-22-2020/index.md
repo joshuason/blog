@@ -32,8 +32,9 @@ Firstly, a quick read through of Gatsby's [working with images in markdown post]
 2. Add the folder to <span class="code">gatsby-config.js</span>
 3. Add image's relative url/path to frontmatter
 
-Following said steps, only frustratingly resulted in an error message:  
-<span class="code error">Field "image" must not have a selection since type "String" has no subfields</span>.
+Following said steps, only frustratingly resulted in an error message:
+
+<p class="code-error">Field "image" must not have a selection since type "String" has no subfields</p>.
 
 ![Jake Peralta](https://steamuserimages-a.akamaihd.net/ugc/823506058661954611/B3685679465B62E28B582A6A31781532F65DD46F/)
 
@@ -54,9 +55,7 @@ So, to add an image to my JSX about page I read up on [another Gatsby doc](https
 3. Add <span class="code">import Img from 'gatsby-image'</span>
 4. Add <span class="code">&lt;Img&gt;</span> to JSX
 
-I did run into a few issues during the implementation but further details are included in the <a href="#appendix">appendix</a> below as to not overwhelm you. But some critical points were 1) I didn't know what <span class="code">gatsby-config.js</span> actually did, and 2) my query kept providing me with the wrong file and would produce an error.
-
-Aside from these issues, it was pretty straight forward. And bam! – 3 of the tasks completed.
+It was pretty straight forward. And bam! – 3 of the tasks completed.
 
 ✅ ✅ ✅
 
@@ -66,7 +65,11 @@ Finally, the lighthouse audit.
 
 Before:
 
+![Before embedded image](../../images/before-image.png)
+
 After:
+
+![After embedded image](../../images/after-image.png)
 
 Pretty darn good I must say. Image optimisation at its finest! There was only a three percent drop in performance but that's not too bad!
 
@@ -75,48 +78,6 @@ Pretty darn good I must say. Image optimisation at its finest! There was only a 
 I'd say this has been the most eventful week of my Gatsby challenge. I still need to clean up my code and have still yet to implement a reuseable component for the top nav bar (added to my todos). However, the week has been successful in terms of meeting the objectives and my productivity.
 
 Featuring images on your blog can initially be a pain in the ass, but just like riding a bike once you know you know–_until something changes in the code base_. Also, it does add a bit of flare to your site and makes it less boring, I suppose.
-
-<div id="appendix">
-
-## Appendix
-
-### Problem 1: WTF is gatsby-config.js!?
-
-The gatsby-image API is a wonderful image api. After going through multiple gatsby documentation, trying to make sense of it and implementing their source code, I started to realise I didnt know wtf gatsby-config.js actually does. Great, just what I need. More reading to do. They did say that this would be the most difficult task to date and they were right. But I suppose with great adversity comes great resilience.
-
-### Problem 2: GraphQL, por favor! Why you no working?
-
-The GraphQL query was a bit funky to me. I don't know what it was doing however through GraphiQL I was able to determine the query was not querying what I intended, producing the incorrect file and thus kept provoking the error monster.
-
-My query:
-
-<p class="code-block">
-  query &#123;  <br />
-  &ensp;file(relativePath: &#123; eq: "tumblr_pcq1bsaABB1v46tua_640.jpg" &#125;) &#123;  <br />
-  &ensp;&ensp;childImageSharp &#123;  <br />
-  &ensp;&ensp;&ensp;fluid &#123;  <br />
-  &ensp;&ensp;&ensp;&ensp;...GatsbyImageSharpFluid  <br />
-  &ensp;&ensp;&ensp;&#125;  <br />
-  &ensp;&ensp;&#125;  <br />
-  &ensp;&#125;  <br />
-  &#125;  <br />
-</p>
-
-To debug, I tested the query with GraphiQL:
-
-<p class="code-block">
-  query &#123;<br />
-  &ensp;file &#123;<br />
-  &ensp;&ensp;relativePath<br />
-  &ensp;&#125;<br />
-  &#125;<br />
-</p>
-
-which gave me, the incorrect file:
-
-[error]
-
-</div>
 
 ## Resources
 

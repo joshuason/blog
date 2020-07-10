@@ -38,13 +38,6 @@
   margin-left: 80px;
 }
 
-.blog-post span {
-  color: rgba(0, 0, 0, 0.6);
-  font-family: "Crimson Text", serif;
-  font-weight: 600;
-  font-size: 50%;
-}
-
 p,
 li {
   color: #2e2e2e;
@@ -75,13 +68,15 @@ li {
   margin: 0 0 20px 0;
 }
 
-.blog-post .code {
-  font: inherit;
-  font-family: "Courier New", Courier, monospace;
-}
-
-.blog-post .code.error {
+.blog-post .code,
+.blog-post .code-error {
   font-size: 1.2rem;
+  font-weight: 300;
+  font-family: "Courier New", Courier, monospace;
+  background-color: #f0f0f0;
+  padding: 0.2rem;
+  border: 1px solid #c0c0c0;
+  border-radius: 0.5rem;
 }
 
 .blog-post-content {

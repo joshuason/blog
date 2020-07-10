@@ -1,6 +1,7 @@
 import React /*, { useState }*/ from "react"
 import { Link, graphql } from "gatsby"
 import { Helmet } from "react-helmet"
+import favicon from "../images/favicon-32x32.png"
 
 import Header from "../components/Header"
 import Footer from "../components/Footer"
@@ -59,6 +60,7 @@ export default function Index({ data }) {
       <Helmet>
         <meta charSet="utf-8" />
         <title>j.sh – bl.g</title>
+        <link rel="icon" href={favicon} />
         <script
           src="https://kit.fontawesome.com/dc5c29d233.js"
           crossorigin="anonymous"

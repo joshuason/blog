@@ -16,7 +16,7 @@ Note: prior to deployment one must <span class="code">gatsby build</span>!
 
 Surge's sole aim is to simplify deployment. Their website states "simple, single-command web publishing. Publish HTML, CSS, and JS for free, without leaving the command line." And have they achieved that goal? I'd say hell yeah! ✊
 
-To deploy: just install surge, <span class="code">build</span> your Gatsby site, <span class="code">cd</span> into the <span class="code">public</span> dir, then <span class="code">surge[enter]</span>. After entering in your email address and password, and a custom subdomain address, the site is live. All without leaving your terminal!
+To deploy: just install surge, <span class="code">build</span> your Gatsby site, change directory (cd) into the <span class="code">public</span> dir, then <span class="code">surge[enter]</span>. After entering in your email address and password, and a custom subdomain address, the site is live. All without leaving your terminal!
 
 Sooo. Freaking. SIMPLE!
 
