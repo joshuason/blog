@@ -70,3 +70,6 @@ yarn-error.log
 
 # Images
 src/images/
+
+# Secrets
+contact-form-api/secrets.json

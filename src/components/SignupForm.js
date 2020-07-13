@@ -5,11 +5,11 @@ const SignupForm = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
-      firstName: "",
+      name: "",
     },
     onSubmit: values => {
       alert(
-        `Humblest apologies, ${values.firstName}.\nThis feature is currently very much redundant.\nSorry about wasting your time.`
+        `Humblest apologies, ${values.name}.\nThis feature is currently very much redundant.\nSorry about wasting your time.`
       )
       // alert(JSON.stringify(values, null, 2))
     },
@@ -18,16 +18,16 @@ const SignupForm = () => {
   return (
     <div className="SignupForm">
       <form onSubmit={formik.handleSubmit}>
-        <label id="firstName_label" htmlFor="firstName">
+        <label id="name_label" htmlFor="name">
           First Name:
         </label>
         <input
           type="text"
-          aria-labelledby="firstName_label"
-          id="firstName"
-          name="firstName"
+          aria-labelledby="name_label"
+          id="name"
+          name="name"
           onChange={formik.handleChange}
-          value={formik.values.firstName}
+          value={formik.values.name}
         />
         <label id="email_label" htmlFor="email">
           Email Address:
