@@ -1,64 +1,22 @@
-import React /*, { useState }*/ from "react"
-import { Link, graphql } from "gatsby"
+import React from "react"
+import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import favicon from "../images/favicon-32x32.png"
 
 import Header from "../components/Header"
+import Body from "../components/Body"
 import Footer from "../components/Footer"
 
-import "../css/index.css"
-//import { array } from "prop-types"
+import "../css/index.scss"
 
 export default function Index({ data }) {
   const { edges: posts } = data.allMdx
-  // const [activeTags, setActiveTags] = useState([])
-  // const [isLightMode, setLightMode] = useState(false)
-
-  const filterOptions = post => {
-    // if (!activeTags.length) {
-    //   return post.node.frontmatter.title.length > 0
-    // } else if (post.node.frontmatter.tags) {
-    //   return activeTags.every(val => post.node.frontmatter.tags.includes(val))
-    // } else {
-    //   return false
-    // }
-    return true
-  }
-
-  const body = posts
-    .filter(post => filterOptions(post))
-    .map(({ node: post }, ind, arr) => (
-      <React.Fragment key={post.frontmatter.date}>
-        {ind === 0 ||
-        (ind > 0 &&
-          post.frontmatter.date.slice(0, 3) !==
-            arr[ind - 1].node.frontmatter.date.slice(0, 3)) ? (
-          <div className="blog-post-month-divider">
-            <div className="month">{post.frontmatter.date.slice(0, 3)}</div>
-            <div className="slash">/</div>
-            <div className="line">
-              <div></div>
-            </div>
-          </div>
-        ) : null}
-        <div className="blog-post-preview" key={post.id}>
-          <Link to={post.frontmatter.path}>
-            <div className="date">{post.frontmatter.date.substring(4, 6)}</div>
-            <div className="slash">/</div>
-            <div className="title-blurb">
-              <div className="title">{post.frontmatter.title}</div>
-              <div className="slash">/</div>
-              <div className="blurb">{post.excerpt}</div>
-            </div>
-          </Link>
-        </div>
-      </React.Fragment>
-    ))
 
   return (
-    <div className="blog-posts">
+    <div className="container">
       <Helmet>
         <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>j.sh – bl.g</title>
         <link rel="icon" href={favicon} />
         <script
@@ -67,7 +25,7 @@ export default function Index({ data }) {
         ></script>
       </Helmet>
       <Header pages={["blog", "about", "contact"]} activePage="blog" />
-      <div className="blog-posts-body">{body}</div>
+      <Body posts={posts} />
       <Footer />
     </div>
   )

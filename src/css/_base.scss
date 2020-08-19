@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+$main-font-stack: "Crimson Text", serif;
+$body-font-stack: "Roboto", sans-serif;
+
+$primary-color: #2e2e2e;
+$secondary-color: #c0c0c0;
+$base-color: #808080;
+
+* {
+  font-family: $main-font-stack;
+  font-weight: 400;
+  color: $primary-color;
+}
+
+a {
+  text-decoration: none;
+}

@@ -32,7 +32,7 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
-        // just in case these remark plugins sound cool :) -- Dustin Chau
+        // just in case these remark plugins sound cool :) -- Dustin Schau
         gatsbyRemarkPlugins: [
           // // add syntax highlighting with:
           // `gatsby-remark-prismjs`,
@@ -48,5 +48,6 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-sass`,
   ],
 }

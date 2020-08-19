@@ -1,0 +1,37 @@
+---
+path: "/challenge-6"
+date: 2020-07-24
+title: "Serverless sluts"
+blurb: "My challenges and victories whilst attempting challenge #6"
+tags: []
+---
+
+Hey hoes,
+
+Wowoweewoo. This has been a pretty intense one. So much so that I've managed to push this challenge out a few weeks.
+
+I really wanted to dive deep into the cloud platforms namely AWS, Azure, and Google Cloud but I won’t be doing a comparison on those this time 'round as they seem like a bit much to be introduced to. There are numerous courses on AWS alone with various certifications.
+
+I also wished to explore a serverless function, one that just processes form data and sends it to my email address. Seems like something much simpler than setting up cloud architecture. However, I might save that for a later date.
+
+## amazon web services
+
+I set up a little serverless backend on AWS following the tutorial featured on Gatsby by [Adnan Rahić](https://dev.to/adnanrahic/building-a-serverless-contact-form-with-aws-lambda-and-aws-ses-4jm0). Following this tutorial was pretty simple... however I did incur a small speed bump with Amazon's authentication process, when trying to send me a validation code via text. I tried it three times before hesitantly pressing the 'call me' option. 
+
+Ughhh, I quite detest phone calls. 
+
+Turns out the call option was a robocall so good news was I didn't have to talk to anyone at all and just had to type in the number the robot says–phew!
+
+The tutorial as follows utilises AWS Simple Email Service (SES) which was pretty easy to set up. Although Rahić did explain things clearly and provided external links for further reading, I'll have to admit I didn't quite understand all the minutiae behind the process.
+
+For example, when creating the IAM user I ran into a situation where I didn't know what group and policies to assign it. Do I give it admin access or just access to the simple email service (AmazonSESFullAccess)? Initially, I did give it full SES access but I believe you need admin access to push the API to AWS Lambda.
+
+Tested it with <span className="code">curl</span> and viola! It worked. An email appeared in my inbox. 
+
+Now, just to integrate it into my contact form.
+
+## conclusion
+
+This challenge has provided me with a nice hand-holding introduction into setting up a serverless backend and now I'm curious to learn more. I'd like to incorporate it into my projects that could utilise these services–I already have a past project in mind.
+
+After the gruelling task of verification, setting up AWS was pretty easy. Understanding what is actually happening takes a bit of work but it'll pay off in future projects. It's a nice skill to have under the belt, especially if you want to get into cloud architecture but there's quite a bit to learn. They do have free courses available on AWS's little learning platform which I'll look into next.
