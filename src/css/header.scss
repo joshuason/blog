@@ -1,0 +1,43 @@
+@import "_base";
+
+.Header {
+  // padding-top: 40px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2rem;
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.9);
+
+  * {
+    color: $base-color;
+  }
+
+  span {
+    visibility: hidden;
+    &.active {
+      visibility: visible;
+    }
+  }
+
+  &:hover {
+    .Logo a,
+    span.active {
+      color: $primary-color;
+    }
+  }
+
+  a:hover {
+    color: $primary-color;
+  }
+
+  nav {
+    li {
+      display: inline-block;
+      font-size: inherit;
+    }
+  }
+}

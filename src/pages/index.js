@@ -3,9 +3,8 @@ import { graphql } from "gatsby"
 import { Helmet } from "react-helmet"
 import favicon from "../images/favicon-32x32.png"
 
-import Header from "../components/Header"
 import Body from "../components/Body"
-import Footer from "../components/Footer"
+import PageContainer from "../components/PageContainer"
 
 import "../css/index.scss"
 
@@ -13,7 +12,7 @@ export default function Index({ data }) {
   const { edges: posts } = data.allMdx
 
   return (
-    <div className="container">
+    <PageContainer activePage="blog">
       <Helmet>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,10 +23,8 @@ export default function Index({ data }) {
           crossorigin="anonymous"
         ></script>
       </Helmet>
-      <Header pages={["blog", "about", "contact"]} activePage="blog" />
       <Body posts={posts} />
-      <Footer />
-    </div>
+    </PageContainer>
   )
 }
 

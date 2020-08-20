@@ -1,0 +1,62 @@
+@import "_base";
+
+.Footer {
+  height: 150px;
+  margin: 100px auto 20px auto;
+  padding: 50px 0;
+  display: flex;
+  flex-flow: column;
+
+  * {
+    color: $secondary-color;
+  }
+
+  &:hover {
+    * {
+      color: $base-color;
+    }
+    a:hover,
+    i:hover {
+      color: $primary-color;
+    }
+  }
+
+  .line {
+    border-top: 1px solid #c0c0c0;
+  }
+
+  .socials i {
+    font-size: 1.5rem;
+  }
+
+  .form {
+    .form-text {
+      font-style: italic;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  .SignupForm {
+    input {
+      border-color: $secondary-color;
+      color: $primary-color;
+      border: 1px solid #ffffff;
+      background-color: #f0f0f0;
+      padding-left: 0.25rem;
+      &:focus {
+        background-color: $secondary-color;
+      }
+    }
+    button {
+      cursor: pointer;
+      background-color: #ffffff;
+      border: 1px solid #f0f0f0;
+      box-sizing: border-box;
+      &:active {
+        color: #ffffff;
+        background-color: $secondary-color;
+        border: 1px solid $secondary-color;
+      }
+    }
+  }
+}

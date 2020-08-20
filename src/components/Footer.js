@@ -2,47 +2,54 @@ import React from "react"
 import { Link } from "gatsby"
 import SignupForm from "./SignupForm"
 
-import "../css/footer.css"
+import "../css/footer.scss"
 
-const Footer = () => {
-  return (
-    <div className="Footer">
-      <div className="divider">
-        <div className="line"></div>
-        <a href="# ">
-          <span className="caret-symbol">^</span>
-          <span className="text-top">top</span>
-        </a>
-      </div>
-      <div className="left">
-        <a href="https://twitter.com/joshu_ua">
-          <i className="fab fa-twitter-square"></i>
-        </a>
-        <br />
-        <a href="https://github.com/joshuason">
-          <i className="fab fa-github-square"></i>
-        </a>
-        <br />
-        <i className="fas fa-heart"></i>
-      </div>
-      <div className="center">
-        <Link to={"/"}>Blog</Link>
-        <br />
-        <Link to={"/about"}>About</Link>
-        <br />
-        <Link to={"/contact"}>Contact</Link>
-        <br />
-      </div>
-      <div className="right">
-        <div className="form">
-          <div className="form-text">
-            A form by any other name would fill out just as sweet...
-          </div>
-          <SignupForm />
-        </div>
-      </div>
+const Divider = () => (
+  <div className="divider">
+    <div className="line"></div>
+    <a href="# ">
+      <span className="caret-symbol">^</span>
+      <span className="text-top">top</span>
+    </a>
+  </div>
+)
+
+const Socials = () => (
+  <div className="socials">
+    <a href="https://twitter.com/joshu_ua">
+      <i className="fab fa-twitter-square"></i>
+    </a>
+    <a href="https://github.com/joshuason">
+      <i className="fab fa-github-square"></i>
+    </a>
+    <i className="fas fa-heart"></i>
+  </div>
+)
+
+const SiteLinks = () => (
+  <div className="sitelinks">
+    <Link to={"/"}>Blog</Link>
+    <Link to={"/about"}>About</Link>
+    <Link to={"/contact"}>Contact</Link>
+  </div>
+)
+
+const Form = () => (
+  <div className="form">
+    <div className="form-text">
+      A form by any other name would fill out just as sweet...
     </div>
-  )
-}
+    <SignupForm />
+  </div>
+)
+
+const Footer = () => (
+  <div className="Footer">
+    <Divider />
+    <Socials />
+    <SiteLinks />
+    <Form />
+  </div>
+)
 
 export default Footer

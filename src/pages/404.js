@@ -1,30 +1,29 @@
 import React from "react"
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
+import PageContainer from "../components/PageContainer"
 
 import "../css/404.css"
 
 const FourOhFour = () => {
   return (
-    <div className="FourOhFour">
-      <Header pages={["blog", "about", "contact"]} />
-      <div className="content">
-        Oh, this is awkward...
-        <br />
-        <span>
-          maybe <br />
-          just maybe
+    <PageContainer activePage="contact">
+      <div className="FourOhFour">
+        <div className="content">
+          Oh, this is awkward...
           <br />
-          it's a sign
-          <br />
-          to <i>not</i>
-          <br />
-          <a href="mailto:joshuawritescode@gmail.com">contact me...</a>
-        </span>
+          <span>
+            maybe <br />
+            just maybe
+            <br />
+            it's a sign
+            <br />
+            to <i>not</i>
+            <br />
+            <a href="mailto:joshuawritescode@gmail.com">contact me...</a>
+          </span>
+        </div>
       </div>
-      <Footer />
-    </div>
+    </PageContainer>
   )
 }
 
