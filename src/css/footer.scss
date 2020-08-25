@@ -1,11 +1,11 @@
 @import "_base";
 
 .Footer {
-  height: 150px;
-  margin: 100px auto 20px auto;
+  margin: 100px auto 0 auto;
   padding: 50px 0;
   display: flex;
   flex-flow: column;
+  width: 100%;
 
   * {
     color: $secondary-color;
@@ -16,27 +16,52 @@
       color: $base-color;
     }
     a:hover,
-    i:hover {
+    i:hover,
+    .SignupForm input::placeholder {
       color: $primary-color;
     }
   }
 
-  .line {
-    border-top: 1px solid #c0c0c0;
+  .divider {
+    visibility: hidden;
+    display: flex;
+    flex-flow: row nowrap;
+    // justify-content: space-between;
+    .line {
+      visibility: hidden;
+      border-top: 1px solid #f0f0f0;
+      width: 100%;
+    }
   }
 
-  .socials i {
-    font-size: 1.5rem;
+  .socials,
+  .sitelinks {
+    & > a,
+    & > i {
+      margin: 0 0.25rem;
+    }
+    i {
+      font-size: 1.5rem;
+    }
   }
 
   .form {
     .form-text {
+      display: none;
       font-style: italic;
       padding-bottom: 0.5rem;
     }
   }
 
   .SignupForm {
+    form {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+    label {
+      display: none;
+    }
     input {
       border-color: $secondary-color;
       color: $primary-color;
@@ -45,6 +70,9 @@
       padding-left: 0.25rem;
       &:focus {
         background-color: $secondary-color;
+      }
+      &::placeholder {
+        color: $secondary-color;
       }
     }
     button {
@@ -58,5 +86,12 @@
         border: 1px solid $secondary-color;
       }
     }
+  }
+
+  .content {
+    margin: 0 80px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
   }
 }

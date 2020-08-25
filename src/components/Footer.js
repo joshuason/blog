@@ -46,9 +46,13 @@ const Form = () => (
 const Footer = () => (
   <div className="Footer">
     <Divider />
-    <Socials />
-    <SiteLinks />
-    <Form />
+    <div className="content">
+      <Socials />
+      {" / "}
+      <SiteLinks />
+      {" / "}
+      <Form />
+    </div>
   </div>
 )
 

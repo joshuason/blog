@@ -10,20 +10,22 @@ const SignupForm = () => {
       email: "",
       name: "",
     },
-    onSubmit: values => {
-      // alert(
-      //   `Humblest apologies, ${values.name}.\nThis feature is currently very much redundant.\nSorry about wasting your time.`
-      // )
-      // console.log(JSON.stringify({ ...values }))
+    onSubmit: (values, { resetForm }) => {
       fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...values, content: `HI! 👋` }),
       })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .then(res => (res.ok ? res.json() : Error("failed")))
+        .then(data => {
+          alert(`Thanks ${values.name} for saying hi :)`)
+          resetForm({
+            email: "",
+            name: "",
+          })
+          console.log(data)
+        })
         .catch(error => console.log("Error: ", error))
-      // alert(JSON.stringify(values, null, 2))
     },
   })
 
@@ -38,6 +40,7 @@ const SignupForm = () => {
           aria-labelledby="name_label"
           id="name"
           name="name"
+          placeholder="Name"
           onChange={formik.handleChange}
           value={formik.values.name}
         />
@@ -49,11 +52,15 @@ const SignupForm = () => {
           aria-labelledby="email_label"
           id="email"
           name="email"
+          placeholder="Email"
           onChange={formik.handleChange}
           value={formik.values.email}
         />
         <button type="submit">
-          Say Hi! <span role="img">👋</span>
+          Say Hi!{" "}
+          <span role="img" aria-label="waving-hand">
+            👋
+          </span>
         </button>
       </form>
     </div>
