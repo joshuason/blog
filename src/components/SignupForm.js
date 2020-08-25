@@ -1,16 +1,28 @@
 import React from "react"
 import { useFormik } from "formik"
 
+const { url } = require("../../contact-form-api/url.json")
+
 const SignupForm = () => {
+  // console.log({ url })
   const formik = useFormik({
     initialValues: {
       email: "",
       name: "",
     },
     onSubmit: values => {
-      alert(
-        `Humblest apologies, ${values.name}.\nThis feature is currently very much redundant.\nSorry about wasting your time.`
-      )
+      // alert(
+      //   `Humblest apologies, ${values.name}.\nThis feature is currently very much redundant.\nSorry about wasting your time.`
+      // )
+      // console.log(JSON.stringify({ ...values }))
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, content: `HI! 👋` }),
+      })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(error => console.log("Error: ", error))
       // alert(JSON.stringify(values, null, 2))
     },
   })
@@ -40,7 +52,9 @@ const SignupForm = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
-        <button type="submit">Say Hi! 👋</button>
+        <button type="submit">
+          Say Hi! <span role="img">👋</span>
+        </button>
       </form>
     </div>
   )

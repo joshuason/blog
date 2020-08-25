@@ -3,6 +3,10 @@ const ses = new aws.SES()
 const myEmail = process.env.EMAIL
 const myDomain = process.env.DOMAIN
 
+const emailData = (email, name, content) => `
+${name} (${email}) says:\n\n${content}
+`
+
 function generateResponse(code, payload) {
   return {
     statusCode: code,
@@ -45,7 +49,7 @@ function generateEmailParams(body) {
       Body: {
         Text: {
           Charset: "UTF-8",
-          Data: `Message sent from email ${email} by ${name}\nContent: ${content}`,
+          Data: emailData(email, name, content),
         },
       },
       Subject: {
