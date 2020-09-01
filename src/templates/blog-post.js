@@ -6,7 +6,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import PageContainer from "../components/PageContainer"
 
-import "../css/blog-post.css"
+import "../css/blog-post.scss"
 
 export default function Template({ data }) {
   const { mdx: post } = data

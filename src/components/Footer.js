@@ -15,7 +15,7 @@ const Divider = () => (
 )
 
 const Socials = () => (
-  <div className="socials">
+  <div className="Socials">
     <a href="https://twitter.com/joshu_ua">
       <i className="fab fa-twitter-square"></i>
     </a>
@@ -27,7 +27,7 @@ const Socials = () => (
 )
 
 const SiteLinks = () => (
-  <div className="sitelinks">
+  <div className="SiteLinks">
     <Link to={"/"}>Blog</Link>
     <Link to={"/about"}>About</Link>
     <Link to={"/contact"}>Contact</Link>
@@ -35,7 +35,7 @@ const SiteLinks = () => (
 )
 
 const Form = () => (
-  <div className="form">
+  <div className="Form">
     <div className="form-text">
       A form by any other name would fill out just as sweet...
     </div>
@@ -48,9 +48,9 @@ const Footer = () => (
     <Divider />
     <div className="content">
       <Socials />
-      {" / "}
+      <span className="slash">{" / "}</span>
       <SiteLinks />
-      {" / "}
+      <span className="slash">{" / "}</span>
       <Form />
     </div>
   </div>

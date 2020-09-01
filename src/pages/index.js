@@ -20,7 +20,7 @@ export default function Index({ data }) {
         <link rel="icon" href={favicon} />
         <script
           src="https://kit.fontawesome.com/dc5c29d233.js"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
       </Helmet>
       <Body posts={posts} />

@@ -43,6 +43,7 @@ const SignupForm = () => {
           placeholder="Name"
           onChange={formik.handleChange}
           value={formik.values.name}
+          required
         />
         <label id="email_label" htmlFor="email">
           Email Address:
@@ -55,6 +56,7 @@ const SignupForm = () => {
           placeholder="Email"
           onChange={formik.handleChange}
           value={formik.values.email}
+          required
         />
         <button type="submit">
           Say Hi!{" "}

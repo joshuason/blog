@@ -1,5 +1,9 @@
 @import "_base";
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
@@ -9,6 +13,7 @@ body {
 
 .container {
   max-width: 900px;
+  min-height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -16,10 +21,94 @@ body {
 }
 
 @media screen and (min-width: $mobile-min-width) and (max-width: $mobile-max-width) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
-  .Header {
-    a {
-      color: red;
-      font-size: 1rem;
+  .container {
+    width: 100vw;
+    padding: 0.5rem;
+
+    .Header {
+      margin-bottom: 1rem;
+      ul {
+        margin: 0;
+      }
+      a {
+        font-size: 1rem;
+      }
+    }
+
+    .Body {
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .MonthDivider,
+      .BlogPostPreview a {
+        display: grid;
+        grid-template-columns: 1fr 1rem 9fr;
+      }
+
+      .MonthDivider {
+        .month {
+          grid-area: 1 / 1 / span 1 / span 1;
+          text-transform: uppercase;
+          font-family: $body-font-stack;
+          text-align: right;
+        }
+        .slash {
+          visibility: hidden;
+        }
+        .line div {
+          border-top: 0.5px solid $secondary-color;
+        }
+      }
+
+      .BlogPostPreview {
+        a * {
+          font-size: 2rem;
+        }
+        .date {
+          grid-area: 1 / 1 / span 1 / span 1;
+          color: $secondary-color;
+        }
+        .title-blurb {
+          .title {
+            max-width: 100%;
+          }
+          .blurb,
+          .slash {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .Footer {
+      padding: 0;
+      margin-top: 50px;
+      overflow-y: hidden;
+
+      .content {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        flex-flow: column wrap;
+
+        & > div {
+          text-align: center;
+        }
+
+        span.slash,
+        .SiteLinks {
+          display: none;
+        }
+
+        .Form {
+          .SignupForm form {
+            display: flex;
+            flex-flow: column;
+          }
+        }
+      }
     }
   }
 }

@@ -49,5 +49,24 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Blog.Josh`,
+        short_name: `Blog.Josh`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#000000`,
+        display: `standalone`,
+        icon: `src/images/icon-512x512.png`,
+        crossOrigin: `anonymous`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/about`],
+      },
+    },
   ],
 }
