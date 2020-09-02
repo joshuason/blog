@@ -16,8 +16,7 @@
       color: $base-color;
     }
     a:hover,
-    i:hover,
-    .SignupForm input::placeholder {
+    i:hover {
       color: $primary-color;
     }
   }

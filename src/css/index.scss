@@ -20,7 +20,7 @@ body {
   // height: 100vh;
 }
 
-@media screen and (min-width: $mobile-min-width) and (max-width: $mobile-max-width) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+@media screen and (min-width: $mobile-min-width) and (max-width: $mobile-max-width) /* and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) */ {
   .container {
     width: 100vw;
     padding: 0.5rem;
@@ -36,10 +36,11 @@ body {
     }
 
     .Body {
-      width: 100%;
-      max-width: 100%;
-      display: flex;
-      flex-direction: column;
+      width: calc(100vw - 1rem);
+      max-width: calc(100vw - 1rem);
+      display: grid;
+      grid-template-columns: 1fr;
+      // overflow: hidden;
 
       .MonthDivider,
       .BlogPostPreview a {
@@ -47,7 +48,14 @@ body {
         grid-template-columns: 1fr 1rem 9fr;
       }
 
+      .MonthDivider,
+      .BlogPostPreview,
+      .BlogPostPreview a {
+        max-width: inherit;
+      }
+
       .MonthDivider {
+        margin-bottom: 0.25rem;
         .month {
           grid-area: 1 / 1 / span 1 / span 1;
           text-transform: uppercase;
@@ -63,20 +71,27 @@ body {
       }
 
       .BlogPostPreview {
-        a * {
-          font-size: 2rem;
-        }
-        .date {
-          grid-area: 1 / 1 / span 1 / span 1;
-          color: $secondary-color;
-        }
-        .title-blurb {
-          .title {
-            max-width: 100%;
+        margin-bottom: 0.75rem;
+        a {
+          * {
+            font-size: 2rem;
+            line-height: 2rem;
           }
           .blurb,
           .slash {
             display: none;
+          }
+          .date {
+            grid-area: 1 / 1 / span 1 / span 1;
+            color: $secondary-color;
+            align-self: start;
+          }
+          .title-blurb {
+            grid-area: 1 / 3 / span 1 / span 1;
+            align-self: start;
+            .title {
+              white-space: unset;
+            }
           }
         }
       }
@@ -102,10 +117,28 @@ body {
           display: none;
         }
 
+        .Socials {
+          margin-bottom: 1rem;
+        }
+
         .Form {
           .SignupForm form {
             display: flex;
             flex-flow: column;
+            align-items: center;
+
+            input,
+            button {
+              font-size: 1rem;
+              text-align: center;
+              margin-bottom: 0.5rem;
+            }
+            input {
+              width: calc(100% - 120px);
+            }
+            button {
+              width: calc((100% - 120px) / 2);
+            }
           }
         }
       }

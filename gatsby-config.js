@@ -6,8 +6,8 @@ module.exports = {
   },
   plugins: [
     // Necessary plugins or else it breaks...
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // finds image files to transform into sharp nodes
+    `gatsby-plugin-sharp`, // processes images
     // Functional plugins which provide functions (eg app like feel, ability to edit head tags)
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
