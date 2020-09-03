@@ -1,5 +1,9 @@
 @import "_base";
 
+.blog-post-container {
+  flex: 1 0 auto;
+}
+
 .blog-post p,
 .blog-post li {
   margin-left: 80px;

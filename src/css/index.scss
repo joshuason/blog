@@ -143,5 +143,63 @@ body {
         }
       }
     }
+
+    .about {
+      width: 100%;
+
+      &-content {
+        width: inherit;
+        margin: 0;
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        i.subtitle {
+          font-size: 1rem;
+        }
+
+        div.gatsby-image-wrapper {
+          margin: 50px auto 25px auto;
+        }
+
+        h2 {
+          font-size: 1.5rem;
+        }
+
+        h3 {
+          font-size: 1rem;
+        }
+
+        p,
+        li,
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .blog-post {
+      width: 100%;
+      h1,
+      h2,
+      p,
+      li,
+      img {
+        margin: 0;
+        width: inherit;
+      }
+      h1 {
+        font-size: 3rem;
+      }
+      p,
+      li,
+      span {
+        font-size: 1rem;
+      }
+      ul {
+        margin: 0;
+      }
+    }
   }
 }
