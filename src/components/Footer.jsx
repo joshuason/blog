@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import SignupForm from "./SignupForm"
+import { SignupForm } from "./Forms"
 
 import "../css/footer.scss"
 

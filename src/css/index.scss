@@ -23,10 +23,11 @@ body {
 @media screen and (min-width: $mobile-min-width) and (max-width: $mobile-max-width) /* and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) */ {
   .container {
     width: 100vw;
-    padding: 0.5rem;
+    padding: 0 1rem;
 
     .Header {
-      margin-bottom: 1rem;
+      margin-bottom: 0;
+      padding-bottom: 1rem;
       ul {
         margin: 0;
       }

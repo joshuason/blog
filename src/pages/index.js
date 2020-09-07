@@ -12,7 +12,7 @@ export default function Index({ data }) {
   const { edges: posts } = data.allMdx
 
   return (
-    <PageContainer activePage="blog">
+    <PageContainer activePage="blog" contentClassName={"Index"}>
       <Helmet>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
