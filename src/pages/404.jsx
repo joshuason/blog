@@ -2,7 +2,7 @@ import React from "react"
 
 import PageContainer from "../components/PageContainer"
 
-import "../css/404.css"
+import "../css/404.scss"
 
 const FourOhFour = () => {
   return (

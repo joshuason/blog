@@ -11,7 +11,7 @@ const onSubmit = (values, { resetForm }) => {
   })
     .then(res => (res.ok ? res.json() : Error("failed")))
     .then(data => {
-      alert(`Thanks ${values.name} for saying hi :)`)
+      // alert(`Thanks ${values.name} for saying hi :)`)
       resetForm({
         email: "",
         name: "",
@@ -39,12 +39,7 @@ const ContactForm = () => (
       initialValues={{ email: "", name: "", content: "" }}
       onSubmit={(values, { resetForm, setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2))
-          resetForm({
-            email: "",
-            name: "",
-            content: "",
-          })
+          onSubmit(values, { resetForm })
           setSubmitting(false)
         }, 1000)
       }}

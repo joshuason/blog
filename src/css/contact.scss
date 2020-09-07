@@ -1,3 +1,44 @@
+@import "_base";
+
 .Contact {
   flex: 1 0 auto;
+
+  h2,
+  p {
+    text-align: center;
+  }
+
+  .ContactForm {
+    form {
+      margin: 0 auto;
+      width: 50%;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      grid-template-areas:
+        "label1 input1"
+        "label2 input2"
+        "label3 input3"
+        ". submit";
+    }
+
+    button[type="submit"] {
+      grid-area: submit;
+    }
+
+    input,
+    textarea {
+      border-color: $secondary-color;
+      color: $primary-color;
+      border: 1px solid #ffffff;
+      background-color: #f0f0f0;
+      padding-left: 0.25rem;
+      &:focus {
+        background-color: $secondary-color;
+      }
+      &::placeholder {
+        color: $secondary-color;
+        opacity: 0;
+      }
+    }
+  }
 }

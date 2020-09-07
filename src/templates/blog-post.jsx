@@ -1,10 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import { Helmet } from "react-helmet"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import PageContainer from "../components/PageContainer"
+import Head from "../components/Head"
 
 import "../css/blog-post.scss"
 
@@ -17,9 +17,7 @@ export default function Template({ data }) {
   return (
     <PageContainer activePage="blog">
       <div className="blog-post-container">
-        <Helmet>
-          <title>{post.frontmatter.title}</title>
-        </Helmet>
+        <Head title={post.frontmatter.title} />
         <div className="blog-post">
           <h1>{post.frontmatter.title}</h1>
           {featuredImgFluid && (

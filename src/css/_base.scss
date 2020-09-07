@@ -12,6 +12,7 @@ $mobile-min-width: 320px;
 $mobile-max-width: 667px;
 
 * {
+  box-sizing: border-box;
   font-family: $main-font-stack;
   font-weight: 400;
   color: $primary-color;
@@ -19,4 +20,26 @@ $mobile-max-width: 667px;
 
 a {
   text-decoration: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.container {
+  max-width: 900px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  & > .content {
+    flex: 1 0 auto;
+  }
 }
