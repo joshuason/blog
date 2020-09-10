@@ -27,25 +27,34 @@ const BlogPostPreview = ({ path, date, title, excerpt }) => (
   </div>
 )
 
+const PostsListItem = ({ post, newMonth }) => (
+  <>
+    {newMonth && <MonthDivider month={post.frontmatter.date.slice(0, 3)} />}
+    <BlogPostPreview
+      path={post.frontmatter.path}
+      date={post.frontmatter.date.substring(4, 6)}
+      title={post.frontmatter.title}
+      excerpt={post.excerpt}
+    />
+  </>
+)
+
+const newMonth = (ind, post, arr) =>
+  ind === 0 ||
+  (ind > 0 &&
+    post.frontmatter.date.slice(0, 3) !==
+      arr[ind - 1].node.frontmatter.date.slice(0, 3))
+
 const Body = ({ posts }) => (
   <div className="Body">
     {posts
       // .filter(post => filterOptions(post))
       .map(({ node: post }, ind, arr) => (
-        <React.Fragment key={post.frontmatter.date}>
-          {ind === 0 ||
-          (ind > 0 &&
-            post.frontmatter.date.slice(0, 3) !==
-              arr[ind - 1].node.frontmatter.date.slice(0, 3)) ? (
-            <MonthDivider month={post.frontmatter.date.slice(0, 3)} />
-          ) : null}
-          <BlogPostPreview
-            path={post.frontmatter.path}
-            date={post.frontmatter.date.substring(4, 6)}
-            title={post.frontmatter.title}
-            excerpt={post.excerpt}
-          />
-        </React.Fragment>
+        <PostsListItem
+          key={post.id}
+          post={post}
+          newMonth={newMonth(ind, post, arr)}
+        />
       ))}
   </div>
 )

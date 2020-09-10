@@ -2,15 +2,16 @@
 
 .Contact {
   flex: 1 0 auto;
+  margin: 0 80px;
 
-  h2,
-  p {
-    text-align: center;
-  }
+  // h2,
+  // p {
+  //   text-align: center;
+  // }
 
   .ContactForm {
     form {
-      margin: 0 auto;
+      // margin: 0 auto;
       width: 50%;
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -23,6 +24,8 @@
 
     button[type="submit"] {
       grid-area: submit;
+      margin-top: 0.5rem;
+      font-size: inherit;
     }
 
     input,
@@ -31,13 +34,41 @@
       color: $primary-color;
       border: 1px solid #ffffff;
       background-color: #f0f0f0;
-      padding-left: 0.25rem;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-size: inherit;
+      resize: vertical;
       &:focus {
         background-color: $secondary-color;
       }
       &::placeholder {
         color: $secondary-color;
         opacity: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $mobile-min-width) and (max-width: $mobile-max-width) {
+  .Contact {
+    .ContactForm {
+      form {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-around;
+        label {
+          display: none;
+        }
+        input,
+        textarea {
+          // padding: 0.5rem;
+          // margin-bottom: 0.5rem;
+          // font-size: inherit;
+          &::placeholder {
+            opacity: 1;
+          }
+        }
       }
     }
   }

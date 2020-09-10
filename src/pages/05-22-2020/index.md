@@ -34,7 +34,7 @@ Firstly, a quick read through of Gatsby's [working with images in markdown post]
 
 Following said steps, only frustratingly resulted in an error message:
 
-<p class="code-error">Field "image" must not have a selection since type "String" has no subfields</p>.
+<p class="code-error">Field "image" must not have a selection since type "String" has no subfields</p>
 
 ![Jake Peralta](https://steamuserimages-a.akamaihd.net/ugc/823506058661954611/B3685679465B62E28B582A6A31781532F65DD46F/)
 

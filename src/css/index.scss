@@ -4,7 +4,7 @@
   // flex: 1 0 auto;
 }
 
-@media screen and (min-width: $mobile-min-width) and (max-width: $mobile-max-width) /* and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) */ {
+@media screen /* and (min-width: $mobile-min-width) */ and (max-width: $mobile-max-width) /* and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) */ {
   .container {
     width: 100vw;
     padding: 0 1rem;
@@ -16,7 +16,7 @@
         margin: 0;
       }
       a {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
     }
 
