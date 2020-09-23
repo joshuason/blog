@@ -1,4 +1,4 @@
-@import "_base";
+@import '_base';
 
 .Index {
   // flex: 1 0 auto;
@@ -171,7 +171,7 @@
       p,
       li,
       img {
-        margin: 0;
+        margin-left: 0;
         width: inherit;
       }
       h1 {

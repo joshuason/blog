@@ -1,8 +1,10 @@
 module.exports = {
-  pathPrefix: "/blog",
+  pathPrefix: '/blog',
   siteMetadata: {
-    title: `Joshua S - Blog`,
-    author: `@joshuas`,
+    title: `Joshua Son`,
+    author: `@joshuason`,
+    description: `Just a blog where I write about my trials and tribulations of learning GatsbyJS framework`,
+    baseUrl: `joshuason.com`,
   },
   plugins: [
     // Necessary plugins or else it breaks...

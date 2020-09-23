@@ -1,12 +1,13 @@
-import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import { MDXRenderer } from "gatsby-plugin-mdx"
+import React from 'react'
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
-import PageContainer from "../components/PageContainer"
-import Head from "../components/Head"
+import PageContainer from '../components/PageContainer'
+// import Head from '../components/Head'
 
-import "../css/blog-post.scss"
+import '../css/blog-post.scss'
+import SEO from '../components/SEO'
 
 export default function Template({ data }) {
   const { mdx: post } = data
@@ -17,7 +18,7 @@ export default function Template({ data }) {
   return (
     <PageContainer activePage="blog">
       <div className="blog-post-container">
-        <Head title={post.frontmatter.title} />
+        <SEO title={post.frontmatter.title} article={true} />
         <div className="blog-post">
           <h1>{post.frontmatter.title}</h1>
           {featuredImgFluid && (

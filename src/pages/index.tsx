@@ -1,18 +1,18 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Body from "../components/Body"
-import PageContainer from "../components/PageContainer"
-import Head from "../components/Head"
+import Body from '../components/Body'
+import PageContainer from '../components/PageContainer'
+import SEO from '../components/SEO'
 
-import "../css/index.scss"
+import '../css/index.scss'
 
 export default function Index({ data }) {
   const { edges: posts } = data.allMdx
 
   return (
-    <PageContainer activePage="blog" contentClassName={"Index"}>
-      <Head title={"j.sh - bl.g"} />
+    <PageContainer activePage="blog" contentClassName={'Index'}>
+      <SEO title="j.sh – bl.g" />
       <Body posts={posts} />
     </PageContainer>
   )

@@ -1,11 +1,11 @@
-import React from "react"
-import Img from "gatsby-image"
-import { graphql } from "gatsby"
+import React from 'react'
+import Img from 'gatsby-image'
+import { graphql } from 'gatsby'
 
-import PageContainer from "../components/PageContainer"
-import Head from "../components/Head"
+import PageContainer from '../components/PageContainer'
+import Head from '../components/Head'
 
-import "../css/About.scss"
+import '../css/About.scss'
 
 const About = ({ data }) => (
   <PageContainer activePage="about" contentClassName="about">
@@ -58,10 +58,20 @@ const About = ({ data }) => (
         <p>Misc:</p>
         <ul>
           <li>
-            <a href="https://github.com/joshuason/blog">Source code</a>
+            <a
+              target="_blank"
+              href="https://github.com/joshuason/blog"
+              rel="noreferrer"
+            >
+              Source code
+            </a>
           </li>
           <li>
-            <a href="https://github.https://github.com/gatsbyjs/gatsby-starter-default/joshuason/blog">
+            <a
+              target="_blank"
+              href="https://github.com/gatsbyjs/gatsby-starter-default"
+              rel="noreferrer"
+            >
               Gatsby starter
             </a>
           </li>
@@ -72,7 +82,7 @@ const About = ({ data }) => (
       <i>
         (I thought I should end with something catchy and vaguely appropriate)
       </i>
-    </div>{" "}
+    </div>{' '}
     {/* ->| .about-content */}
   </PageContainer>
 )
