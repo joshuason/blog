@@ -1,9 +1,9 @@
 ---
-path: "/challenge-4"
+slug: '/challenge-4'
 date: 2020-05-29
-title: "Goodbye boring forms!"
-blurb: "My challenges and victories whilst attempting challenge #4"
-tags: ["formik", "react", "components"]
+title: 'Goodbye boring forms!'
+blurb: 'My challenges and victories whilst attempting challenge #4'
+tags: ['formik', 'react', 'components']
 ---
 
 Hola todos del mundo,

@@ -4,7 +4,7 @@ module.exports = {
     title: `Joshua Son`,
     author: `@joshuason`,
     description: `Just a blog where I write about my trials and tribulations of learning GatsbyJS framework`,
-    baseUrl: `joshuason.com`,
+    siteUrl: `https://www.joshuason.com`,
   },
   plugins: [
     // Necessary plugins or else it breaks...
@@ -51,6 +51,15 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-advanced-sitemap`,
+      options: {
+        exclude: [`/404`, `/404.html`],
+        createLinkInHead: true,
+        addUncaughtPages: true,
+      },
+    },
+    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

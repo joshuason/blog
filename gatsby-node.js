@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require('path')
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
@@ -15,7 +15,7 @@ exports.createPages = ({ actions, graphql }) => {
             id
             frontmatter {
               date
-              path
+              slug
               title
             }
           }
@@ -28,7 +28,7 @@ exports.createPages = ({ actions, graphql }) => {
     }
     result.data.allMdx.edges.forEach(({ node }) => {
       createPage({
-        path: node.frontmatter.path,
+        path: node.frontmatter.slug,
         component: blogPostTemplate,
         context: {},
       })
@@ -36,7 +36,7 @@ exports.createPages = ({ actions, graphql }) => {
   })
 }
 
-const { createRemoteFileNode } = require("gatsby-source-filesystem")
+const { createRemoteFileNode } = require('gatsby-source-filesystem')
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
@@ -63,7 +63,7 @@ exports.onCreateNode = async ({
   createNodeId,
 }) => {
   // For all MarkdownRemark nodes that have a featured image url, call createRemoteFileNode
-  if (node.internal.type === "Mdx" && node.frontmatter.featuredImgURL) {
+  if (node.internal.type === 'Mdx' && node.frontmatter.featuredImgURL) {
     let fileNode = await createRemoteFileNode({
       url: node.frontmatter.featuredImgURL, // string that points to the URL of the image
       parentNodeId: node.id, // id of the parent node of the fileNode you are going to create

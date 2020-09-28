@@ -20,11 +20,28 @@ const query = graphql`
         title
         author
         description
-        baseUrl
+        siteUrl
       }
     }
   }
 `
+
+const structuredData = ({ title, author, description, image, url }) => {
+  const data = {
+    '@context': 'http://schema.org/',
+    '@type': 'Blog',
+    name: title,
+    author: {
+      '@type': 'Person',
+      name: author,
+    },
+    description,
+    image,
+    url,
+  }
+
+  return JSON.stringify(data)
+}
 
 const SEO: React.FC<SEOProps> = ({
   title,
@@ -42,8 +59,8 @@ const SEO: React.FC<SEOProps> = ({
     title: title || defaults.title,
     description: description || defaults.description,
     author: author || defaults.author,
-    url: `${defaults.baseUrl}${pathname}`,
-    image: image ? `${defaults.baseUrl}${image}` : null,
+    url: `${defaults.siteUrl}${pathname}`,
+    image: image ? `${defaults.siteUrl}${image}` : null,
   }
 
   return (
@@ -65,6 +82,12 @@ const SEO: React.FC<SEOProps> = ({
         <meta property="og:description" content={seo.description} />
       )}
       {seo.image && <meta property="og:image" content={image} />}
+
+      <script
+        src="https://kit.fontawesome.com/dc5c29d233.js"
+        crossOrigin="anonymous"
+      ></script>
+      <script type="application/ld+json">{structuredData(seo)}</script>
     </Helmet>
   )
 }

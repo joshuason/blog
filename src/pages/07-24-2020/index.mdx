@@ -1,8 +1,8 @@
 ---
-path: "/challenge-6"
+slug: '/challenge-6'
 date: 2020-07-24
-title: "Serverless sluts"
-blurb: "My challenges and victories whilst attempting challenge #6"
+title: 'Serverless sluts'
+blurb: 'My challenges and victories whilst attempting challenge #6'
 tags: []
 ---
 
@@ -16,9 +16,9 @@ I also wished to explore a serverless function, one that just processes form dat
 
 ## amazon web services
 
-I set up a little serverless backend on AWS following the tutorial featured on Gatsby by [Adnan Rahić](https://dev.to/adnanrahic/building-a-serverless-contact-form-with-aws-lambda-and-aws-ses-4jm0). Following this tutorial was pretty simple... however I did incur a small speed bump with Amazon's authentication process, when trying to send me a validation code via text. I tried it three times before hesitantly pressing the 'call me' option. 
+I set up a little serverless backend on AWS following the tutorial featured on Gatsby by [Adnan Rahić](https://dev.to/adnanrahic/building-a-serverless-contact-form-with-aws-lambda-and-aws-ses-4jm0). Following this tutorial was pretty simple... however I did incur a small speed bump with Amazon's authentication process, when trying to send me a validation code via text. I tried it three times before hesitantly pressing the 'call me' option.
 
-Ughhh, I quite detest phone calls. 
+Ughhh, I quite detest phone calls.
 
 Turns out the call option was a robocall so good news was I didn't have to talk to anyone at all and just had to type in the number the robot says–phew!
 
@@ -26,7 +26,7 @@ The tutorial as follows utilises AWS Simple Email Service (SES) which was pretty
 
 For example, when creating the IAM user I ran into a situation where I didn't know what group and policies to assign it. Do I give it admin access or just access to the simple email service (AmazonSESFullAccess)? Initially, I did give it full SES access but I believe you need admin access to push the API to AWS Lambda.
 
-Tested it with <span className="code">curl</span> and viola! It worked. An email appeared in my inbox. 
+Tested it with <span className="code">curl</span> and viola! It worked. An email appeared in my inbox.
 
 Now, just to integrate it into my contact form.
 

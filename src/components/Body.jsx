@@ -1,7 +1,7 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react'
+import { Link } from 'gatsby'
 
-import "../css/Body.scss"
+import '../css/Body.scss'
 
 const MonthDivider = ({ month }) => (
   <div className="MonthDivider">
@@ -13,9 +13,9 @@ const MonthDivider = ({ month }) => (
   </div>
 )
 
-const BlogPostPreview = ({ path, date, title, excerpt }) => (
+const BlogPostPreview = ({ slug, date, title, excerpt }) => (
   <div className="BlogPostPreview">
-    <Link to={path}>
+    <Link to={slug}>
       <div className="date">{date}</div>
       <div className="slash">/</div>
       <div className="title-blurb">
@@ -31,7 +31,7 @@ const PostsListItem = ({ post, newMonth }) => (
   <>
     {newMonth && <MonthDivider month={post.frontmatter.date.slice(0, 3)} />}
     <BlogPostPreview
-      path={post.frontmatter.path}
+      slug={post.frontmatter.slug}
       date={post.frontmatter.date.substring(4, 6)}
       title={post.frontmatter.title}
       excerpt={post.excerpt}

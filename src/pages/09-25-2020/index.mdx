@@ -1,0 +1,17 @@
+---
+slug: '/challenge-9'
+date: 2020-09-25
+title: 'Internet creepers'
+altTitle: 'Optimisations to increase rankings within Search Engines'
+blurb: 'My challenges and victories whilst attempting challenge #9'
+emoji: '🕸'
+tags: []
+---
+
+So I discovered this week that I don't wanna do SEO. Again, ideally things would be built baked in .
+
+It was pretty easy to implement so hopefully my site scores 100 on Lighthouse for SEO.
+
+So first off, I created an SEO component, meshing the examples on [GitHub](https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js) and a [GatsbyJS article](https://www.gatsbyjs.com/docs/add-seo-component/). When added, this component essentially adds a Helmet component to each page, injecting it with relevant metadata to drive up its rank in SEO.
+
+Nextly, I created a structured data snippet to include into my Helmet/SEO component. I didn't know what the hell structured data was but Gatsby explains it nicely. It seems to me like a JSON formatted (it's actually JSON-LD) data that uses specific name tags like "@context" and "@type". This syntax reminds of the data within the Gatsby developer environment, in the package\*.json files––but I digress. I wrap that juicy data in a <span class="code">&lt;script&gt;</span> tag and finally include it within my component. And hopefully, fingers crossed, it works.

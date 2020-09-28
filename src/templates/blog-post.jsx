@@ -37,11 +37,11 @@ export default function Template({ data }) {
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
-    mdx(frontmatter: { path: { eq: $path } }) {
+    mdx(frontmatter: { slug: { eq: $path } }) {
       body
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
-        path
+        slug
         title
         featuredImg {
           childImageSharp {

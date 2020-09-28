@@ -1,9 +1,9 @@
 ---
-path: "/challenge-2"
+slug: '/challenge-2'
 date: 2020-05-15
-title: "Deploy! Deploy! De...ploy?"
-blurb: "My challenges and victories whilst attempting challenge #2"
-tags: ["deployment", "cdn"]
+title: 'Deploy! Deploy! De...ploy?'
+blurb: 'My challenges and victories whilst attempting challenge #2'
+tags: ['deployment', 'cdn']
 ---
 
 This week the challenge was to deploy my Gatsby blog to a CDN. I'm going to be honest and state that I've never actually deployed anything to the web before. I've pushed things to the internet via GitHub, blogs, forums but that has always utilised someone else's infrastructure. They've built containers so that their sites are... contained. I've always been anxious that I'd release some destructive code and would break the internet.

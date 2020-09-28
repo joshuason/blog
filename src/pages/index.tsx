@@ -28,7 +28,7 @@ export const pageQuery = graphql`
             title
             blurb
             date(formatString: "MMM DD, YYYY")
-            path
+            slug
           }
           excerpt(pruneLength: 250)
         }
