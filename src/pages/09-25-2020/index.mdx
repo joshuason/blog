@@ -8,10 +8,30 @@ emoji: '🕸'
 tags: []
 ---
 
-So I discovered this week that I don't wanna do SEO. Again, ideally things would be built baked in .
+So I discovered this week that I don't wanna do SEO. Again, ideally things would be built baked in but I do love checking things off and seeing little green checkmarks, or in this case a green 100 score in Lighthouse for SEO. It was pretty easy to implement so hopefully my site does just that. Perhaps there's more to it as there are whole careers dedicated to SEO.
 
-It was pretty easy to implement so hopefully my site scores 100 on Lighthouse for SEO.
+## Adding page metadata
 
-So first off, I created an SEO component, meshing the examples on [GitHub](https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js) and a [GatsbyJS article](https://www.gatsbyjs.com/docs/add-seo-component/). When added, this component essentially adds a Helmet component to each page, injecting it with relevant metadata to drive up its rank in SEO.
+So first off, I created an SEO component, meshing the examples from [GitHub](https://github.com/marisamorby/marisamorby.com/blob/master/packages/gatsby-theme-blog-sanity/src/components/seo.js) and a [GatsbyJS article](https://www.gatsbyjs.com/docs/add-seo-component/). When added, this component essentially adds a <span class="code">&lt;Helmet /&gt;</span> component to each page, injecting it with relevant metadata tags to drive up its rank in SEO.
 
-Nextly, I created a structured data snippet to include into my Helmet/SEO component. I didn't know what the hell structured data was but Gatsby explains it nicely. It seems to me like a JSON formatted (it's actually JSON-LD) data that uses specific name tags like "@context" and "@type". This syntax reminds of the data within the Gatsby developer environment, in the package\*.json files––but I digress. I wrap that juicy data in a <span class="code">&lt;script&gt;</span> tag and finally include it within my component. And hopefully, fingers crossed, it works.
+Nextly, I created a structured data snippet to include into my Helmet/SEO component. I didn't know what the hell structured data was but Gatsby explains it nicely. It seems to me like a JSON formatted data file _(it's actually JSON-LD)_ that uses specific name tags like "@context" and "@type" so that search engines, namely the old Goog', knows what your site/webpage is on about. This syntax reminds of the data within the Gatsby developer environment, in the package\*.json files–but I digress.
+
+I wrap that juicy structured data in a <span class="code">&lt;script&gt;</span> tag and finally include it within my component. And hopefully, _fingers crossed_, it works.
+
+## adding a sitemap (and 🤖.txt)
+
+The next step to this was relatively easy. Read an [article](https://www.gatsbyjs.com/blog/2019-05-07-advanced-sitemap-plugin-for-seo/) and install a [plugin](https://www.gatsbyjs.com/plugins/gatsby-plugin-advanced-sitemap/). Thank _[insert name of deity]_ for Gatsby's many plugins that makes life easier.
+
+I installed <span class="code">gatsby-plugin-advanced-sitemap</span>. Chucked that into gatsby-config.js and viola, a sitemap. Unfortunately, you won't see it until you hit <span class="code">gatsby build</span>, but that's part of the fun I suppose.
+
+I noticed within Lighthouse audits it's telling me that I should have a robots.txt file for the search engine robots that crawl the web. So naturally, I look for the [plugin](https://www.gatsbyjs.com/plugins/gatsby-plugin-robots-txt/) and install that as well.
+
+Thank our lord and saviour, Cthulhu.
+
+## let's wrap up
+
+I hit build, and published my site to my CDN (currently Netlify) so I can assess the SEO of the deployed site. To my knowledge, you can't really assess it locally as for me it says:
+
+![Document does not have a valid 'rel=canonical'](../../images/no-valid-rel-canonical.png)
+
+... which makes sense.

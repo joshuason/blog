@@ -18,7 +18,7 @@ This week the challenge was all about adding images to pages and showcasing the 
 - implement above on the about page
 - do lighthouse audit before and after adding image (extra)
 
-More details can be seen [here](https://www.gatsbyjs.org/blog/100days/gatsby-image/).
+More details can be seen at the [gatsby 100 day challenge](https://www.gatsbyjs.org/blog/100days/gatsby-image/).
 
 But boy, oh boy, was adding an image more difficult than I thought it would be. I'm sure the <span class="code">&lt;img&gt;</span> could've sufficed but no... To fully utilise Gatsby's image optimization through the gatsby-image api one has to work for it.
 
