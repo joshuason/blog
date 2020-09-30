@@ -1,5 +1,5 @@
 ---
-slug: '/challenge-3'
+slug: '/challenge-3/'
 date: 2020-05-22
 title: 'Images, you b*tch'
 blurb: 'My challenges and victories whilst attempting challenge #3'

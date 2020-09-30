@@ -1,25 +1,34 @@
-import React from "react"
-import { useFormik, Formik, Form, Field, useField } from "formik"
+import React from 'react'
+import { useFormik, Formik, Form, Field, useField } from 'formik'
 
-const { url } = require("../../contact-form-api/url.json")
+const { url } = require('../../contact-form-api/url.json')
 
 const onSubmit = (values, { resetForm }) => {
-  fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ...values, content: values.content || `HI! 👋` }),
+  alert(
+    JSON.stringify({ ...values, content: values.content || `HI! 👋` }, null, 2)
+  )
+  resetForm({
+    email: '',
+    name: '',
+    content: '',
   })
-    .then(res => (res.ok ? res.json() : Error("failed")))
-    .then(data => {
-      // alert(`Thanks ${values.name} for saying hi :)`)
-      resetForm({
-        email: "",
-        name: "",
-        content: "",
-      })
-      console.log(data)
-    })
-    .catch(error => console.log("Error: ", error))
+
+  // fetch(url, {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify({ ...values, content: values.content || `HI! 👋` }),
+  // })
+  //   .then(res => (res.ok ? res.json() : Error("failed")))
+  //   .then(data => {
+  //     // alert(`Thanks ${values.name} for saying hi :)`)
+  //     resetForm({
+  //       email: "",
+  //       name: "",
+  //       content: "",
+  //     })
+  //     console.log(data)
+  //   })
+  //   .catch(error => console.log("Error: ", error))
 }
 
 const TextInput = ({ label, ...props }) => {
@@ -36,7 +45,7 @@ const TextInput = ({ label, ...props }) => {
 const ContactForm = () => (
   <div className="ContactForm">
     <Formik
-      initialValues={{ email: "", name: "", content: "" }}
+      initialValues={{ email: '', name: '', content: '' }}
       onSubmit={(values, { resetForm, setSubmitting }) => {
         setTimeout(() => {
           onSubmit(values, { resetForm })
@@ -80,8 +89,8 @@ const SignupForm = () => {
   // console.log({ url })
   const formik = useFormik({
     initialValues: {
-      email: "",
-      name: "",
+      email: '',
+      name: '',
     },
     onSubmit: (values, { resetForm }) => onSubmit(values, { resetForm }),
   })
@@ -116,7 +125,7 @@ const SignupForm = () => {
           required
         />
         <button type="submit">
-          Say Hi!{" "}
+          Say Hi!{' '}
           <span role="img" aria-label="waving-hand">
             👋
           </span>

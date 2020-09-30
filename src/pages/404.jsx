@@ -1,12 +1,14 @@
-import React from "react"
+import React from 'react'
 
-import PageContainer from "../components/PageContainer"
+import PageContainer from '../components/PageContainer'
+import SEO from '../components/SEO'
 
-import "../css/404.scss"
+import '../css/404.scss'
 
 const FourOhFour = () => {
   return (
     <PageContainer activePage="" contentClassName="FourOhFour">
+      <SEO title="404" />
       <div className="content">
         Oh, this is awkward...
         <br />

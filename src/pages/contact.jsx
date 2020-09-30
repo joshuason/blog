@@ -1,16 +1,16 @@
-import React from "react"
+import React from 'react'
 
-import PageContainer from "../components/PageContainer"
-import { ContactForm } from "../components/Forms"
-import Head from "../components/Head"
+import PageContainer from '../components/PageContainer'
+import { ContactForm } from '../components/Forms'
+import SEO from '../components/SEO'
 
-import "../css/Contact.scss"
+import '../css/Contact.scss'
 
 const Contact = () => (
-  <PageContainer activePage="contact" contentClassName={"Contact"}>
-    <Head title="j.sh – c.tact" />
+  <PageContainer activePage="contact" contentClassName={'Contact'}>
+    <SEO title="j.sh – c.tact" />
     <h2>
-      I'm a little flattered you want to contact me{" "}
+      I'm a little flattered you want to contact me{' '}
       <span role="img" aria-label="smiling face with hearts">
         🥰
       </span>

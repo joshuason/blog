@@ -1,4 +1,4 @@
-const aws = require("aws-sdk")
+const aws = require('aws-sdk')
 const ses = new aws.SES()
 const myEmail = process.env.EMAIL
 const myDomain = process.env.DOMAIN
@@ -11,9 +11,9 @@ function generateResponse(code, payload) {
   return {
     statusCode: code,
     headers: {
-      "Access-Control-Allow-Origin": myDomain,
-      "Access-Control-Allow-Headers": "x-requested-with",
-      "Access-Control-Allow-Credentials": true,
+      'Access-Control-Allow-Origin': myDomain,
+      'Access-Control-Allow-Headers': 'x-requested-with',
+      'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify(payload),
   }
@@ -24,9 +24,9 @@ function generateError(code, err) {
   return {
     statusCode: code,
     headers: {
-      "Access-Control-Allow-Origin": myDomain,
-      "Access-Control-Allow-Headers": "x-requested-with",
-      "Access-Control-Allow-Credentials": true,
+      'Access-Control-Allow-Origin': myDomain,
+      'Access-Control-Allow-Headers': 'x-requested-with',
+      'Access-Control-Allow-Credentials': true,
     },
     body: JSON.stringify(err.message),
   }
@@ -48,12 +48,12 @@ function generateEmailParams(body) {
     Message: {
       Body: {
         Text: {
-          Charset: "UTF-8",
+          Charset: 'UTF-8',
           Data: emailData(email, name, content),
         },
       },
       Subject: {
-        Charset: "UTF-8",
+        Charset: 'UTF-8',
         Data: `You received a message from ${myDomain}!`,
       },
     },

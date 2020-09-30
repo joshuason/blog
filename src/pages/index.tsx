@@ -7,6 +7,8 @@ import SEO from '../components/SEO'
 
 import '../css/index.scss'
 
+const ErrorHandler = ({ children }) => <>{children}</>
+
 export default function Index({ data }) {
   const { edges: posts } = data.allMdx
 

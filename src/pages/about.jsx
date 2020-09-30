@@ -3,13 +3,13 @@ import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 
 import PageContainer from '../components/PageContainer'
-import Head from '../components/Head'
+import SEO from '../components/SEO'
 
 import '../css/About.scss'
 
 const About = ({ data }) => (
   <PageContainer activePage="about" contentClassName="about">
-    <Head title="j.sh – ab.ut" />
+    <SEO title="j.sh – ab.ut" />
     <div className="about-content">
       <h1>Hello, I'm Josh!</h1>
       <i className="subtitle">(a/per)spiring web developer</i>

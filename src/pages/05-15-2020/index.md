@@ -1,5 +1,5 @@
 ---
-slug: '/challenge-2'
+slug: '/challenge-2/'
 date: 2020-05-15
 title: 'Deploy! Deploy! De...ploy?'
 blurb: 'My challenges and victories whilst attempting challenge #2'

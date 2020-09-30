@@ -1,8 +1,8 @@
-import React from "react"
-import { Link } from "gatsby"
-import { SignupForm } from "./Forms"
+import React from 'react'
+import { Link } from 'gatsby'
+import { SignupForm } from './Forms'
 
-import "../css/footer.scss"
+import '../css/footer.scss'
 
 const Divider = () => (
   <div className="divider">
@@ -16,10 +16,10 @@ const Divider = () => (
 
 const Socials = () => (
   <div className="Socials">
-    <a href="https://twitter.com/joshu_ua">
+    <a href="https://twitter.com/joshu_ua" aria-label="Link to Twitter">
       <i className="fab fa-twitter-square"></i>
     </a>
-    <a href="https://github.com/joshuason">
+    <a href="https://github.com/joshuason" aria-label="Link to GitHub">
       <i className="fab fa-github-square"></i>
     </a>
     <i className="fas fa-heart"></i>
@@ -28,9 +28,9 @@ const Socials = () => (
 
 const SiteLinks = () => (
   <div className="SiteLinks">
-    <Link to={"/"}>Blog</Link>
-    <Link to={"/about"}>About</Link>
-    <Link to={"/contact"}>Contact</Link>
+    <Link to={'/'}>Blog</Link>
+    <Link to={'/about'}>About</Link>
+    <Link to={'/contact'}>Contact</Link>
   </div>
 )
 
@@ -48,9 +48,9 @@ const Footer = () => (
     <Divider />
     <div className="content">
       <Socials />
-      <span className="slash">{" / "}</span>
+      <span className="slash">{' / '}</span>
       <SiteLinks />
-      <span className="slash">{" / "}</span>
+      <span className="slash">{' / '}</span>
       <Form />
     </div>
   </div>

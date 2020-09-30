@@ -64,13 +64,17 @@ const SEO: React.FC<SEOProps> = ({
   }
 
   return (
-    <Helmet defer={false}>
+    <Helmet defer={false} htmlAttributes={{ lang: 'en' }}>
       <meta charSet="utf-8" />
 
       <title>{seo.title}</title>
 
       <link rel="icon" href={favicon} />
       <link rel="canonical" href={seo.url} />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet"
+      />
 
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={seo.description} />
