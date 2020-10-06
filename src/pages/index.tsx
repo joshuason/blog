@@ -7,7 +7,33 @@ import SEO from '../components/SEO'
 
 import '../css/index.scss'
 
-const ErrorHandler = ({ children }) => <>{children}</>
+type MyProps = {}
+type StateProps = {
+  hasError: boolean
+}
+
+class ErrorBoundary extends React.Component<MyProps, StateProps> {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    return null
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>
+    }
+    return <>{this.props.children}</>
+  }
+}
 
 export default function Index({ data }) {
   const { edges: posts } = data.allMdx

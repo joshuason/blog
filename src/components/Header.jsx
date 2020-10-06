@@ -1,9 +1,14 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react'
+import { Link } from 'gatsby'
 
-import "../css/header.scss"
+import '../css/header.scss'
 
-const pages = ["blog", "about", "contact"]
+const pages = ['blog', 'about', 'contact']
+
+const isActive = ({ isCurrent, href }) => {
+  console.log({ isCurrent, href })
+  return isCurrent ? { className: 'active' } : {}
+}
 
 const Nav = ({ activePage }) => (
   <nav>
@@ -11,14 +16,14 @@ const Nav = ({ activePage }) => (
       {pages &&
         pages.map((page, ind) => (
           <li key={page}>
-            {ind > 0 && " "}
-            <Link to={page === "blog" ? `/` : `/${page}`}>
-              <span className={page === activePage ? "active" : undefined}>
-                ({" "}
+            {ind > 0 && ' '}
+            <Link to={page === 'blog' ? `/` : `/${page}`}>
+              <span className={page === activePage ? 'active' : undefined}>
+                ({' '}
               </span>
               {page}
-              <span className={page === activePage ? "active" : undefined}>
-                {" "}
+              <span className={page === activePage ? 'active' : undefined}>
+                {' '}
                 )
               </span>
             </Link>
@@ -31,7 +36,7 @@ const Nav = ({ activePage }) => (
 const Header = ({ activePage }) => (
   <div className="Header">
     <div className="Logo">
-      <Link to={`/`}>{"{ j.sh }"}</Link>
+      <Link to={`/`}>{'{ j.sh }'}</Link>
     </div>
     <Nav activePage={activePage} />
   </div>
