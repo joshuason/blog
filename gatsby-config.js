@@ -1,3 +1,5 @@
+const siteConfig = require('./siteConfig.js')
+
 module.exports = {
   pathPrefix: '/blog',
   siteMetadata: {
@@ -61,11 +63,33 @@ module.exports = {
     },
     `gatsby-plugin-robots-txt`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'none',
-        anonymize: true,
-        respectDNT: true,
+        trackingIds: [
+          process.env.GATSBY_GOOGLE_ANALYTICS_TRACKING_ID ||
+            siteConfig.gtag_id ||
+            'none',
+        ],
+        gtagConfig: { anonymize_ip: true },
+        pluginConfig: { head: false, respectDNT: true },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-guess-js`,
+      options: {
+        GAViewID: siteConfig.gservice_view_id || `VIEW_ID`,
+        minimumThreshold: 0.03,
+        jwt: {
+          client_email:
+            siteConfig.gservice_client_email || `GOOGLE_SERVICE_ACCOUNT_EMAIL`,
+          private_key:
+            siteConfig.gservice_private_key ||
+            `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`,
+        },
+        period: {
+          startDate: new Date('2020-10-1'),
+          endDate: new Date(),
+        },
       },
     },
     {

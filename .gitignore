@@ -78,3 +78,6 @@ contact-form-api/url.json
 #Prettier 
 .prettierrc
 .prettierignore
+
+#site config
+siteConfig.js
