@@ -37,6 +37,7 @@ exports.createPages = ({ actions, graphql }) => {
 }
 
 const { createRemoteFileNode } = require('gatsby-source-filesystem')
+const { hasUncaughtExceptionCaptureCallback } = require('process')
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions

@@ -71,7 +71,7 @@ module.exports = {
             'none',
         ],
         gtagConfig: { anonymize_ip: true },
-        pluginConfig: { head: false, respectDNT: true },
+        pluginConfig: { head: true, respectDNT: true },
       },
     },
     {
@@ -102,6 +102,9 @@ module.exports = {
         theme_color: `#000000`,
         display: `standalone`,
         icon: `src/images/icon-512x512.png`,
+        icon_options: {
+          purpose: `any maskable`,
+        },
         crossOrigin: `anonymous`,
       },
     },

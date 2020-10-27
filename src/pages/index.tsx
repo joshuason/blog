@@ -38,6 +38,10 @@ class ErrorBoundary extends React.Component<MyProps, StateProps> {
 export default function Index({ data }) {
   const { edges: posts } = data.allMdx
 
+  const imageURL = "https://media.giphy.com/media/dwLa47GJh4SMHt0zD1/giphy.gif"
+
+  console.log(imageURL)
+
   return (
     <PageContainer activePage="blog" contentClassName={'Index'}>
       <SEO title="j.sh – bl.g" />

@@ -1,0 +1,56 @@
+---
+slug: '/challenge-10/'
+date: 2020-10-23
+title: 'Performance enhancements'
+altTitle: "Boosting your Gatsby's site performance"
+blurb: 'My challenges and victories whilst attempting challenge #10'
+emoji: '💊'
+tags: []
+---
+
+Speed is key to turnover–we've heard it countless times. The numerous times I've ditched a site just because it took longer than two seconds to load, maybe due to poor performance optimisation or a network error. I know you've done the same. _Don't lie to me._
+
+Whether this impatience lies within millenials or the super-busy, or if it's an expectation we have learned with the advancement of technology is of debate. But regardless, no one likes to wait for things to load. Nowadays no one indulges in the moments of serenity the white blank void below the address bar provides while data is being fetched and rendered onto your screen. We expect something there, then and now. Something known as first content paint in Lighthouse.
+
+This challenge has us optimising our Gatsby sites for performance, ensuring an increase in visitor retention and user engagement, and subsequently a decrease in bounce rates. High bounce rates mean lower rankings within Google search results and we don't wanna appear on the second page!
+
+There were four key tasks Gatsby recommended:
+
+- Monitoring Lighthouse reports
+- Adding Guess.js
+- Offloading images to a CDN
+- Switching to Preact
+
+Of the four, I accomplished the first two and contemplated the others 😅
+
+## Lighthouse
+
+I had already been using Lighthouse religiously, consulting with it to give me direction towards the ideal performance, accessibility and SEO standards. And if you haven't, I'd suggest you do too.
+
+My Lighthouse score is pretty unsurprisingly bland for a site with a home page containing no images.
+
+## guess.js
+
+Adding Guess.js was a fun, wee task, _for sure!_ Guess.js utilises analytics data to prefetch links that the user is likely to click on. It uses machine learning in the background to determine this, which I think is pretty rad.
+
+But before you can use Guess.js you have to set up a Google Analytics account. And what an orgasm of excitement that was.
+
+When signing up to Analytics, don't make the same silly error I made by selecting "Web + App". I dunno why I did that. Save yourself a world of pain and just choose _Web_ instead. You can thank me now.
+
+With that sorted, you just need to sort out Guess.js. Install that, add it to your 'gatsby-config' file and in the options, make sure you use the right ID. Apparently, I had used the wrong ID–I thought it was the ID I had downloaded within the .json file. But it turns out, you can see it within your Analytics console ––>  
+analytics.google.com > Admin settings (bottom left) > View Settings (in the View section) and View ID should magically appear.
+Get this wrong and you'll get a cute little error saying "User does not have sufficient permissions for this profile." Not speaking from experience...
+
+## Why not do the others?
+
+Why didn't I offload my vast quantities of images to a gorgeous CDN like Contentful? And why did I not dip my toes into cool, lighter-than-React waters of Preact?
+
+Well, those are very good questions. Very interesting questions.
+
+Let's start with the issue of the CDN. I'm at the point in my journey where I'm weighing out the pros and cons of doing a task. There's knowledge to be gained by integrating with a CDN. Potential performance benefits. However, my site so far isn't as media-heavy as would be required for the performance benefits of offloading to a CDN.
+
+Preact, is an interesting one too. I did a quick read on it. Saves about 30kb by utilising the browser's event triggers instead of React's synthetic events. But I'm still learning React at the mo and I don't know if it's a good idea to learn Preact. I could always just roll back my commits but I've decided, for brevity's sake, to add these two to my to-learn-and-utilise-when-the-situation-deems-it-appropriate list.
+
+## So... yeah...
+
+At the end of all the shenanigans our result is a site with a 99 Lighthouse score (on the homepage). We now know how to correctly setup Google Analytics so that it actually tracks our views. And we learnt a little about a sweet little tool named Guess.js.
