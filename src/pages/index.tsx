@@ -36,11 +36,21 @@ class ErrorBoundary extends React.Component<MyProps, StateProps> {
 }
 
 export default function Index({ data }) {
-  const { edges: posts } = data.allMdx
+  // Merge posts from local and Contentful CMS
+  const posts = [...data.allMdx.edges, ...data.allContentfulBlogPost.edges]
+  // Sort posts
+  posts.sort(({node: a}, {node: b}) => {
+    const dates = {
+      alpha: a.frontmatter ? a.frontmatter.date : a.publishDate,
+      beta: b.frontmatter ? b.frontmatter.date : b.publishDate,
+    }
+    const result = dates.alpha < dates.beta ? 1 : -1
+    console.log(dates.alpha, dates.beta, result)
+    return result
+  })
+  console.log({sortedPosts: posts})
 
-  const imageURL = "https://media.giphy.com/media/dwLa47GJh4SMHt0zD1/giphy.gif"
-
-  console.log(imageURL)
+  // const { edges: postsMalone } = data.allMdx
 
   return (
     <PageContainer activePage="blog" contentClassName={'Index'}>
@@ -52,17 +62,30 @@ export default function Index({ data }) {
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }, filter: {frontmatter: {slug: {regex: "/.{1,}/"}}}) {
       edges {
         node {
           id
           frontmatter {
             title
             blurb
-            date(formatString: "MMM DD, YYYY")
+            date
             slug
           }
           excerpt(pruneLength: 250)
+        }
+      }
+    }
+    allContentfulBlogPost(sort: {order: DESC, fields: publishDate}) {
+      edges {
+        node {
+          id
+          slug
+          title
+          description {
+            description
+          }
+          publishDate
         }
       }
     }

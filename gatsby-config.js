@@ -1,4 +1,25 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const siteConfig = require('./siteConfig.js')
+
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+}
+
+if (process.env.CONTENTFUL_HOST) {
+  contentfulConfig.host = process.env.CONTENTFUL_HOST;
+}
+
+const { spaceId, accessToken } = contentfulConfig;
+
+if (!spaceId || !accessToken) {
+  throw new Error(
+    "Contentful spaceId and the access token need to be provided."
+  );
+} 
 
 module.exports = {
   pathPrefix: '/blog',
@@ -30,6 +51,10 @@ module.exports = {
         path: `${__dirname}/src/images`,
         name: `images`,
       },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: contentfulConfig,
     },
     // Transformer plugins convert data that is not inherently usable to a format Gatsby understands
     {

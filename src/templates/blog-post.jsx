@@ -10,6 +10,10 @@ import '../css/blog-post.scss'
 import SEO from '../components/SEO'
 
 export default function Template({ data }) {
+  // const blogPost = {
+  //   title: '',
+
+  // }
   const { mdx: post } = data
   const featuredImgFluid =
     post.frontmatter.featuredImg &&

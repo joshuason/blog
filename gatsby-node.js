@@ -21,14 +21,35 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
+      allContentfulBlogPost {
+        edges {
+          node {
+            id
+            slug
+            title
+            description {
+              id
+            }
+          }
+        }
+      }
     }
   `).then(result => {
     if (result.errors) {
       return Promise.reject(result.errors)
     }
     result.data.allMdx.edges.forEach(({ node }) => {
+      if (node.frontmatter.slug) {
+        createPage({
+          path: node.frontmatter.slug,
+          component: blogPostTemplate,
+          context: {},
+        })
+      } 
+    })
+    result.data.allContentfulBlogPost.edges.forEach(({node}) => {
       createPage({
-        path: node.frontmatter.slug,
+        path: node.slug,
         component: blogPostTemplate,
         context: {},
       })
