@@ -3,6 +3,9 @@ import { Link } from 'gatsby'
 
 import '../css/Body.scss'
 
+const getMonth = date => date.slice(0,3)
+const getDay = date => date.slice(4,6)
+
 const MonthDivider = ({ month }) => (
   <div className="MonthDivider">
     <div className="month">{month}</div>
@@ -27,27 +30,38 @@ const BlogPostPreview = ({ slug, date, title, excerpt }) => (
   </div>
 )
 
-const PostsListItem = ({ post, newMonth }) => (
+const PostsListItem = ({ post: { slug, date, title, excerpt }, isNewMonth }) => (
   <>
-    {newMonth && <MonthDivider month={post.frontmatter.date.slice(0, 3)} />}
+    {isNewMonth && <MonthDivider month={getMonth(date)} />}
     <BlogPostPreview
-      slug={post.frontmatter.slug}
-      date={post.frontmatter.date.substring(4, 6)}
-      title={post.frontmatter.title}
-      excerpt={post.excerpt}
+      slug={slug}
+      date={date.substring(4, 6) && getDay(date)}
+      title={title}
+      excerpt={excerpt}
     />
   </>
 )
 
-const newMonth = (ind, post, arr) =>
-  ind === 0 ||
-  (ind > 0 &&
-    post.frontmatter.date.slice(0, 3) !==
-      arr[ind - 1].node.frontmatter.date.slice(0, 3))
+// const newMonth = (ind, post, arr) =>
+//   ind === 0 ||
+//   (ind > 0 &&
+//     (post.frontmatter  
+//       ? post.frontmatter.date.slice(0,3)
+//       : post.publishDate.slice(0,3)) 
+//     !==
+//     (arr[ind - 1].node.frontmatter
+//       ? arr[ind - 1].node.frontmatter.date.slice(0, 3)
+//       : arr[ind - 1].node.publishDate.slice(0,3))
+
+//     // (post.frontmatter.date.slice(0, 3) !==
+//     //   arr[ind - 1].node.frontmatter.date.slice(0, 3) ||
+//     //   post.
+//     // ) 
+//   )
 
 const Body = ({ posts }) => (
   <div className="Body">
-    {posts
+    {/* {posts
       // .filter(post => filterOptions(post))
       .map(({ node: post }, ind, arr) => (
         <PostsListItem
@@ -55,7 +69,33 @@ const Body = ({ posts }) => (
           post={post}
           newMonth={newMonth(ind, post, arr)}
         />
-      ))}
+      ))} */}
+      {
+        posts
+          .map(({ node: post }) => (
+            post.frontmatter ? 
+            {
+              id: post.id,
+              slug: post.frontmatter.slug,
+              title: post.frontmatter.title,
+              date: post.frontmatter.date,
+              excerpt: post.excerpt,
+            } : 
+            {
+              id: post.id,
+              slug: post.slug,
+              title: post.title,
+              date: post.publishDate,
+              excerpt: post.description.childMdx.excerpt,
+            }))
+          .map((obj, ind, arr) => (
+            <PostsListItem
+              key={obj.id}
+              post={obj}
+              isNewMonth={ind === 0 || getMonth(obj.date) !== getMonth(arr[ind-1].date)}
+            />
+          ))
+      }
   </div>
 )
 

@@ -10,21 +10,27 @@ import '../css/blog-post.scss'
 import SEO from '../components/SEO'
 
 export default function Template({ data }) {
-  // const blogPost = {
-  //   title: '',
 
-  // }
-  const { mdx: post } = data
+  const post = data.mdx || data.contentfulBlogPost
+  console.log(post)
+  // const { mdx: post } = data
   const featuredImgFluid =
-    post.frontmatter.featuredImg &&
-    post.frontmatter.featuredImg.childImageSharp.fluid
+    data.mdx 
+    ? (post.frontmatter.featuredImg &&
+      post.frontmatter.featuredImg.childImageSharp.fluid)
+    : post.heroImage.fluid
+  
+  const { title } = post.frontmatter || post
+  const { body } = post.description 
+    ? post.description. childMdx  
+    : post
 
   return (
     <PageContainer activePage="blog">
       <div className="blog-post-container">
-        <SEO title={post.frontmatter.title} article={true} />
+        <SEO title={title} article={true} />
         <div className="blog-post">
-          <h1>{post.frontmatter.title}</h1>
+          <h1>{title}</h1>
           {featuredImgFluid && (
             <Img
               fluid={featuredImgFluid}
@@ -32,7 +38,7 @@ export default function Template({ data }) {
               draggable={false}
             />
           )}
-          <MDXRenderer>{post.body}</MDXRenderer>
+          <MDXRenderer>{body}</MDXRenderer>
         </div>
       </div>
     </PageContainer>
@@ -40,7 +46,7 @@ export default function Template({ data }) {
 }
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
+  query BlogPostBySlug($path: String!) {
     mdx(frontmatter: { slug: { eq: $path } }) {
       body
       frontmatter {
@@ -55,6 +61,21 @@ export const pageQuery = graphql`
           }
         }
       }
+    }
+    contentfulBlogPost(slug: { eq: $path }) {
+      slug
+      title
+      description {
+        childMdx {
+          body
+        }
+      }
+      heroImage {
+        fluid(maxWidth: 800) {
+          ...GatsbyContentfulFluid
+        }
+      }
+      publishDate(formatString: "MMM DD, YYYY")
     }
   }
 `

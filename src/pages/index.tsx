@@ -36,19 +36,20 @@ class ErrorBoundary extends React.Component<MyProps, StateProps> {
 }
 
 export default function Index({ data }) {
-  // Merge posts from local and Contentful CMS
+  //-- Merge posts from local and Contentful CMS
   const posts = [...data.allMdx.edges, ...data.allContentfulBlogPost.edges]
-  // Sort posts
+  //-- Sort posts
   posts.sort(({node: a}, {node: b}) => {
     const dates = {
       alpha: a.frontmatter ? a.frontmatter.date : a.publishDate,
       beta: b.frontmatter ? b.frontmatter.date : b.publishDate,
     }
-    const result = dates.alpha < dates.beta ? 1 : -1
-    console.log(dates.alpha, dates.beta, result)
+    //-- new Date() may have performance issues... 
+    const result = new Date(dates.alpha) < new Date(dates.beta) ? 1 : -1
+    // console.log(dates.alpha, dates.beta, result)
     return result
   })
-  console.log({sortedPosts: posts})
+  // console.log({sortedPosts: posts})
 
   // const { edges: postsMalone } = data.allMdx
 
@@ -69,7 +70,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             blurb
-            date
+            date(formatString: "MMM DD, YYYY")
             slug
           }
           excerpt(pruneLength: 250)
@@ -83,9 +84,12 @@ export const pageQuery = graphql`
           slug
           title
           description {
-            description
+            childMdx {
+              body
+              excerpt
+            }
           }
-          publishDate
+          publishDate(formatString: "MMM DD, YYYY")
         }
       }
     }
