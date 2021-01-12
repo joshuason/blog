@@ -2,31 +2,35 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXProvider } from '@mdx-js/react'
 
 import PageContainer from '../components/PageContainer'
 // import Head from '../components/Head'
 
 import '../css/blog-post.scss'
 import SEO from '../components/SEO'
+import CommentSection from '../components/Comments'
 
 export default function Template({ data }) {
 
   const post = data.mdx || data.contentfulBlogPost
-  console.log(post)
+  // console.log(post)
   // const { mdx: post } = data
   const featuredImgFluid =
     data.mdx 
     ? (post.frontmatter.featuredImg &&
       post.frontmatter.featuredImg.childImageSharp.fluid)
-    : post.heroImage.fluid
+    : post.heroImage
+      ? post.heroImage.fluid
+      : null
   
   const { title } = post.frontmatter || post
   const { body } = post.description 
-    ? post.description. childMdx  
+    ? post.description.childMdx  
     : post
 
   return (
-    <PageContainer activePage="blog">
+    <PageContainer activePage="blog" contentClassName="Blog-Post">
       <div className="blog-post-container">
         <SEO title={title} article={true} />
         <div className="blog-post">
@@ -39,7 +43,14 @@ export default function Template({ data }) {
             />
           )}
           <MDXRenderer>{body}</MDXRenderer>
+          {/* <MDXProvider components={{a: MyLink}}>
+          <MDXRenderer>
+          {body}
+          </MDXRenderer>
+            
+          </MDXProvider> */}
         </div>
+        <CommentSection slug="slugs-eh" />
       </div>
     </PageContainer>
   )

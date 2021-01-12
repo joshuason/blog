@@ -8,7 +8,7 @@ import SEO from '../components/SEO'
 import '../css/About.scss'
 
 const About = ({ data }) => (
-  <PageContainer activePage="about" contentClassName="about">
+  <PageContainer activePage="about" contentClassName="About">
     <SEO title="j.sh – ab.ut" />
     <div className="about-content">
       <h1>Hello, I'm Josh!</h1>
