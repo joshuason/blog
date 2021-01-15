@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { CommentsForm } from './Forms'
+import '../css/Comments.scss'
 
 const COMMENTS_API_URL = process.env.GATSBY_COMMENTS_API_URL
 
@@ -22,21 +24,37 @@ const Comment: React.FC<Comment> = ({
   date,
   children = [],
   depth,
-}) => (
+}) => {
+  const [ isHidden, setIsHidden ] = useState(false)
+
+  const [ day, mon, num, yea ] = new Date(Date.parse(date)).toDateString().split(" ")
+  const [ hr, min, sec ] = new Date(Date.parse(date)).toTimeString().split(/:| /)
+
+  const dateFormat = `${num} ${mon} ${yea.slice(2)}`
+  const timeFormat = `${Number.parseInt(hr) > 12 ? Number.parseInt(hr)%12 : hr}:${min} ${Number.parseInt(hr) > 11 ? "pm" : "am"}`
+
+  return (
   <div className={`Comment depth-${depth}`} id={commentId}>
-    {/* <p>ID: {commentId}</p> */}
-    <p>Date: {(new Date(Date.parse(date))).toString()}</p>
-    <p>Name: {name}</p>
-    <p>Text: {text}</p>
-    {/* <p>Slug: {window ? window.location.href : slug}</p> */}
-    {
-      parentCommentId && <p>In response to: {parentCommentId}</p>
-    }
+    {!isHidden && <p>{text}</p>}
+    <div>
+      <p style={{ display: "inline-block" }}>{name} · {dateFormat} · {timeFormat}</p>
+      {" · "}
+      <p
+        style={{
+          cursor: "pointer",
+          display: "inline-block",
+          color: "#C0C0C0"
+        }}
+        onClick={() => setIsHidden(!isHidden)}
+      >
+        {isHidden ? "show" : "hide"}
+      </p>
+    </div>
     {
       children.length !== 0 && <CommentBranch commentsArr={children} depth={depth+1} />
     }
   </div>
-)
+)}
 
 interface CommentsBranchProps {
   commentsArr: Comment[],
@@ -69,7 +87,6 @@ const CommentBranch: React.FC<CommentsBranchProps> = ({ commentsArr, depth }) =>
 }
 
 const CommentsList = ({ slug }) => {
-  // Get comments from slug
   const [ commentState, setCommentState ] = useState({
     isLoading: false,
     comments: [],
@@ -125,27 +142,24 @@ const CommentsList = ({ slug }) => {
   console.log(nestedComments)
   return (
     <div className="CommentsList">
-      <h3 style={{ textDecoration: 'underline' }}>Comments List</h3>
+      <h2 style={{ fontFamily: 'Crimson Text' }}>Comments</h2>
       {<CommentBranch commentsArr={nestedComments.orderedList as Comment[]} depth={0} />}
     </div>
   )
 }
 
-const CommentsForm = () => (
-  <div className="CommentsForm">
-    <h3 style={{ textDecoration: 'underline' }}>Comments Form</h3>
-  </div>
-)
-
 interface CommentsProps {
   slug: string,
 }
 
+// TODO: remove slug
 const CommentSection: React.FC<CommentsProps> = ({ slug }) => {
+  console.log(slug)
   return (
     <div className="Comments">
-      <CommentsList slug={slug}/>
-      <CommentsForm />
+      {/* Slug: "{slug}" */}
+      <CommentsList slug={slug} />
+      <CommentsForm slug={slug} />
     </div>
   )
 }

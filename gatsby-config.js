@@ -5,8 +5,8 @@ require("dotenv").config({
 const siteConfig = require('./siteConfig.js')
 
 const contentfulConfig = {
-  spaceId: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
+  accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
 }
 
 if (process.env.CONTENTFUL_HOST) {

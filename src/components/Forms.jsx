@@ -1,7 +1,11 @@
 import React from 'react'
 import { useFormik, Formik, Form, Field, useField } from 'formik'
 
-const { url } = require('../../contact-form-api/url.json')
+// const { url } = require('../../contact-form-api/url.json')
+const { 
+  GATSBY_CONTACT_API_URL, 
+  GATSBY_COMMENTS_API_URL 
+} = process.env
 
 const onSubmit = (values, { resetForm }) => {
   alert(
@@ -31,11 +35,21 @@ const onSubmit = (values, { resetForm }) => {
   //   .catch(error => console.log("Error: ", error))
 }
 
-const TextInput = ({ label, ...props }) => {
+const onSubmitComment = (values, { resetForm }) => {
+  alert(
+    JSON.stringify({ ...values}, null, 2)
+  )
+  resetForm({
+    name: '',
+    text: '',
+  })
+}
+
+const TextInput = ({ label=null, ...props }) => {
   const [field, meta] = useField(props)
   return (
     <>
-      <label htmlFor={props.id || props.name}>{label}</label>
+      {label && <label htmlFor={props.id || props.name}>{label}</label>}
       <Field {...field} {...props} />
       {meta.touched && meta.error && <div className="error">{meta.error}</div>}
     </>
@@ -135,4 +149,44 @@ const SignupForm = () => {
   )
 }
 
-export { SignupForm, ContactForm }
+const CommentsForm = ({ slug }) => (
+  <div className="CommentsForm">
+    <h3>Add comment</h3>
+    <Formik
+      initialValues={{ name: '',
+      text: '',
+      slug: slug, }}
+      onSubmit={(values, { resetForm, setSubmitting }) => {
+        setTimeout(() => {
+          onSubmitComment(values, { resetForm })
+          setSubmitting(false)
+        }, 1000)
+      }}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <TextInput
+            // label="Name"
+            name="name"
+            type="text"
+            placeholder="Name"
+            required
+          />
+          <TextInput
+            // label="Text"
+            name="text"
+            type="text"
+            placeholder="Say something..."
+            required
+          />
+          <button type="submit" disabled={isSubmitting}>
+            Submit!
+          </button>
+      </Form>
+      )}
+    </Formik>
+  </div>
+)
+
+
+export { SignupForm, ContactForm, CommentsForm }

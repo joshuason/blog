@@ -50,7 +50,7 @@ export default function Template({ data }) {
             
           </MDXProvider> */}
         </div>
-        <CommentSection slug="slugs-eh" />
+        <CommentSection slug={"slugs-eh" || window.location.href.split("/").slice(-2, -1)[0]} />
       </div>
     </PageContainer>
   )

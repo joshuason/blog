@@ -1,51 +1,58 @@
-.about .burgers {
-  font-family: 'courier new';
-  text-align: center;
-  line-height: unset;
-}
+.About {
+  .burgers {
+    font-family: 'courier new';
+    text-align: center;
+    line-height: unset;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: 'Crimson Text', serif;
-  font-weight: 400;
-}
+  h1,
+  h2,
+  h3 {
+    font-family: 'Crimson Text', serif;
+    font-weight: 400;
+  }
 
-.about h1 {
-  font-size: 4rem;
-  margin: 0;
-}
+  h1 {
+    font-size: 4rem;
+    margin: 0;
+  }
 
-i.subtitle {
-  letter-spacing: 0.2rem;
-  font-style: italic;
-  margin: -2rem 0 2rem 0;
-  font-size: 1.5rem;
-}
+  i.subtitle {
+    letter-spacing: 0.2rem;
+    font-style: italic;
+    margin: -2rem 0 2rem 0;
+    font-size: 1.5rem;
+  }
 
-h2 {
-  font-size: 2rem;
-}
+  h2 {
+    font-size: 2rem;
+  }
 
-.p {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-}
+  p, li, a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    line-height: 2rem;
+  }
 
-.about div.gatsby-image-wrapper {
-  display: block !important;
-  margin: 100px auto 150px auto;
-}
+  p, li {
+    font-size: 1.25rem;
+  }
 
-.about-content {
-  margin: 0 auto 3rem 80px;
-  width: 620px;
-}
+  div.gatsby-image-wrapper {
+    display: block !important;
+    margin: 100px auto 150px auto;
+  }
 
-.about-content * {
-  color: #2e2e2e;
-}
+  &-content {
+    margin: 0 auto 3rem 80px;
+    width: 620px;
 
-.about h3 {
-  font-size: 1.5rem;
+    * {
+      color: #2e2e2e;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
 }
