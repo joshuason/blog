@@ -4,7 +4,7 @@ import { useFormik, Formik, Form, Field, useField } from 'formik'
 // const { url } = require('../../contact-form-api/url.json')
 const { 
   GATSBY_CONTACT_API_URL, 
-  GATSBY_COMMENTS_API_URL 
+  GATSBY_COMMENTS_API_URL,
 } = process.env
 
 const onSubmit = (values, { resetForm }) => {
@@ -36,13 +36,25 @@ const onSubmit = (values, { resetForm }) => {
 }
 
 const onSubmitComment = (values, { resetForm }) => {
-  alert(
-    JSON.stringify({ ...values}, null, 2)
-  )
-  resetForm({
-    name: '',
-    text: '',
+  // alert(
+  //   JSON.stringify({ ...values}, null, 2)
+  // )
+  fetch(GATSBY_COMMENTS_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...values }),
   })
+    .then(res => res.json())
+    .then(data => {
+
+      resetForm({
+        name: '',
+        text: '',
+      })
+      return null
+    })
+    .catch(error => console.log({ error: `${error}` }))
+  
 }
 
 const TextInput = ({ label=null, ...props }) => {
@@ -149,27 +161,39 @@ const SignupForm = () => {
   )
 }
 
-const CommentsForm = ({ slug }) => (
-  <div className="CommentsForm">
-    <h3>Add comment</h3>
+const validateName = value => 
+  !/^[A-Za-z]+(\s[A-Za-z]+)*$/.test(value) ? 'invalid name' : null
+
+const validateText = value => 
+  !/^[A-Za-z0-9._~()'!*:@,;+?-\s]+$/.test(value) ? 'invalid text' : null
+
+const CommentsForm = ({ slug, className = null, parentCommentId = null, replyTo="" }) => (
+  <div className={`CommentsForm${className ? ` ${className}` : ""}`}>
+    <h3>{replyTo.length === 0 ? "Add comment" : `Reply to ${replyTo}`}</h3>
     <Formik
-      initialValues={{ name: '',
-      text: '',
-      slug: slug, }}
+      initialValues={{ 
+        name: '',
+        text: '',
+      }}
       onSubmit={(values, { resetForm, setSubmitting }) => {
         setTimeout(() => {
+          values.slug = slug
+          if (parentCommentId) {
+            values.parentCommentId = parentCommentId
+          }
           onSubmitComment(values, { resetForm })
           setSubmitting(false)
         }, 1000)
       }}
     >
-      {({ isSubmitting }) => (
+      {({ errors, isSubmitting }) => (
         <Form>
           <TextInput
             // label="Name"
             name="name"
             type="text"
             placeholder="Name"
+            validate={validateName}
             required
           />
           <TextInput
@@ -177,9 +201,10 @@ const CommentsForm = ({ slug }) => (
             name="text"
             type="text"
             placeholder="Say something..."
+            validate={validateText}
             required
           />
-          <button type="submit" disabled={isSubmitting}>
+          <button type="submit" disabled={isSubmitting || Object.keys(errors).length}>
             Submit!
           </button>
       </Form>
@@ -190,3 +215,8 @@ const CommentsForm = ({ slug }) => (
 
 
 export { SignupForm, ContactForm, CommentsForm }
+
+/*
+{"name":"Cindy Vortex","slug":"slugs-eh","text":"Hey_Sheen!","parentCommentId":"8ced7eda-4663-41a5-8385-65cfccffcf1c"}
+{"name":"Cindy Vortex","slug":"slugs-eh","text":"Hey Sheen!","parentCommentId":"cb7df4b8-0937-447d-a3a2-84ee1e97044f"}
+*/

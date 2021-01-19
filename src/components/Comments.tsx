@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CommentsForm } from './Forms'
 import '../css/Comments.scss'
 
-const COMMENTS_API_URL = process.env.GATSBY_COMMENTS_API_URL
+const { GATSBY_COMMENTS_API_URL } = process.env
 
 type Comment = {
   commentId: string,
@@ -26,6 +26,8 @@ const Comment: React.FC<Comment> = ({
   depth,
 }) => {
   const [ isHidden, setIsHidden ] = useState(false)
+  const comments = useContext(CommentContext)
+  const isReplyTo = comments.replyTo === commentId
 
   const [ day, mon, num, yea ] = new Date(Date.parse(date)).toDateString().split(" ")
   const [ hr, min, sec ] = new Date(Date.parse(date)).toTimeString().split(/:| /)
@@ -36,7 +38,7 @@ const Comment: React.FC<Comment> = ({
   return (
   <div className={`Comment depth-${depth}`} id={commentId}>
     {!isHidden && <p>{text}</p>}
-    <div>
+    <div className="CommentDetails">
       <p style={{ display: "inline-block" }}>{name} · {dateFormat} · {timeFormat}</p>
       {" · "}
       <p
@@ -49,10 +51,28 @@ const Comment: React.FC<Comment> = ({
       >
         {isHidden ? "show" : "hide"}
       </p>
+      {" · "}
+      <p
+        style={{
+          cursor: "pointer",
+          display: "inline-block",
+          color: "#C0C0C0"
+        }}
+        onClick={() => {
+          if (!(comments.replyTo === commentId)) {
+            comments.setReplyTo(commentId)
+          } else {
+            comments.setReplyTo("")
+          }
+        }}
+      >
+        {isReplyTo ? "unreply" : "reply"}
+      </p>
     </div>
     {
       children.length !== 0 && <CommentBranch commentsArr={children} depth={depth+1} />
     }
+    {isReplyTo && <CommentsForm slug={slug} className={`depth-${depth+1}`} parentCommentId={commentId} replyTo={name} />}
   </div>
 )}
 
@@ -94,17 +114,14 @@ const CommentsList = ({ slug }) => {
 
   useEffect(() => {
     setCommentState({ ...commentState ,isLoading: true })
-    try {
-      fetch(`${COMMENTS_API_URL}/${slug}`)
-      .then((res) => res.json())
-      .then((comments) => {
-        if (Array.isArray(comments)) {
-          setCommentState({ isLoading: false, comments })
-        }
-      })
-    } catch (error) {
-      console.log(error)
-    }
+    fetch(`${GATSBY_COMMENTS_API_URL}/${slug}`)
+    .then((res) => res.json())
+    .then((comments) => {
+      if (Array.isArray(comments)) {
+        setCommentState({ isLoading: false, comments })
+      }
+    })
+    .catch(error => console.log(error))
   }, [setCommentState])
 
   const orderedComments = commentState.comments.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
@@ -152,15 +169,22 @@ interface CommentsProps {
   slug: string,
 }
 
+
+const CommentContext = React.createContext(null)
+
 // TODO: remove slug
 const CommentSection: React.FC<CommentsProps> = ({ slug }) => {
+  const [ replyTo, setReplyTo ] = useState("")
+
   console.log(slug)
   return (
-    <div className="Comments">
-      {/* Slug: "{slug}" */}
-      <CommentsList slug={slug} />
-      <CommentsForm slug={slug} />
-    </div>
+    <CommentContext.Provider value={{replyTo, setReplyTo}}>
+      <div className="Comments">
+        <CommentsList slug={slug} />
+        {replyTo.length === 0 && <CommentsForm slug={slug} />}
+      </div>
+    </CommentContext.Provider>
+    
   )
 }
 
