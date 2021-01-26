@@ -1,8 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { SetStateAction, useContext, useEffect, useState } from 'react'
 import { CommentsForm } from './Forms'
 import '../css/Comments.scss'
 
 const { GATSBY_COMMENTS_API_URL } = process.env
+
+export const CommentContext = React.createContext(null)
+
+
+const CommentFormResponse = ( success ) => null
+  // success ?
+  //   (
+  //     <div className="Success">Success</div>
+  //   ) :
+  //   (
+  //     <div className="Failure">Failure</div>
+  //   )
 
 type Comment = {
   commentId: string,
@@ -26,8 +38,8 @@ const Comment: React.FC<Comment> = ({
   depth,
 }) => {
   const [ isHidden, setIsHidden ] = useState(false)
-  const comments = useContext(CommentContext)
-  const isReplyTo = comments.replyTo === commentId
+  const { replyTo, setReplyTo, submitStatus } = useContext(CommentContext)
+  const isReplyTo = replyTo.commentId === commentId
 
   const [ day, mon, num, yea ] = new Date(Date.parse(date)).toDateString().split(" ")
   const [ hr, min, sec ] = new Date(Date.parse(date)).toTimeString().split(/:| /)
@@ -51,28 +63,32 @@ const Comment: React.FC<Comment> = ({
       >
         {isHidden ? "show" : "hide"}
       </p>
-      {" · "}
-      <p
-        style={{
-          cursor: "pointer",
-          display: "inline-block",
-          color: "#C0C0C0"
-        }}
-        onClick={() => {
-          if (!(comments.replyTo === commentId)) {
-            comments.setReplyTo(commentId)
-          } else {
-            comments.setReplyTo("")
-          }
-        }}
-      >
-        {isReplyTo ? "unreply" : "reply"}
-      </p>
+      {!submitStatus.hasSubmit && 
+      <>
+        {" · "}
+        <p
+          style={{
+            cursor: "pointer",
+            display: "inline-block",
+            color: "#C0C0C0"
+          }}
+          onClick={() => {
+            if (!(replyTo.commentId === commentId)) {
+              setReplyTo({ name, commentId })
+            } else {
+              setReplyTo({ name: "", commentId: ""})
+            }
+          }}
+        >
+          {isReplyTo ? "unreply" : "reply"}
+        </p>
+        </>}
     </div>
     {
       children.length !== 0 && <CommentBranch commentsArr={children} depth={depth+1} />
     }
-    {isReplyTo && <CommentsForm slug={slug} className={`depth-${depth+1}`} parentCommentId={commentId} replyTo={name} />}
+    {isReplyTo && (!submitStatus.hasSubmit && <CommentsForm className={`depth-${depth+1}`} /> || 
+    submitStatus.hasSubmit && <CommentFormResponse success={submitStatus.success} />)}
   </div>
 )}
 
@@ -106,23 +122,37 @@ const CommentBranch: React.FC<CommentsBranchProps> = ({ commentsArr, depth }) =>
   )
 }
 
-const CommentsList = ({ slug }) => {
+const CommentsList = () => {
   const [ commentState, setCommentState ] = useState({
     isLoading: false,
     comments: [],
   })
 
+  const { slug, submitStatus, errors, setErrors } = useContext(CommentContext)
+
   useEffect(() => {
+    if (submitStatus.hasSubmit && !submitStatus.success) {
+      return
+    }
     setCommentState({ ...commentState ,isLoading: true })
     fetch(`${GATSBY_COMMENTS_API_URL}/${slug}`)
     .then((res) => res.json())
     .then((comments) => {
       if (Array.isArray(comments)) {
-        setCommentState({ isLoading: false, comments })
+        setCommentState({ ...commentState, comments })
+      }
+      else if (comments.error) {
+        throw Error(comments.error)
       }
     })
-    .catch(error => console.log(error))
-  }, [setCommentState])
+    .catch(error => {
+      console.log(error.message)
+      setErrors({ ...errors, hasError: true, list: [error.message]})
+    })
+    return () => {
+      setCommentState({ comments: [], isLoading: false })
+    }
+  }, [setCommentState, submitStatus.success])
 
   const orderedComments = commentState.comments.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
   const nestedComments = orderedComments.reduce((acc, cur) => {
@@ -148,43 +178,47 @@ const CommentsList = ({ slug }) => {
           ptr.children.push({...cur, children: []})
         } catch (error) {
           console.log(`ERROR: ${error}, ${JSON.stringify(cur)}, ${ptr.parentCommentId === null}`)
-
         }
       }
     } 
     return acc
   }, {position: {}, orderedList: []})
-  console.log(commentState.comments)
-  console.log(orderedComments)
-  console.log(nestedComments)
+
   return (
     <div className="CommentsList">
-      <h2 style={{ fontFamily: 'Crimson Text' }}>Comments</h2>
-      {<CommentBranch commentsArr={nestedComments.orderedList as Comment[]} depth={0} />}
+      {(!errors.hasError) ? <CommentBranch commentsArr={nestedComments.orderedList as Comment[]} depth={0} />
+      : <div>Error: {(errors.list) ? `${errors.list[0]}` : 'Could not load comments'}</div>}
     </div>
   )
 }
 
-interface CommentsProps {
-  slug: string,
+
+
+type Errors = {
+  hasError: boolean,
+  list: String[],
+  form: String[],
 }
-
-
-const CommentContext = React.createContext(null)
-
 // TODO: remove slug
-const CommentSection: React.FC<CommentsProps> = ({ slug }) => {
-  const [ replyTo, setReplyTo ] = useState("")
+const CommentSection: React.FC = () => {
+  const [ replyTo, setReplyTo ] = useState({ commentId: "", name: "" })
+  const [ errors, setErrors ] = useState<Errors>({ hasError: false, list: [], form: [] })
+  const [ submitStatus, setSubmitStatus ] = useState({ hasSubmit: false, success: false })
+  const slug = window.location.href.split("/").slice(-2, -1)[0] as string
 
-  console.log(slug)
   return (
-    <CommentContext.Provider value={{replyTo, setReplyTo}}>
+    <CommentContext.Provider value={{slug, replyTo, setReplyTo, errors, setErrors, submitStatus, setSubmitStatus }}>
       <div className="Comments">
-        <CommentsList slug={slug} />
-        {replyTo.length === 0 && <CommentsForm slug={slug} />}
+        <h2 style={{ fontFamily: 'Crimson Text' }}>Comments</h2>
+        <CommentsList />
+        {/* if no replies, and submit status = false*/}
+        {!errors.hasError && replyTo.commentId.length === 0 && 
+          (!submitStatus.hasSubmit 
+            ? <CommentsForm /> 
+            : <CommentFormResponse success={submitStatus.success} />)
+        }
       </div>
     </CommentContext.Provider>
-    
   )
 }
 

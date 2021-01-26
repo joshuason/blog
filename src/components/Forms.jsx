@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useFormik, Formik, Form, Field, useField } from 'formik'
+import { CommentContext } from './Comments'
 
 // const { url } = require('../../contact-form-api/url.json')
-const { 
-  GATSBY_CONTACT_API_URL, 
-  GATSBY_COMMENTS_API_URL,
-} = process.env
+const { GATSBY_COMMENTS_API_URL } = process.env
 
 const onSubmit = (values, { resetForm }) => {
   alert(
@@ -35,10 +33,11 @@ const onSubmit = (values, { resetForm }) => {
   //   .catch(error => console.log("Error: ", error))
 }
 
-const onSubmitComment = (values, { resetForm }) => {
+const onSubmitComment = (values, resetForm, setSubmitStatus) => {
   // alert(
   //   JSON.stringify({ ...values}, null, 2)
   // )
+  // console.log(GATSBY_COMMENTS_API_URL)
   fetch(GATSBY_COMMENTS_API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -46,15 +45,16 @@ const onSubmitComment = (values, { resetForm }) => {
   })
     .then(res => res.json())
     .then(data => {
-
       resetForm({
         name: '',
         text: '',
       })
-      return null
+      setSubmitStatus({ hasSubmit: true, success: true})
     })
-    .catch(error => console.log({ error: `${error}` }))
-  
+    .catch(error => {
+      setSubmitStatus({ hasSubmit: true, success: false})
+      console.log({ error: `${error}`})
+    })
 }
 
 const TextInput = ({ label=null, ...props }) => {
@@ -62,8 +62,8 @@ const TextInput = ({ label=null, ...props }) => {
   return (
     <>
       {label && <label htmlFor={props.id || props.name}>{label}</label>}
-      <Field {...field} {...props} />
-      {meta.touched && meta.error && <div className="error">{meta.error}</div>}
+      <Field className={meta.value !== "" && meta.error ? "error" : null} {...field} {...props} />
+      {meta.touched && meta.error && null /*<div className="error">{meta.error}</div>*/}
     </>
   )
 }
@@ -167,52 +167,54 @@ const validateName = value =>
 const validateText = value => 
   !/^[A-Za-z0-9._~()'!*:@,;+?-\s]+$/.test(value) ? 'invalid text' : null
 
-const CommentsForm = ({ slug, className = null, parentCommentId = null, replyTo="" }) => (
-  <div className={`CommentsForm${className ? ` ${className}` : ""}`}>
-    <h3>{replyTo.length === 0 ? "Add comment" : `Reply to ${replyTo}`}</h3>
-    <Formik
-      initialValues={{ 
-        name: '',
-        text: '',
-      }}
-      onSubmit={(values, { resetForm, setSubmitting }) => {
-        setTimeout(() => {
-          values.slug = slug
-          if (parentCommentId) {
-            values.parentCommentId = parentCommentId
-          }
-          onSubmitComment(values, { resetForm })
-          setSubmitting(false)
-        }, 1000)
-      }}
-    >
-      {({ errors, isSubmitting }) => (
-        <Form>
-          <TextInput
-            // label="Name"
-            name="name"
-            type="text"
-            placeholder="Name"
-            validate={validateName}
-            required
-          />
-          <TextInput
-            // label="Text"
-            name="text"
-            type="text"
-            placeholder="Say something..."
-            validate={validateText}
-            required
-          />
-          <button type="submit" disabled={isSubmitting || Object.keys(errors).length}>
-            Submit!
-          </button>
-      </Form>
-      )}
-    </Formik>
-  </div>
-)
-
+const CommentsForm = ({ className = null }) => {
+  const { slug, replyTo, setSubmitStatus } = useContext(CommentContext)
+  return (
+    <div className={`CommentsForm${className ? ` ${className}` : ""}`}>
+      <h2>{replyTo.commentId.length === 0 ? "Add comment" : `Reply to ${replyTo.name}`}</h2>
+      <Formik
+        initialValues={{ 
+          name: '',
+          text: '',
+        }}
+        onSubmit={(values, { resetForm, setSubmitting }) => {
+          setTimeout(() => {
+            values.slug = slug
+            if (replyTo) {
+              values.parentCommentId = replyTo.commentId
+            }
+            onSubmitComment(values, resetForm, setSubmitStatus)
+            setSubmitting(false)
+          }, 1000)
+        }}
+      >
+        {({ errors, isSubmitting, touched }) => (
+          <Form>
+            <TextInput
+              // label="Name"
+              name="name"
+              type="text"
+              placeholder="Name"
+              validate={validateName}
+              required
+            />
+            <TextInput
+              // label="Text"
+              name="text"
+              type="text"
+              placeholder="Say something insightful..."
+              validate={validateText}
+              required
+            />
+            <button type="submit" disabled={!touched.name || !touched.text || isSubmitting || Object.keys(errors).length}>
+              {isSubmitting ? "Submitting..." : "Submit!"}
+            </button>
+        </Form>
+        )}
+      </Formik>
+    </div>
+  )
+}
 
 export { SignupForm, ContactForm, CommentsForm }
 

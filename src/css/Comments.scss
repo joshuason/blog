@@ -19,9 +19,9 @@
         &:nth-of-type(1) {
           margin-bottom: 0.5rem;
         }
-        &:nth-of-type(2) {
-          margin-top: 0.5rem;
-        }
+        // &:nth-of-type(2) {
+        //   margin-top: 0.5rem;
+        // }
       }
       &, &sForm {
         &.depth {
@@ -33,11 +33,91 @@
       &Details {
         p {
           font-size: 0.8rem;
+          margin: 0.5rem 0;
         }
       }
     }
   }
 
+  .CommentsForm {
+    background-color: #f0f0f0;
+    padding: 1rem;
+    margin-top: 1.5rem;
+
+    form {
+      display: flex;
+      flex-flow: column;
+    }
+    h2 {
+      font-family: $main-font-stack;
+      font-weight: 300;
+      color: $primary-color;
+      margin-top: 0;
+    }
+    input {
+      // &:nth-of-type(1) {
+        border-color: $secondary-color;
+        color: $primary-color;
+        border: 1px solid $secondary-color;
+        background-color: #ffffff;
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+        font-family: $body-font-stack;
+        font-weight: 300;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        width: 100%;
+        &:focus {
+          background-color: #f0f0f0; 
+        }
+        &::placeholder {
+          color: $secondary-color;
+        }
+        &.error {
+          text-decoration: line-through;
+        }
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    }
+    button {
+      // text-align: right;
+      align-self: flex-end;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      font-family: $body-font-stack;
+      font-size: 1rem;
+      border-radius: unset;
+      border: 1px solid $base-color;
+      background-color: $base-color;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #ffffff;
+      &:disabled {
+        border: 1px solid #fff;
+        color: #fff;
+        cursor: unset;
+        background-color: unset;
+      }
+      &:enabled:hover {
+        background-color: #f0f0f0;
+        color: $primary-color;
+      }
+      &:enabled:focus {
+        
+      }
+    }
+    div.error {
+      display: none;
+    }
+  }
 }
 
 @media screen and (min-width: $mobile-max-width) {
