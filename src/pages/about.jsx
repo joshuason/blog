@@ -10,7 +10,6 @@ import '../css/About.scss'
 const About = ({ data }) => (
   <PageContainer activePage="about" contentClassName="About">
     <SEO title="j.sh – ab.ut" />
-    <div className="about-content">
       <h1>Hello, I'm Josh!</h1>
       <i className="subtitle">(a/per)spiring web developer</i>
       <Img fixed={data.file.childImageSharp.fixed} />
@@ -82,7 +81,6 @@ const About = ({ data }) => (
       <i>
         (I thought I should end with something catchy and vaguely appropriate)
       </i>
-    </div>{' '}
     {/* ->| .about-content */}
   </PageContainer>
 )

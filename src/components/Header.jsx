@@ -5,13 +5,22 @@ import '../css/header.scss'
 
 const pages = ['blog', 'about', 'contact']
 
-const isActive = ({ isCurrent, href }) => {
-  console.log({ isCurrent, href })
-  return isCurrent ? { className: 'active' } : {}
-}
+// const isActive = ({ isCurrent, href }) => {
+//   console.log({ isCurrent, href })
+//   return isCurrent ? { className: 'active' } : {}
+// }
+
+const Header = ({ activePage }) => (
+  <div className="Header">
+    <div className="Logo">
+      <Link to={`/`}>{'{ j.sh }'}</Link>
+    </div>
+    <Nav activePage={activePage} />
+  </div>
+)
 
 const Nav = ({ activePage }) => (
-  <nav>
+  <nav className="Nav">
     <ul>
       {pages &&
         pages.map((page, ind) => (
@@ -33,14 +42,6 @@ const Nav = ({ activePage }) => (
   </nav>
 )
 
-const Header = ({ activePage }) => (
-  <div className="Header">
-    <div className="Logo">
-      <Link to={`/`}>{'{ j.sh }'}</Link>
-    </div>
-    <Nav activePage={activePage} />
-  </div>
-)
 
 export default Header
 

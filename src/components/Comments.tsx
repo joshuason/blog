@@ -1,4 +1,4 @@
-import React, { SetStateAction, useContext, useEffect, useState } from 'react'
+import React, { FC, SetStateAction, useContext, useEffect, useState } from 'react'
 import { CommentsForm } from './Forms'
 import '../css/Comments.scss'
 
@@ -6,8 +6,60 @@ const { GATSBY_COMMENTS_API_URL } = process.env
 
 export const CommentContext = React.createContext(null)
 
+interface Comment {
+  commentId: string
+  parentCommentId?: string | null
+  children?: Comment[] | undefined[]
+  name: string
+  date: string
+  text: string
+  slug: string
+  depth: number
+}
 
-const CommentFormResponse = ( success ) => null
+interface CommentsBranchProps {
+  commentsArr: Comment[]
+  depth: number
+}
+
+interface CommentState {
+  isLoading: boolean
+  comments: Comment[] | []
+}
+
+interface CommentContext {
+  slug: string
+  submitStatus: SubmitStatus
+  errors: Errors
+  setErrors: (Obj: Errors) => SetStateAction<Errors>
+  replyTo: Replies
+  setReplyTo: (Obj: Replies) => SetStateAction<Replies>
+}
+
+interface NestedComments {
+  position: {
+    [id: string]: number[];
+  };
+  orderedList: Comment[];
+}
+
+interface Errors {
+  hasError: boolean
+  list: String[] 
+  form: String[]
+}
+
+interface Replies {
+  commentId: string
+  name: string
+}
+
+interface SubmitStatus {
+  hasSubmit: boolean
+  success: boolean
+}
+
+const CommentFormResponse: FC<{success: boolean}> = ({ success }) => null
   // success ?
   //   (
   //     <div className="Success">Success</div>
@@ -16,18 +68,7 @@ const CommentFormResponse = ( success ) => null
   //     <div className="Failure">Failure</div>
   //   )
 
-type Comment = {
-  commentId: string,
-  parentCommentId?: string | null,
-  children?: Comment[] | [],
-  name: string,
-  date: string,
-  text: string,
-  slug: string,
-  depth: number,
-}
-
-const Comment: React.FC<Comment> = ({
+const Comment: FC<Comment> = ({
   name,
   text,
   slug,
@@ -37,53 +78,54 @@ const Comment: React.FC<Comment> = ({
   children = [],
   depth,
 }) => {
-  const [ isHidden, setIsHidden ] = useState(false)
-  const { replyTo, setReplyTo, submitStatus } = useContext(CommentContext)
-  const isReplyTo = replyTo.commentId === commentId
+  const [ isHidden, setIsHidden ] = useState<boolean>(false)
+  const { replyTo, setReplyTo, submitStatus } = useContext<CommentContext>(CommentContext)
+  const isReplyTo: boolean = replyTo.commentId === commentId
 
-  const [ day, mon, num, yea ] = new Date(Date.parse(date)).toDateString().split(" ")
-  const [ hr, min, sec ] = new Date(Date.parse(date)).toTimeString().split(/:| /)
+  const [ day, mon, num, yea ]: string[] = new Date(Date.parse(date)).toDateString().split(" ")
+  const [ hr, min, sec ]: string[] = new Date(Date.parse(date)).toTimeString().split(/:| /)
 
-  const dateFormat = `${num} ${mon} ${yea.slice(2)}`
-  const timeFormat = `${Number.parseInt(hr) > 12 ? Number.parseInt(hr)%12 : hr}:${min} ${Number.parseInt(hr) > 11 ? "pm" : "am"}`
+  const dateFormat: string = `${num} ${mon} ${yea.slice(2)}`
+  const timeFormat: string = `${Number.parseInt(hr) > 12 ? Number.parseInt(hr)%12 : hr}:${min} ${Number.parseInt(hr) > 11 ? "pm" : "am"}`
 
   return (
   <div className={`Comment depth-${depth}`} id={commentId}>
-    {!isHidden && <p>{text}</p>}
-    <div className="CommentDetails">
-      <p style={{ display: "inline-block" }}>{name} · {dateFormat} · {timeFormat}</p>
-      {" · "}
-      <p
-        style={{
-          cursor: "pointer",
-          display: "inline-block",
-          color: "#C0C0C0"
-        }}
-        onClick={() => setIsHidden(!isHidden)}
-      >
-        {isHidden ? "show" : "hide"}
-      </p>
-      {!submitStatus.hasSubmit && 
-      <>
-        {" · "}
-        <p
-          style={{
-            cursor: "pointer",
-            display: "inline-block",
-            color: "#C0C0C0"
-          }}
-          onClick={() => {
-            if (!(replyTo.commentId === commentId)) {
-              setReplyTo({ name, commentId })
-            } else {
-              setReplyTo({ name: "", commentId: ""})
-            }
-          }}
+    <div className="Comment-Details">
+      <div>
+        <span 
+          className="Comment-Name-Date"
+          onClick={() => setIsHidden(!isHidden)}
         >
-          {isReplyTo ? "unreply" : "reply"}
-        </p>
-        </>}
+          <span>
+            <b className="name">{name}</b>
+            {" · "}
+            {dateFormat}
+          </span>
+        </span>
+        {
+          !submitStatus.hasSubmit && 
+            <>
+              {" · "}
+              <span
+                className="reply"
+                onClick={() => {
+                  if (!(replyTo.commentId === commentId)) {
+                    setReplyTo({ name, commentId })
+                  } else {
+                    setReplyTo({ name: "", commentId: ""})
+                  }
+                }}
+              >
+                {isReplyTo 
+                  ? <i className="fas fa-times"></i>
+                  : <i className="fas fa-reply"></i>
+                }
+              </span>
+            </>
+        }
+      </div>
     </div>
+    {!isHidden && <p className="Comment-Message">{text}</p>}
     {
       children.length !== 0 && <CommentBranch commentsArr={children} depth={depth+1} />
     }
@@ -92,15 +134,10 @@ const Comment: React.FC<Comment> = ({
   </div>
 )}
 
-interface CommentsBranchProps {
-  commentsArr: Comment[],
-  depth: number,
-}
-
-const CommentBranch: React.FC<CommentsBranchProps> = ({ commentsArr, depth }) => {
+const CommentBranch: FC<CommentsBranchProps> = ({ commentsArr, depth }) => {
   return (
-    <div className="CommentBranch">
-      {commentsArr.map(comment => (
+    <div className="Comment-Branch">
+      {commentsArr.map((comment: Comment) => (
         comment.parentCommentId &&
           comment.parentCommentId === comment.commentId ?
             <div className="error">
@@ -122,13 +159,9 @@ const CommentBranch: React.FC<CommentsBranchProps> = ({ commentsArr, depth }) =>
   )
 }
 
-const CommentsList = () => {
-  const [ commentState, setCommentState ] = useState({
-    isLoading: false,
-    comments: [],
-  })
-
-  const { slug, submitStatus, errors, setErrors } = useContext(CommentContext)
+const CommentsList: FC = () => {
+  const [ commentState, setCommentState ] = useState<CommentState>({ isLoading: false, comments: [] })
+  const { slug, submitStatus, errors, setErrors } = useContext<CommentContext>(CommentContext)
 
   useEffect(() => {
     if (submitStatus.hasSubmit && !submitStatus.success) {
@@ -147,69 +180,57 @@ const CommentsList = () => {
     })
     .catch(error => {
       console.log(error.message)
-      setErrors({ ...errors, hasError: true, list: [error.message]})
+      setErrors({ ...errors, hasError: true, list: [error.message] })
     })
     return () => {
       setCommentState({ comments: [], isLoading: false })
     }
   }, [setCommentState, submitStatus.success])
 
-  const orderedComments = commentState.comments.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
-  const nestedComments = orderedComments.reduce((acc, cur) => {
-    if (!cur.parentCommentId || acc.length === 0) {
+  const orderedComments: Comment[] = commentState.comments.sort((a: Comment, b: Comment) => Date.parse(a.date) - Date.parse(b.date))
+  const nestedComments: NestedComments = orderedComments.reduce((acc: NestedComments, cur: Comment) => {
+    // if cur has no parents or list is empty, push cur into OL and add pos into position obj
+    if (!cur.parentCommentId || acc.orderedList.length === 0) {
       acc.position[cur.commentId] = [acc.orderedList.length]
       acc.orderedList.push({...cur, children: []})
-    } else {
-      if (Array.isArray(acc.position[cur.parentCommentId])) {
-        // if parent position exists, then locate the parent, 
-        // then push into children
+    // else if cur has parent;
+    } else if (Array.isArray(acc.position[cur.parentCommentId]) && acc.position[cur.parentCommentId].length) {
+      let pos: number[] = acc.position[cur.parentCommentId] // get the position of parent within orderedList
+      let ptr: Comment = acc.orderedList[pos[0]] // pointer: point to first pos in position queue
+      pos = pos.slice(1) // pop first item off oL
 
-        let pos = acc.position[cur.parentCommentId]
-        const { orderedList } = acc
-        let ptr = orderedList
-
-        while (pos.length !== 0) {
-          ptr = ptr.children ? ptr.children[pos[0]] : ptr[pos[0]]
-          pos = pos.slice(1) // pop first item off
-        }
-        
-        try {
-          acc.position[cur.commentId] = [...acc.position[cur.parentCommentId], ptr.children.length]
-          ptr.children.push({...cur, children: []})
-        } catch (error) {
-          console.log(`ERROR: ${error}, ${JSON.stringify(cur)}, ${ptr.parentCommentId === null}`)
-        }
+      while (pos.length !== 0) {
+        ptr = ptr.children ? ptr.children[pos[0]] : ptr[pos[0]] // 
+        pos = pos.slice(1) // pop first item off oL
       }
+      
+      acc.position[cur.commentId] = [...acc.position[cur.parentCommentId], ptr.children.length]
+      ptr.children = [...ptr.children, {...cur, children: []}]
     } 
     return acc
   }, {position: {}, orderedList: []})
 
   return (
-    <div className="CommentsList">
+    <div className="Comments-List">
       {(!errors.hasError) ? <CommentBranch commentsArr={nestedComments.orderedList as Comment[]} depth={0} />
       : <div>Error: {(errors.list) ? `${errors.list[0]}` : 'Could not load comments'}</div>}
     </div>
   )
 }
 
-
-
-type Errors = {
-  hasError: boolean,
-  list: String[],
-  form: String[],
-}
-// TODO: remove slug
-const CommentSection: React.FC = () => {
-  const [ replyTo, setReplyTo ] = useState({ commentId: "", name: "" })
+const CommentSection: FC = () => {
+  const [ replyTo, setReplyTo ] = useState<Replies>({ commentId: "", name: "" })
   const [ errors, setErrors ] = useState<Errors>({ hasError: false, list: [], form: [] })
-  const [ submitStatus, setSubmitStatus ] = useState({ hasSubmit: false, success: false })
-  const slug = window.location.href.split("/").slice(-2, -1)[0] as string
+  const [ submitStatus, setSubmitStatus ] = useState<SubmitStatus>({ hasSubmit: false, success: false })
+  const slug: string = typeof window !== 'undefined' ? window.location.href.split("/").slice(-2, -1)[0] : ''
 
   return (
-    <CommentContext.Provider value={{slug, replyTo, setReplyTo, errors, setErrors, submitStatus, setSubmitStatus }}>
+    <CommentContext.Provider value={{ slug, replyTo, setReplyTo, errors, setErrors, submitStatus, setSubmitStatus }}>
       <div className="Comments">
-        <h2 style={{ fontFamily: 'Crimson Text' }}>Comments</h2>
+        <div className="separator">
+          <div className="separator-line"></div>
+        </div>
+        <p className="title">Comments</p>
         <CommentsList />
         {/* if no replies, and submit status = false*/}
         {!errors.hasError && replyTo.commentId.length === 0 && 

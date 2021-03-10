@@ -1,49 +1,43 @@
-@import "_base";
+@import 'base';
+@import 'font';
 
 .Header {
-  // padding-bottom: 2rem;
-  // margin-bottom: 50px;
+  width: 100%;
+  height: 90px;
+  font-size: 24px;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  align-items: center;
-  font-size: 2rem;
-  position: sticky;
-  top: 0rem;
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 25%
-  );
-  z-index: 2;
 
   * {
     color: $base-color;
+    font-family: $heading-font;
   }
 
-  span {
-    visibility: hidden;
-    &.active {
-      visibility: visible;
+  .Logo,
+  .Nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .Logo {
+  }
+
+  .Nav {
+    ul {
+      margin: 0;
+      padding: 0;
     }
-  }
-
-  &:hover {
-    .Logo a,
-    span.active {
-      color: $primary-color;
-    }
-  }
-
-  a:hover {
-    color: $primary-color;
-  }
-
-  nav {
     li {
       display: inline-block;
       font-size: inherit;
+    }
+    span {
+      visibility: hidden;
+      &.active {
+        visibility: visible;
+      }
     }
   }
 }

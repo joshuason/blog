@@ -7,33 +7,33 @@ import SEO from '../components/SEO'
 
 import '../css/index.scss'
 
-type MyProps = {}
-type StateProps = {
-  hasError: boolean
-}
+// type MyProps = {}
+// type StateProps = {
+//   hasError: boolean
+// }
 
-class ErrorBoundary extends React.Component<MyProps, StateProps> {
-  constructor(props) {
-    super(props)
-    this.state = { hasError: false }
-  }
+// class ErrorBoundary extends React.Component<MyProps, StateProps> {
+//   constructor(props) {
+//     super(props)
+//     this.state = { hasError: false }
+//   }
 
-  static getDerivedStateFromError(error) {
-    return { hasError: true }
-  }
+//   static getDerivedStateFromError(error) {
+//     return { hasError: true }
+//   }
 
-  componentDidCatch(error, errorInfo) {
-    return null
-  }
+//   componentDidCatch(error, errorInfo) {
+//     return null
+//   }
 
-  render() {
-    if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>
-    }
-    return <>{this.props.children}</>
-  }
-}
+//   render() {
+//     if (this.state.hasError) {
+//       // You can render any custom fallback UI
+//       return <h1>Something went wrong.</h1>
+//     }
+//     return <>{this.props.children}</>
+//   }
+// }
 
 export default function Index({ data }) {
   //-- Merge posts from local and Contentful CMS

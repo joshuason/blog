@@ -81,3 +81,6 @@ contact-form-api/url.json
 
 #site config
 siteConfig.js
+
+# old files
+.old*

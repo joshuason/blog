@@ -28,21 +28,35 @@ export default function Template({ data }) {
   const { body } = post.description 
     ? post.description.childMdx  
     : post
+  
+  const dateArray = post.frontmatter ? post.frontmatter.date.split(" ") : post.publishDate.split(" ")
+  const date  = `${dateArray[1].slice(0,-1)} ${dateArray[0]} ${dateArray[2].slice(-2)}`
+  
 
   return (
     <PageContainer activePage="blog" contentClassName="Blog-Post">
-      <div className="blog-post-container">
+      {/* <div className="blog-post-container"> */}
         <SEO title={title} article={true} />
-        <div className="blog-post">
-          <h1>{title}</h1>
+        <div className="Blog-Post-Article">
           {featuredImgFluid && (
             <Img
               fluid={featuredImgFluid}
               durationFadeIn={2000}
               draggable={false}
+              className="Featured-Img"
             />
           )}
-          <MDXRenderer>{body}</MDXRenderer>
+          <div className="title">
+            <h1>{title}</h1>
+            <div className="title-separator">
+              <div className="title-separator-line"></div>
+            </div>
+            <p className="title-date">{date}</p>
+          </div>
+          <div className="body">
+            <MDXRenderer>{body}</MDXRenderer>
+          </div>
+          
           {/* <MDXProvider components={{a: MyLink}}>
           <MDXRenderer>
           {body}
@@ -51,10 +65,19 @@ export default function Template({ data }) {
           </MDXProvider> */}
         </div>
         <CommentSection /*slug={"slugs-eh" || window.location.href.split("/").slice(-2, -1)[0]}*/ />
-      </div>
+      {/* </div> */}
     </PageContainer>
   )
 }
+
+const Separator = ({ text }) => (
+  <>
+    <div className="separator">
+      <div className="separator-line"></div>
+    </div>
+    <p className="title-date">{text}</p>
+  </>
+)
 
 export const pageQuery = graphql`
   query BlogPostBySlug($path: String!) {

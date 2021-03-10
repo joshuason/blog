@@ -1,6 +1,4 @@
-$main-font-stack: 'Crimson Text', serif;
-$body-font-stack: 'Roboto', sans-serif;
-$code-font-stack: 'Courier New', Courier, monospace;
+@import 'font';
 
 $primary-color: #2e2e2e;
 $secondary-color: #c0c0c0;
@@ -9,15 +7,10 @@ $base-color: #808080;
 $mobile-min-width: 320px;
 $mobile-max-width: 800px;
 
+// Actual CSS
+
 * {
   box-sizing: border-box;
-  font-family: $main-font-stack;
-  font-weight: 400;
-  color: $primary-color;
-}
-
-a {
-  text-decoration: none;
 }
 
 html,
@@ -26,18 +19,54 @@ body {
   padding: 0;
 }
 
-p {
-  font-size: 1rem;
+a {
+  text-decoration: none;
 }
 
-.container {
-  max-width: 900px;
-  min-height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-
-  & > .content {
-    flex: 1 0 auto;
-  }
+h1,
+h2,
+h3 {
+  color: $primary-color;
 }
+
+p,
+a,
+li,
+span {
+  font-family: $body-font;
+  color: $primary-color;
+  font-weight: 300;
+  line-height: 1.5rem;
+}
+// * {
+//   box-sizing: border-box;
+//   font-family: $main-font-stack;
+//   font-weight: 400;
+//   color: $primary-color;
+// }
+
+// a {
+//   text-decoration: none;
+// }
+
+// html,
+// body {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// p {
+//   font-size: 1rem;
+// }
+
+// .container {
+//   max-width: 900px;
+//   min-height: 100vh;
+//   margin: 0 auto;
+//   display: flex;
+//   flex-direction: column;
+
+//   & > .content {
+//     flex: 1 0 auto;
+//   }
+// }

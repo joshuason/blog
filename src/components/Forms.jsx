@@ -3,9 +3,9 @@ import { useFormik, Formik, Form, Field, useField } from 'formik'
 import { CommentContext } from './Comments'
 
 // const { url } = require('../../contact-form-api/url.json')
-const { GATSBY_COMMENTS_API_URL } = process.env
 
-const onSubmit = (values, { resetForm }) => {
+// Used for testing
+const onSubmitAlert = (values, { resetForm }) => {
   alert(
     JSON.stringify({ ...values, content: values.content || `HI! 👋` }, null, 2)
   )
@@ -14,31 +14,37 @@ const onSubmit = (values, { resetForm }) => {
     name: '',
     content: '',
   })
-
-  // fetch(url, {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify({ ...values, content: values.content || `HI! 👋` }),
-  // })
-  //   .then(res => (res.ok ? res.json() : Error("failed")))
-  //   .then(data => {
-  //     // alert(`Thanks ${values.name} for saying hi :)`)
-  //     resetForm({
-  //       email: "",
-  //       name: "",
-  //       content: "",
-  //     })
-  //     console.log(data)
-  //   })
-  //   .catch(error => console.log("Error: ", error))
 }
 
+const onSubmitContact = (values, { resetForm }) => {
+  // console.log(JSON.stringify({ ...values, content: values.content || 'Hi! 👋' }))
+  fetch(process.env.GATSBY_CONTACT_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ...values, content: values.content || `Hi! 👋` }),
+  })
+    .then(res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        throw res.text()
+      }
+    })
+    .then(data => {
+      // alert(`Thanks ${values.name} for saying hi :)`)
+      resetForm({
+        email: "",
+        name: "",
+        content: "",
+      })
+      console.log(data)
+    })
+    .catch(error => console.log("Error: ", error))
+}
+
+// Actual API
 const onSubmitComment = (values, resetForm, setSubmitStatus) => {
-  // alert(
-  //   JSON.stringify({ ...values}, null, 2)
-  // )
-  // console.log(GATSBY_COMMENTS_API_URL)
-  fetch(GATSBY_COMMENTS_API_URL, {
+  fetch(process.env.GATSBY_COMMENTS_API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...values }),
@@ -74,7 +80,7 @@ const ContactForm = () => (
       initialValues={{ email: '', name: '', content: '' }}
       onSubmit={(values, { resetForm, setSubmitting }) => {
         setTimeout(() => {
-          onSubmit(values, { resetForm })
+          onSubmitContact(values, { resetForm })
           setSubmitting(false)
         }, 1000)
       }}
@@ -118,7 +124,7 @@ const SignupForm = () => {
       email: '',
       name: '',
     },
-    onSubmit: (values, { resetForm }) => onSubmit(values, { resetForm }),
+    onSubmit: (values, { resetForm }) => onSubmitContact(values, { resetForm }),
   })
 
   return (
@@ -168,7 +174,7 @@ const validateText = value =>
   !/^[A-Za-z0-9._~()'!*:@,;+?-\s]+$/.test(value) ? 'invalid text' : null
 
 const CommentsForm = ({ className = null }) => {
-  const { slug, replyTo, setSubmitStatus } = useContext(CommentContext)
+  const { slug, replyTo, submitStatus, setSubmitStatus } = useContext(CommentContext)
   return (
     <div className={`CommentsForm${className ? ` ${className}` : ""}`}>
       <h2>{replyTo.commentId.length === 0 ? "Add comment" : `Reply to ${replyTo.name}`}</h2>
@@ -185,6 +191,7 @@ const CommentsForm = ({ className = null }) => {
             }
             onSubmitComment(values, resetForm, setSubmitStatus)
             setSubmitting(false)
+            // setSubmitStatus({ ...submitStatus, hasSubmit: true })
           }, 1000)
         }}
       >
@@ -206,7 +213,11 @@ const CommentsForm = ({ className = null }) => {
               validate={validateText}
               required
             />
-            <button type="submit" disabled={!touched.name || !touched.text || isSubmitting || Object.keys(errors).length}>
+            <button 
+              type="submit" 
+              disabled={!touched.name || !touched.text || isSubmitting || Object.keys(errors).length}
+              className={isSubmitting ? "submitting" : "submit"}
+            >
               {isSubmitting ? "Submitting..." : "Submit!"}
             </button>
         </Form>
